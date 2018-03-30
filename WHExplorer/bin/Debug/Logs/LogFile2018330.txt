@@ -1,0 +1,8 @@
+﻿Utente: USER loggato il 30/3/2018 15:36:29
+Utente: System.IO.DirectoryNotFoundException: Impossibile trovare una parte del percorso 'F:\GitRepository\Xplorer\WHExplorer\bin\Debug\ComponentDataSheet'.
+   in System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   in System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   in System.IO.DirectoryInfo.EnumerateFiles()
+   in Xplorer.FileSystemFunct.fCheckIfThereFiles(String folderPath) in F:\GitRepository\Xplorer\WHExplorer\Functions\FileSystemFunct.vb:riga 5
+   in Xplorer.frmMain.Form1_Load(Object sender, EventArgs e) in F:\GitRepository\Xplorer\WHExplorer\frmMain.vb:riga 66
+Utente: USER loggato il 30/3/2018 15:37:26

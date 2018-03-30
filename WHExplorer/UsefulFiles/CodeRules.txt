@@ -1,0 +1,69 @@
+﻿#### CODE RULES ####
+Questo file contiene le regole di codifica dei componenti elettrici
+
+## AROL CODE ##
+La parte "alta" della codifica viene determinata in funzione della tabella RuleArolCode.
+La parte "bassa" della codifica viene determinata (al momento) come numero progressivo.
+
+## DESCRIPTION ##
+Qui sotto vengono riportate le regole di costruzione del campo "descrizione". 
+Come regola generale si vuole adottare quella di porre come primo campo il nome della categoria, seguita dalle principali caratteristiche elettriche intrinseche del componente,
+e successivamente ulteriori caratteristiche secondarie.
+Limitazioni: numero di caratteri, pari a 40 caratteri
+# ALIMENTATORE #
+"ALIMENTATORE" + Tensione Ingresso + "Vac/" + Tensione Uscita + "Vdc/" + "Corrente" + "A " + "Caratteristiche"
+# AZIONAMENTO #
+Ad eccezione del materiale PacDrive3.
+"AZIONAMENTO" + Tipologia + " " + Potenza + "kW " + Tensione + "Vac"
+# SCATOLA ELETTRICA #
+"SCATOLA" + Materiale + Dimensioni LxHxP
+# ARMADIO ELETTRICO #
+"ARMADIO ELETTRICO" + Dimensioni LxHxP
+# ZOCCOLO PER ARMADIO #
+"ZOCCOLO" + Dimensioni LxHxP
+# CASSA #
+"CASSA" + Materiale + Dimensioni LxHxP
+# CAVO CON CONNETTORE #
+"CAVO A CONNETTORE" + Numero di Poli + Dimensioni + Tipologia Connettore (Dritto - 90°) + Lunghezza (m)
+# CONDIZIONATORE #
+"CONDIZIONAT.DA PARETE" + Tensione + "/" + Frequenza + "/" + Potenza (W)
+# CONNETTORE #
+"CONNETTORE" + Numero di Poli + " " + Tipologia (M/F) + " " + Diametro + Ulteriori caratteristiche
+# COLLETTORE ROTANTE #
+"COLLETTORE ROTANTE"  + Numero di Anelli + "ANELLI"
+# SPINA #
+"SPINA" + Tensione + Corrente + Numero di poli + Grado di protezione IP
+# PRESA #
+"PRESA" + Tensione + Corrente + Numero di poli + Grado di protezione IP
+# VIBRATORE #
+"VIBRATORE" + Tipologia + Numero di vibrazioni + Tensione + "/" + Corrente
+# ELETTROVALVOLA #
+"ELETTROVALVOLA" + Numero di vie + Diametro in pollici + Tensione Bobina
+# FOTOCELLULA #
+"FOTOCELLULA" + Diametro + Tipologia (Tasteggio/Riflessione/A forcella) + Tensione alimentazione
+# FUSIBILE #
+"FUSIBILE" + Dimensioni + Corrente + Tensione + Ulteriori caratteristiche (Es. Rapido, Ritardato)
+# INTERRUTTORE MAGNETOTERMICO #
+"INTERRUTTORE MAGNETOTERMICO" + Numero di poli + Corrente + Tipologia di curva
+# INTERRUTTORE TERMICO #
+"INTERRUTTORE TERMICO" + Corrente
+# INVERTER #
+"INVERTER" + Modello + Potenza + Tensione + Numero di fasi
+# RESISTENZA #
+"RESISTENZA" + Dimensioni + Potenza + Tensione di alimentazione
+# MODULO PLC #
+"MODULO" + Numero punti + Tipologia (Ingresso/Uscita) + Tipologia2 (Analogico/Digitale) + Ulteriori caratteristiche
+# PLC (CPU) #
+"CPU" + Marca + Modello + Ulteriori caratteristiche
+# PRESSOSTATO #
+"PRESSOSTATO" + Range di intervento + Diametro in pollici + Ulteriori caratteristiche
+# PULSANTE #
+"PULSANTE" + Colore + Ulteriori caratteristiche
+# PROXIMITY #
+"PROXIMITY" + Diametro + Tensione + Ulteriori caratteristiche
+# TELERUTTORE #
+"TELERUTTORE" + Corrente + Tensione bobina + Numero e tipo di contatti
+# TRASFORMATORE #
+"TRASFORMATORE" + Numero di fasi (1F - 3F) + Potenza (VA) + Tensione primario + "/" + Tensione secondario
+# ENCODER #
+"ENCODER" + Tipologia (Incrementale/Assoluto) + Numero di giri

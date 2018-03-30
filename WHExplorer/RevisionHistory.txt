@@ -1,0 +1,180 @@
+﻿#######################################
+Xplorer 1.0.X.Y
+Data Pubblicazione: XX/YY/20ZZ
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Aggiunte funzioni per la gestione dei permessi degli utenti
+2) Aggiunta funzione per controllare se il file di log è già esistente
+3) Aggiunta funzione fManagementOfDgvClickOrKeyMove nel "GeneralAuxFunctions.vb"
+4) Modificato il file config.xml: i path ora sono relativi al percorso in cui viene eseguita l'applicazione
+
+#######################################
+Elementi modificati:
+M) UserManagerFunction.vb
+M) frmMain.vb
+M) LoggerFunctions.vb
+M) GeneralAuxFunctions.vb
+M) frmMain.vb
+
+#######################################
+Xplorer 1.0.4.5
+Data Pubblicazione: 13/03/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Aggiunto controllo di massima sul campo descrizione
+2) Sul form di inserimento nuova codifica, costruttori in ordine alfabetico
+3) Cambiata l'icona del form
+4) Aggiunta la gestione degli eventi click del mouse, freccia su e freccia giu sul tab dei consumabili, aggiunta la funzione sManagementOfDgvClickOrKeyMove()
+5) Modificato il form di inserzione di un nuovo record, aggiunta la selezione per componente generico o per componente a consumo.
+6) Modificato il codice di inserimento di un nuovo record, inserimento nel database in funzione della scelta sui radiobutton: aggiunta la funzione checkMatCommConsumo().
+7) Gestione del click o freccia su o freccia giù sul datagridview dei consumabili: modificata la funzione sManagementOfDgvClickOrKeyMove()
+8) Gestione del pulsante di Edit, Confirm or abort modification, e del pulsante di delete anche per il datagridview dei consumabili
+9) Aggiunto Menu di gestione del database con selezione per aggiungere un nuovo costruttore
+10) Modificato il file config.xml con l'aggiunta del percorso di backup del database codingRules
+11) Modificato il nome dell'applicazione
+12) Gestione utenti solo con utente di livello più alto (avanzato)
+
+#######################################
+Elementi modificati:
+M) frmInsertNew.vb
+M) frmMain.vb
+M) config.xml
+
+
+#######################################
+XExplorer 1.0.3.4
+Data Pubblicazione: 21/02/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Elenco costruttori in ordine alfabetico (ricerca guidata)
+2) Aggiunta funzione fCheckEstensione
+3) Aggiunto il openfilediag1 su frmMain
+4) Aggiunta funzione fReadAllFileReturnDataTable
+5) Aggiunta funzione fWriteFromChildDataTable
+6) Aggiunta funzione fDeleteAllFromTable
+7) Aggiunta funzione fPopulateDataGridView
+8) Modificata funzione fResearchAdvanced per permettere la ricerca avanzata anche per i consumabili. N.B.: per i consumabili, la guidedSearch è limitata solamente al Manufacturer
+9) Aggiunta funzione fResetComboGuidedSearch
+10) Modificata icona applicazione
+11) Aggiunto form di About
+12) Modificato il nome dell'applicazione
+13) Ricerca semplice selezionta all'avvio dell'applicazione
+#######################################
+Elementi modificati:
+M) ResearchFunctions.vb
+M) FileSystemFunct.vb
+M) frmMain.vb
+M) DBManagement.vb
+
+#######################################
+WHExplorer 1.0.2.3
+Data Pubblicazione: 15/01/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Risolto bug su ricerca guidata
+#######################################
+Elementi modificati:
+M) frmMain.vb
+#######################################
+WHExplorer 1.0.2.2
+Data Pubblicazione: 22/12/2017
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Modificato il Main Form, il pulsante di gestione utente è stato spostato nel menu "User"
+2) Modificata la modalità di "copia ed incolla", abilitata la modalità di copia del singolo elemento
+3) Modificata la modalità di ricerca guidata, aggiunta la possibilità di fare la ricerca in AND o in OR
+#######################################
+Elementi modificati:
+M) frmMain
+M) dgvCEDBViewer
+M) dgvCSDBViewer
+M) ResearchFunctions, funzione fGuideSearchManufacturer e funzione fGuideSearchCategory
+M) frmMain, funzione Private Sub cbxSearchCategory_SelectedIndexChanged e funzione Private Sub cbxSearchManufacturer_SelectedIndexChanged
+#######################################
+WHExplorer 1.0.1.1
+Data Pubblicazione: 24/10/2017
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) aggiunta possibilità di modificare un elemento esistente
+2) Inseriti tooltip di help
+3) Inserimento multiplo di nuovi elementi, con aggiunta delle righe nuove a file Codici.txt esistente
+4) Eliminazione di un elemento
+5) aggiunto form con stringa di testo "prima della modifica" e stringa di testo "dopo la modifica"
+6) aggiunta ricerca guidata per categoria e per costruttore
+7) aggiunto il menu con la voce "Help"
+
+#######################################
+Elementi modificati:
+M) frmMain
++) EditExistFunctions 
+M) frmInsertNew
+M) GeneralAuxFunctions
++) frmModDetails
+M) ResearchFunctions
+
+#######################################
+WHExplorer 1.0.0.0
+Data Pubblicazione: 19/10/2017
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+############################################################################################################################################################################
+LEGENDA
+Major Revision: Indice dedicato al framework di compilazione, alla versione di sistema operativo per cui è compilato oppure al cambiamento di revisione di una libreria.
+Minor Revision #1: Indice dedicato a modifiche alle strutture dei database
+Minor Revision #2: Indice dedicato a modifiche grafiche
+Minor Revision #3: Indice dedicato a modifiche, aggiunte di funzionalità, pulizia e/o ottimizzazione software, che non producono modifiche degli indici precedenti
+#############################################################################################################################################################################

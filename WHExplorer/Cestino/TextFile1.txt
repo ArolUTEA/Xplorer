@@ -1,0 +1,269 @@
+﻿ Public Function fFindInDatabase(strTextToFind As String)
+        Try
+            If SQLConn.State = SQLConn.State.Open Then
+                Dim SQLcmd As SQLiteCommand = New SQLiteCommand(SQLConn)
+                SQLcmd.CommandText = "Select * FROM codificati WHERE ArolCode LIKE '%" & strTextToFind & "%'"
+                Dim dataRead As SQLiteDataReader = SQLcmd.ExecuteReader
+                If dataRead.HasRows Then
+                    Dim ListRow = 0
+                    While dataRead.Read()
+                        strReadResult.Add(New List(Of String))
+                        For i As Integer = 0 To dataRead.FieldCount - 1
+                            strReadResult(ListRow).Add(dataRead.Item(i))
+                        Next
+                        ListRow = ListRow + 1
+                    End While
+                Else
+                    MsgBox("No result found", MsgBoxStyle.Information)
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.ToString, MsgBoxStyle.Critical)
+            SQLConn.Dispose()
+        End Try
+    End Function
+	Public Function fFindInDatabase(strTextToFind As String, dbSource As SQLiteConnection, dbDest As SQLiteConnection) As DataTable
+        Try
+            If dbSource.State = SQLConn.State.Open Then
+                Dim dbDestCmd As SQLiteCommand = New SQLiteCommand(dbDest)
+                Dim dbSourceCmd As SQLiteCommand = New SQLiteCommand(dbSource)
+                dbDestCmd.CommandText = "DROP TABLE IF EXISTS searchResult"
+                dbDestCmd.ExecuteNonQuery()
+                dbDestCmd.CommandText = "CREATE TABLE IF NOT EXISTS searchResult( `ID` INTEGER UNIQUE, `ArolCode` TEXT, `CommercialCode` TEXT, `Description` TEXT, `Manufacturer` TEXT, `SupplementaryDescription` TEXT, PRIMARY KEY(ID) )"
+                dbDestCmd.ExecuteNonQuery()
+                'effettuo la ricerca e copio i dati nel database temporaneo
+                If Not bDestInit Then
+                    Dim dbDestPath As String = dbDest.FileName
+                    'dbSourceCmd.CommandText = "attach 'E:\GestioneMagazzino\DataBaseCreator\temp.db' as destination"
+                    dbSourceCmd.CommandText = "attach '%" & dbDestPath & "%' as destination"
+                    dbSourceCmd.ExecuteNonQuery()
+                    bDestInit = True
+                End If
+                If Not bSourceInit Then
+                    Dim dbSourcePath As String = dbSource.FileName
+                    'dbSourceCmd.CommandText = "attach 'E:\GestioneMagazzino\DataBaseCreator\MagazzinoEle.db' as source"
+                    dbSourceCmd.CommandText = "attach '%" & dbSourcePath & "%' as source"
+                    dbSourceCmd.ExecuteNonQuery()
+                    bSourceInit = True
+                End If
+                dbSourceCmd.CommandText = "INSERT INTO destination.searchResult SELECT * FROM source.codificati WHERE source.codificati.ArolCode LIKE '%" & strTextToFind & "%'"
+                dbSourceCmd.ExecuteNonQuery()
+                Dim cmd = "SELECT * FROM searchResult"
+                Dim cmdDataGrid As SQLiteCommand = New SQLiteCommand(cmd, dbDest)
+                Dim da As New SQLiteDataAdapter
+                da.SelectCommand = cmdDataGrid
+                Dim dt As New DataTable
+                da.Fill(dt)
+                cmdDataGrid.ExecuteReader()
+                fFindInDatabase = dt
+                dbDestCmd.Dispose()
+                dbSourceCmd.Dispose()
+                cmdDataGrid.Dispose()
+                da.Dispose()
+            End If
+
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.ToString, MsgBoxStyle.Critical)
+        End Try
+    End Function
+	 Public Function fCopyToDatabase(strTextToFind As String) As DataTable
+        Try
+            If SQLConn.State = SQLConn.State.Open Then
+                Dim tempSQLcmd As SQLiteCommand = New SQLiteCommand(tempSQLConn)
+                Dim SQLcmd As SQLiteCommand = New SQLiteCommand(SQLConn)
+                tempSQLcmd.CommandText = "DROP TABLE IF EXISTS searchResult"
+                tempSQLcmd.ExecuteNonQuery()
+                tempSQLcmd.CommandText = "CREATE TABLE IF NOT EXISTS searchResult( `ID` INTEGER UNIQUE, `ArolCode` TEXT, `CommercialCode` TEXT, `Description` TEXT, `Manufacturer` TEXT, `SupplementaryDescription` TEXT, PRIMARY KEY(ID) )"
+                tempSQLcmd.ExecuteNonQuery()
+                'effettuo la ricerca e copio i dati nel database temporaneo
+                If Not bDestInit Then
+                    SQLcmd.CommandText = "attach 'E:\GestioneMagazzino\DataBaseCreator\temp.db' as destination"
+                    SQLcmd.ExecuteNonQuery()
+                    bDestInit = True
+                End If
+                If Not bSourceInit Then
+                    SQLcmd.CommandText = "attach 'E:\GestioneMagazzino\DataBaseCreator\MagazzinoEle.db' as source"
+                    SQLcmd.ExecuteNonQuery()
+                    bSourceInit = True
+                End If
+                SQLcmd.CommandText = "INSERT INTO destination.searchResult SELECT * FROM source.codificati WHERE source.codificati.ArolCode LIKE '%" & strTextToFind & "%'"
+                SQLcmd.ExecuteNonQuery()
+                Dim cmd = "SELECT * FROM searchResult"
+                Dim cmdDataGrid As SQLiteCommand = New SQLiteCommand(cmd, tempSQLConn)
+                Dim da As New SQLiteDataAdapter
+                da.SelectCommand = cmdDataGrid
+                Dim dt As New DataTable
+                da.Fill(dt)
+                cmdDataGrid.ExecuteReader()
+                fCopyToDatabase = dt
+                tempSQLcmd.Dispose()
+                SQLcmd.Dispose()
+                cmdDataGrid.Dispose()
+                da.Dispose()
+            End If
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.ToString, MsgBoxStyle.Critical)
+        End Try
+    End Function
+
+	Imports System.IO
+Public Class FileConverter
+    Public filePath As String = "E:\GestioneMagazzino\HHFOTO_B0089.pdf"
+    Public fileName As String = Path.GetFileName(filePath)
+    Public fileData As Byte()
+    Public Function fReadFile()
+        Dim fs As FileStream = New FileStream(filePath, FileMode.Open, FileAccess.Read)
+        Dim br As BinaryReader = New BinaryReader(fs)
+        fileData = br.ReadBytes(Convert.ToInt32(fs.Length))
+        br.Close()
+        fs.Close()
+    End Function
+End Class
+
+
+EVENTO CAMBIO SELEZIONE COMBO CATEGORIA
+       'strTempQuery = "SELECT Code FROM ArolCodeLookUp JOIN ArolCode ON ArolCode.ID = ArolCodeLookUp.IDArolCode WHERE ArolCodeLookUp.IDArolCategory = " & idArolCategory.ToString
+        'dtTemp = dbCodingRules.fExecuteGenericQuery(dbCodingRules.SQLConn, strTempQuery)
+        'If dtTemp.Rows.Count <> 0 Then
+        '    txtCode.Text = dtTemp.Rows(0)("Code")
+        'Else
+        '    MsgBox("REGOLA NON DEFINITA", MsgBoxStyle.Information)
+        'End If
+        'strTempQuery = "SELECT LabelTitle, IDControl, ID, IDArticle FROM ArticlesControls WHERE IDArticle = " & idArolCategory.ToString
+        'dtTemp = dbCodingRules.fExecuteGenericQuery(dbCodingRules.SQLConn, strTempQuery)
+        'If dtTemp.Rows.Count > 0 Then
+        '    If Not bInitDescrField Then
+        '        For i = 0 To 6
+        '            lblDescrField(i) = New Label
+        '            txtField(i) = New TextBox
+        '            cmbField(i) = New ComboBox
+        '            lblField(i) = New Label
+        '        Next
+        '    End If
+        '    For i = 0 To 6
+        '        txtField(i).Visible = False
+        '        cmbField(i).Visible = False
+        '        lblField(i).Visible = False
+        '        astrFieldDescr(i) = Nothing
+        '        txtField(i).Text = Nothing
+        '        cmbField(i).Items.Clear()
+        '        lblField(i).Text = Nothing
+        '    Next
+        '    txtDescription.Text = Nothing
+        '    k = 0
+        '    For i = 0 To dtTemp.Rows.Count - 1
+        '        Panel6.Controls.Add(lblDescrField(i))
+        '        lblDescrField(i).Name = "lblDescrField" & i
+        '        lblDescrField(i).Size = New Drawing.Size(113, 13)
+        '        lblDescrField(i).Visible = True
+        '        If IsDBNull(dtTemp.Rows(i)("LabelTitle")) Then
+        '            lblDescrField(i).Text = ""
+        '        Else
+        '            lblDescrField(i).Text = dtTemp.Rows(i)("LabelTitle")
+        '        End If
+        '        lblDescrField(i).Location = New Point(i * 137 + 6, 34)
+        '        lblDescrField(i).TextAlign = ContentAlignment.MiddleCenter
+        '        Select Case dtTemp.Rows(i)("IDControl")
+        '            Case 1
+        '                Panel6.Controls.Add(txtField(i))
+        '                txtField(i).Name = "txtField" & i
+        '                txtField(i).Location = New Point(i * 137 + 6, 57)
+        '                txtField(i).Size = New Drawing.Size(113, 13)
+        '                txtField(i).TextAlign = HorizontalAlignment.Right
+        '                txtField(i).Visible = True
+        '            Case 2
+        '                strTempQuery = "SELECT * FROM ComboLookUp INNER JOIN LookUpCBX ON LookUpCBX.ID = ComboLookUp.IDLookUp WHERE ComboLookUp.IDArticlesControls = " & dtTemp.Rows(i)("ID").ToString
+        '                dtCombo = dbCodingRules.fExecuteGenericQuery(dbCodingRules.SQLConn, strTempQuery)
+        '                Panel6.Controls.Add(cmbField(i))
+        '                cmbField(i).Name = "cmbField" & i
+        '                cmbField(i).Location = New Point(i * 137 + 6, 57)
+        '                cmbField(i).Size = New Drawing.Size(113, 13)
+        '                cmbField(i).Visible = True
+        '                For j = 0 To dtCombo.Rows.Count - 1
+        '                    cmbField(i).Items.Add(dtCombo.Rows(j)("Text"))
+        '                Next
+        '            Case 3
+        '                strTempQuery = "SELECT * FROM LabelFieldLookUP INNER JOIN LookUpLBL ON LookUpLBL.ID = LabelFieldLookUP.IDLookUPLbl WHERE LabelFieldLookUP.IDArticlesControls = " & dtTemp.Rows(i)("IDArticle").ToString
+        '                dtLabel = dbCodingRules.fExecuteGenericQuery(dbCodingRules.SQLConn, strTempQuery)
+        '                Panel6.Controls.Add(lblField(i))
+        '                lblField(i).Name = "lblField" & i
+        '                lblField(i).Location = New Point(i * 137 + 6, 57)
+        '                lblField(i).Size = New Drawing.Size(113, 13)
+        '                lblField(i).Text = dtLabel.Rows(k)("Text")
+        '                k = k + 1
+        '                lblField(i).Visible = True
+        '                lblField(i).TextAlign = ContentAlignment.MiddleCenter
+        '        End Select
+        '    Next
+        '    If (dtTemp.Rows.Count - 1) < 6 Then
+        '        For i = dtTemp.Rows.Count To 6
+        '            lblDescrField(i).Visible = False
+        '            txtField(i).Visible = False
+        '            cmbField(i).Visible = False
+        '            lblField(i).Visible = False
+        '        Next
+        '    End If
+        '    bInitDescrField = True
+        'End If
+        'strTempQuery = "SELECT Text FROM DescrField0 WHERE ID = " & dtArolCategoryIDs.Rows(0)("IDDescrField0").ToString
+        'dtTemp = dbCodingRules.fExecuteGenericQuery(dbCodingRules.SQLConn, strTempQuery)
+        'astrFieldDescr(0) = dtTemp.Rows(0)("Text").ToString
+        ''MsgBox(idArolCategory)
+
+		 Public Sub checkNewCode()
+        bArolCodeNotValid = Form1.dbWarehouse.fCheckIfAlreadyExist(txtCode.Text & txtLowCode.Text, Form1.dbWarehouse.SQLConn, "codificati", "ArolCode") Or Len(txtLowCode.Text) <> 3
+        bCommercialCodeNotValid = Form1.dbWarehouse.fCheckIfAlreadyExist(txtCommercialCode.Text, Form1.dbWarehouse.SQLConn, "codificati", "CommercialCode") Or Len(txtCommercialCode.Text) > 18 Or
+                                    Len(txtCommercialCode.Text) = 0
+        bConstructorNotValid = Len(txtCostructor.Text) = 0
+        bDescriptionNotValid = Len(txtDescription.Text) = 0
+        bSuppDescriptionNotValid = Len(txtSuppDescription.Text) = 0
+
+
+		   Private Sub btnCheck_Click(sender As Object, e As EventArgs)
+        Try
+            checkNewCode()
+            If bArolCodeNotValid Then
+                If Len(txtLowCode.Text) = 3 Then
+                    MsgBox("Codice Arol già presente", MsgBoxStyle.Exclamation)
+                Else
+                    MsgBox("La parte finale del codice deve essere di almeno 3 cifre", MsgBoxStyle.Exclamation)
+                End If
+                txtLowCode.BackColor = Color.Red
+            Else
+                txtLowCode.BackColor = Color.LightGreen
+            End If
+            If bCommercialCodeNotValid Then
+                If Len(txtCommercialCode.Text) <= 18 And Len(txtCommercialCode.Text) > 0 Then
+                    MsgBox("Codice Commerciale già presente", MsgBoxStyle.Exclamation)
+                ElseIf Len(txtCommercialCode.Text) = 0 Then
+                    MsgBox("Inserire il codice commerciale!!", MsgBoxStyle.Exclamation)
+                Else
+                    MsgBox("Codice Commerciale troppo lungo!!", MsgBoxStyle.Exclamation)
+                End If
+                txtCommercialCode.BackColor = Color.Red
+            Else
+                txtCommercialCode.BackColor = Color.LightGreen
+            End If
+            If bDescriptionNotValid Then
+                MsgBox("Inserire la descrizione!!", MsgBoxStyle.Exclamation)
+                txtDescription.BackColor = Color.Red
+            Else
+                txtDescription.BackColor = Color.LightGreen
+            End If
+            If bConstructorNotValid Then
+                MsgBox("Inserire il costruttore!!", MsgBoxStyle.Exclamation)
+                txtCostructor.BackColor = Color.Red
+            Else
+                txtCostructor.BackColor = Color.LightGreen
+            End If
+            If Not bArolCodeNotValid And Not bCommercialCodeNotValid And Not bDescriptionNotValid And Not bConstructorNotValid Then
+                MsgBox("Codifica corretta!!", MsgBoxStyle.Exclamation)
+                btnInsertNew.Visible = True
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE: " & ex.ToString, MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
+
+    End Sub

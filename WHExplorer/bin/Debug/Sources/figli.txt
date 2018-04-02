@@ -1,2 +1,0 @@
-Codice          |Cod.commerciale   |Descrizione                             |Costruttore |Descrizione supplementare
-----------------+------------------+----------------------------------------+------------+-------------------------------------

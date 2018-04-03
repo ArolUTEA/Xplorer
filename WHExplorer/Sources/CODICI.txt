@@ -1,0 +1,3 @@
+﻿CODICE AROL     |CODICE COMMERCIALE|DESCRIZIONE                             |COSTRUTTORE |DESCRIZIONE SUPPLEMENTARE
+----------------+------------------+----------------------------------------+------------+-------------------------------------        
+                |                  |                                        |            |

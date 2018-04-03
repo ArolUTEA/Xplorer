@@ -15,7 +15,6 @@ Modifiche effettuate:
 2) Aggiunta funzione per controllare se il file di log è già esistente
 3) Aggiunta funzione fManagementOfDgvClickOrKeyMove nel "GeneralAuxFunctions.vb"
 4) Modificato il file config.xml: i path ora sono relativi al percorso in cui viene eseguita l'applicazione
-5) Test di commit
 
 #######################################
 Elementi modificati:

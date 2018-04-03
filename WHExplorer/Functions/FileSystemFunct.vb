@@ -2,11 +2,13 @@
 Module FileSystemFunct
     Public Function fCheckIfThereFiles(folderPath As String) As Boolean
         Dim myDir As DirectoryInfo = New DirectoryInfo(folderPath)
-        If myDir.EnumerateFiles().Any() Then
-            fCheckIfThereFiles = True
-        Else
-            fCheckIfThereFiles = False
+        If myDir.Exists Then
+            If myDir.EnumerateFiles().Any() Then
+                Return True
+            End If
         End If
+        Return False
+
     End Function
     Public Function fRetrieveFileName(folderPath As String) As String(,)
         Dim i As Integer = 0

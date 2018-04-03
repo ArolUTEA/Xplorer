@@ -5,6 +5,7 @@
     Dim xmlPath As String = AppDomain.CurrentDomain.BaseDirectory & "Configurations\config.xml"
     'Public strDBPath As String
     Public Function fReadDBPath() As String
+        fReadDBPath = ""
         Try
             xmlFile = New Xml.XmlDocument
             xmlFile.Load(xmlPath)

@@ -289,3 +289,13 @@ __pycache__/
 
 
 # End of https://www.gitignore.io/api/visualstudio
+
+
+#Remove /bin/ and /obj/
+*/**/bin/Debug
+*/**/bin/Release
+*/**/obj/Debug
+*/**/obj/Release
+
+#Remove garbage Mac files
+.DS_Store

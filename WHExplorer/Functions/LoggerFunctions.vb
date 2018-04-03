@@ -9,6 +9,9 @@ Module FileLoggerFunctions
     End Function
     Public Function fCheckIfLogFileExist(ByVal strFilePath As String)
         Try
+            If Not Directory.Exists(Path.GetDirectoryName(strFilePath)) Then
+                Directory.CreateDirectory(Path.GetDirectoryName(strFilePath))
+            End If
             If Not File.Exists(strFilePath) Then
                 File.Create(strFilePath).Dispose()
             End If

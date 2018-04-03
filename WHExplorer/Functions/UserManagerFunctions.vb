@@ -80,6 +80,7 @@ Module UserManagerFunctions
         Catch ex As Exception
             MsgBox("ERRORE NEL PROCESSO DI CRIPTATURA DELLA PASSWORD", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return ""
         End Try
     End Function
     Private Function fDecrypt(cipherText As String) As String

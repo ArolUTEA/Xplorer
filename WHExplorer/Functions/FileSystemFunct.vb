@@ -8,7 +8,6 @@ Module FileSystemFunct
             End If
         End If
         Return False
-
     End Function
     Public Function fRetrieveFileName(folderPath As String) As String(,)
         Dim i As Integer = 0
@@ -21,24 +20,25 @@ Module FileSystemFunct
         Next
         Return tempString
     End Function
-    Public Function fCopyFromDirToDir(srcFolder As String, dstFolder As String, delete As Boolean)
+    Public Function fCopyFromDirToDir(srcFolder As String, dstFolder As String, delete As Boolean) As Boolean
         'Directory.Move(srcFolder, dstFolder)
         File.Copy(srcFolder, dstFolder, True)
         If delete Then
             File.Delete(srcFolder)
         End If
+        Return True
     End Function
     Public Function fCreateCodiciTxt(codiceArol As String, codiceCommerciale As String, descrizione As String, costruttore As String, descrizioneSupplementare As String) As String
         Dim iDimCodiceArol As Integer = 16
         Dim iDimCodiceCommerciale As Integer = 18
         Dim iDimDescrizione As Integer = 40
         Dim iDimCostruttore As Integer = 12
-        Dim strCodiceArolPadded, strCodiceCommPadded, strDescrizionePadded, strCostruttorePadded, strDescrSuppPadded As String
+        Dim strCodiceArolPadded, strCodiceCommPadded, strDescrizionePadded, strCostruttorePadded As String
         strCodiceArolPadded = UCase(codiceArol.PadRight(iDimCodiceArol, " "))
         strCodiceCommPadded = UCase(codiceCommerciale.PadRight(iDimCodiceCommerciale, " "))
         strDescrizionePadded = UCase(descrizione.PadRight(iDimDescrizione, " "))
         strCostruttorePadded = UCase(costruttore.PadRight(iDimCostruttore, " "))
-        fCreateCodiciTxt = UCase(strCodiceArolPadded & "|" & strCodiceCommPadded & "|" & strDescrizionePadded & "|" & strCostruttorePadded & "|" & descrizioneSupplementare)
+        Return UCase(strCodiceArolPadded & "|" & strCodiceCommPadded & "|" & strDescrizionePadded & "|" & strCostruttorePadded & "|" & descrizioneSupplementare)
     End Function
     Public Function fCheckEstensione(filename As String, expectedExtension As String) As Boolean
         Dim infoFile = My.Computer.FileSystem.GetFileInfo(filename)
@@ -55,8 +55,7 @@ Module FileSystemFunct
         If IO.File.Exists(filename) Then
             source = IO.File.ReadAllText(filename)
         Else
-            fReadAllFileReturnDataTable = Nothing
-            Exit Function
+            Return Nothing
         End If
         Dim rows() As String = source.Split({Environment.NewLine}, StringSplitOptions.None)
         Dim delimetter As Char = "|"
@@ -73,6 +72,6 @@ Module FileSystemFunct
             Next
             dt.Rows.Add(dr)
         Next
-        fReadAllFileReturnDataTable = dt
+        Return dt
     End Function
 End Module

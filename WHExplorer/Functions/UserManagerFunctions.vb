@@ -8,38 +8,38 @@ Imports System.Security.Cryptography
 Module UserManagerFunctions
     Public Function fCheckIfUserExist(strUsername As String) As Boolean
         Try
-            fCheckIfUserExist = frmMain.dbUsers.fCheckIfAlreadyExist(strUsername, frmMain.dbUsers.SQLConn, "userPermission", "userName")
+            Return frmMain.dbUsers.fCheckIfAlreadyExist(strUsername, frmMain.dbUsers.SQLConn, "userPermission", "userName")
         Catch ex As Exception
             MsgBox("ERRORE NELLA RICERCA DELL'UTENTE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fCheckIfUserExist = False
+            Return False
         End Try
     End Function
     Public Function fCheckPassword(strUsername As String, strInsertedPassword As String) As Boolean
         Try
             Dim tempData As DataTable = frmMain.dbUsers.fSelectElementFromColumn(frmMain.dbUsers.SQLConn, "userPermission", "userName", "userName", strUsername)
             Dim tempPassword As String = fDecrypt(tempData.Rows(0)("userPassword").ToString)
-            If strInsertedPassword = tempPassword Then
-                fCheckPassword = True
-            Else
-                fCheckPassword = False
-            End If
             tempData.Dispose()
+            If strInsertedPassword = tempPassword Then
+                Return True
+            Else
+                Return False
+            End If
         Catch ex As Exception
             MsgBox("ERRORE NEL CONTROLLO DELLA PASSWORD", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fCheckPassword = False
+            Return False
         End Try
     End Function
     Public Function fCheckWritePermission(strUsername As String) As Integer
         Try
             Dim tempData As DataTable = frmMain.dbUsers.fSelectElementFromColumn(frmMain.dbUsers.SQLConn, "userPermission", "userName", "userName", strUsername)
-            fCheckWritePermission = tempData.Rows(0)("userWritePermission")
+            Return tempData.Rows(0)("userWritePermission")
             tempData.Dispose()
         Catch ex As Exception
             MsgBox("ERRORE NELLA LETTURA DEI PERMESSI", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fCheckWritePermission = 0
+            Return 0
         End Try
     End Function
     Public Function fCreateNewUser(strUsername As String, strUserPWD As String) As Boolean
@@ -51,11 +51,11 @@ Module UserManagerFunctions
             sqlCmd.Parameters.AddWithValue("@userPermission", 0)
             sqlCmd.ExecuteNonQuery()
             sqlCmd.Dispose()
-            fCreateNewUser = True
+            Return True
         Catch ex As Exception
             MsgBox("ERRORE NELL'INSERIMENTO DI UN NUOVO USER", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fCreateNewUser = False
+            Return False
         End Try
     End Function
     Private Function fEncrypt(clearText As String) As String
@@ -105,20 +105,23 @@ Module UserManagerFunctions
         Catch ex As Exception
             MsgBox("ERRORE NEL PROCESSO DI DE-CRIPTATURA DELLA PASSWORD", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return Nothing
         End Try
     End Function
-    Public Function fChangeUserPermission(strUserName As String, iPermissionValue As Integer)
+    Public Function fChangeUserPermission(strUserName As String, iPermissionValue As Integer) As Boolean
         Try
             Dim strTempQuery As String = "UPDATE userPermission SET userWritePermission = " & iPermissionValue & " WHERE userName = '" & strUserName & "'"
             Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbUsers.SQLConn)
             sqlCmd.ExecuteNonQuery()
             sqlCmd.Dispose()
+            Return True
         Catch ex As Exception
             MsgBox("ERRORE NELLA MODIFICA DEI PERMESSI", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
         End Try
     End Function
-    Public Function fApplyReaderOnlyPermission()
+    Public Function fApplyReaderOnlyPermission() As Boolean
         frmMain.btnInsertNew.Enabled = False
         frmMain.btnEdit.Enabled = False
         frmMain.bUserWritePerm = False
@@ -126,21 +129,24 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = False
         frmMain.btnReadFromFile.Enabled = False
+        Return True
     End Function
-    Public Function fApplyWritePermission()
+    Public Function fApplyWritePermission() As Boolean
         frmMain.btnInsertNew.Enabled = True
         frmMain.bUserWritePerm = True
         frmMain.bManageUser = False
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = False
+        Return True
     End Function
-    Public Function fApplyAdvancedPermission()
+    Public Function fApplyAdvancedPermission() As Boolean
         frmMain.btnInsertNew.Enabled = True
         frmMain.bUserWritePerm = True
         frmMain.bManageUser = True
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = True
+        Return True
     End Function
 End Module

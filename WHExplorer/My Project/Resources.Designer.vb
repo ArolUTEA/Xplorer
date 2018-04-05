@@ -191,6 +191,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Icon simile a (Icona).
+        '''</summary>
+        Friend ReadOnly Property changePwdIco() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("changePwdIco", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property child() As System.Drawing.Bitmap

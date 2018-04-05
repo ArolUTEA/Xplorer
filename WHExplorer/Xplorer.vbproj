@@ -136,6 +136,12 @@
     <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmChangePassword.Designer.vb">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangePassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -249,6 +258,7 @@
     <Content Include="Images\AppIcon.png" />
     <Content Include="Images\cancel.png" />
     <Content Include="Images\cestino.png" />
+    <Content Include="Images\changePwdIco.ico" />
     <Content Include="Images\child.png" />
     <Content Include="Images\confirm.png" />
     <None Include="Images\confirm1.png" />

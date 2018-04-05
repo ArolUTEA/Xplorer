@@ -720,6 +720,7 @@ Public Class frmMain
             MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
-
-
+    Private Sub ChangePasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePasswordToolStripMenuItem.Click
+        frmChangePassword.Show()
+    End Sub
 End Class

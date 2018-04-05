@@ -89,6 +89,7 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ChangePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
@@ -709,7 +710,7 @@ Partial Class frmMain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManageUserToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManageUserToolStripMenuItem, Me.ChangePasswordToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(42, 20)
         Me.ToolsToolStripMenuItem.Text = "User"
@@ -717,7 +718,7 @@ Partial Class frmMain
         'ManageUserToolStripMenuItem
         '
         Me.ManageUserToolStripMenuItem.Name = "ManageUserToolStripMenuItem"
-        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ManageUserToolStripMenuItem.Text = "Manage User"
         '
         'DatabaseToolStripMenuItem
@@ -759,6 +760,12 @@ Partial Class frmMain
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'ChangePasswordToolStripMenuItem
+        '
+        Me.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem"
+        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangePasswordToolStripMenuItem.Text = "Change Password"
         '
         'frmMain
         '
@@ -873,4 +880,5 @@ Partial Class frmMain
     Friend WithEvents Label4 As Label
     Friend WithEvents DatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NewManufacturerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangePasswordToolStripMenuItem As ToolStripMenuItem
 End Class

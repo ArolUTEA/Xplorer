@@ -31,6 +31,47 @@ Module UserManagerFunctions
             Return False
         End Try
     End Function
+    Public Function fChangePassword(strUsername As String, strOldPwd As String, strNewPwd As String, strNewConfirmedPwd As String) As Boolean
+        Try
+            'FUNZIONE PER IL CAMBIO PASSWORD, LE OPERAZIONI DA ESEGUIRE SONO:
+            '1) CONTROLLO SE L'UTENTE ESISTE
+            '2) CONTROLLO SE LA VECCHIA PASSWORD E' CORRETTA
+            '3) CONTROLLO SE LA NUOVA PASSWORD E L'INSERIMENTO DI CONFERMA COINCIDONO
+            '4) AGGIORNO IL DATABASE UTENTI
+            If fCheckIfUserExist(strUsername) Then
+                If fCheckPassword(strUsername, strOldPwd) Then
+                    If strNewPwd = strNewConfirmedPwd Then
+                        'AGGIORNAMENTO DEL DATABASE
+                        Try
+                            Dim strTempQuery As String = "UPDATE userPermission SET userPassword = '" & fEncrypt(strNewPwd) & "' WHERE userName = '" & strUsername & "'"
+                            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbUsers.SQLConn)
+                            sqlCmd.ExecuteNonQuery()
+                            sqlCmd.Dispose()
+                            Return True
+                        Catch ex As Exception
+                            MsgBox("ERRORE NELLA MODIFICA DELLA PASSWORD", MsgBoxStyle.Critical)
+                            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+                            Return False
+                        End Try
+                    Else
+                        MsgBox("CONFERMA DELLA PASSWORD NON CORRETTA", MsgBoxStyle.Exclamation)
+                        Return False
+                    End If
+                Else
+                    MsgBox("PASSWORD INSERITA NON CORRETTA", MsgBoxStyle.Exclamation)
+                    Return False
+                End If
+            Else
+                MsgBox("UTENTE NON ESISTENTE", MsgBoxStyle.Exclamation)
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA PROCEDURA DI CAMBIO PASSWORD", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
     Public Function fCheckWritePermission(strUsername As String) As Integer
         Try
             Dim tempData As DataTable = frmMain.dbUsers.fSelectElementFromColumn(frmMain.dbUsers.SQLConn, "userPermission", "userName", "userName", strUsername)

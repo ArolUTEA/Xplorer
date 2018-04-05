@@ -16,14 +16,18 @@ Modifiche effettuate:
 3) Aggiunta funzione fManagementOfDgvClickOrKeyMove nel "GeneralAuxFunctions.vb"
 4) Modificato il file config.xml: i path ora sono relativi al percorso in cui viene eseguita l'applicazione
 5) Correzione di warning
+6) Aggiunta funzione fChangePassword nel "UserManagerFunctions.vb" --> per gestire la modifica della password
+7) Modificato il frmMain, sotto il menù "User", aggiunta la voce "Change Password"
+8) Aggiunto il form frmChangePassword
 
 #######################################
 Elementi modificati:
 M) UserManagerFunction.vb
-M) frmMain.vb
+M) frmMain.vb (codice)
 M) LoggerFunctions.vb
 M) GeneralAuxFunctions.vb
-M) frmMain.vb
+M) frmMain.vb (grafica)
++) frmChangePassword.vb
 
 #######################################
 Xplorer 1.0.4.5

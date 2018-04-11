@@ -74,4 +74,68 @@ Module FileSystemFunct
         Next
         Return dt
     End Function
+    Public Function fWriteToCsv() As Boolean
+        Dim csvFilePath As String
+        Try
+            '1) Controllo se nel datagridview vi sono dati da esportare
+            '2) Apro la finestra di selezione del path di destinazione del file csv
+            '3) Genero e salvo il file .csv
+            Dim tempDGV As DataGridView
+            Select Case frmMain.CompEleControl.SelectedIndex
+                Case 0
+                    tempDGV = frmMain.dgvCEDBViewer
+                Case 1
+                    tempDGV = frmMain.dgvCSDBViewer
+                Case Else
+                    tempDGV = Nothing
+                    Return False
+            End Select
+            If tempDGV.Rows.Count > 1 Then
+                frmMain.csvFileExportBrwDial.Description = "SELEZIONA IL PERCORSO DOVE SALVARE IL FILE .CSV"
+                frmMain.csvFileExportBrwDial.ShowDialog()
+                Dim tempSelectedPath As String = frmMain.csvFileExportBrwDial.SelectedPath
+                If tempSelectedPath IsNot "" Then
+                    csvFilePath = Path.GetFullPath(tempSelectedPath) & "\EXPORT.csv"
+                    Dim sw As StreamWriter
+                    sw = File.AppendText(csvFilePath)
+                    Dim delimeter As String = ","
+                    Dim array As String() = New String(tempDGV.Columns.Count - 1) {}
+                    'Copio le intestazioni del file
+                    For j As Integer = 1 To tempDGV.Columns.Count - 1
+                        array(j - 1) = tempDGV.Columns(j).HeaderText
+                    Next
+                    'Scrivo le intestazioni sul file
+                    sw.WriteLine(String.Join(delimeter, array))
+                    'Recupero il contenuto del datagridview
+                    For i As Integer = 0 To tempDGV.Rows.Count - 1
+                        For j As Integer = 1 To tempDGV.Columns.Count - 1
+                            If Not tempDGV.Rows(i).IsNewRow Then
+                                'Elimino le eventuali virgole, sostituisco con -
+                                Dim tempString = (tempDGV(j, i).Value.ToString).Replace(",", " - ")
+                                'Elimino gli eventuali line feed
+                                array(j - 1) = tempString.Replace(vbLf, "")
+                            End If
+                        Next
+                        If Not tempDGV.Rows(i).IsNewRow Then
+                            'Scrivo il contenuto del datagridview sul file
+                            sw.WriteLine(String.Join(delimeter, array))
+                        End If
+                    Next
+                    'Chiudo il file
+                    sw.Close()
+                    MsgBox("FILE .CSV GENERATO CON SUCCESSO!!", MsgBoxStyle.Exclamation)
+                Else
+                    Return False
+                End If
+            Else
+                MsgBox("NESSUN DATO DA ESPORTARE!!", MsgBoxStyle.Information)
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA ESPORTAZIONE DEL CSV", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
 End Module

@@ -278,6 +278,7 @@
     <Content Include="Images\txt.png" />
     <None Include="Images\txt1.png" />
     <Content Include="Images\unlock.png" />
+    <Content Include="Images\writeCSV.png" />
     <Content Include="Images\X.png" />
     <Content Include="Lente_X.ico" />
     <Content Include="RevisionHistory.txt" />

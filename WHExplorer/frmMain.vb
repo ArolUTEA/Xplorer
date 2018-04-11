@@ -551,8 +551,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.0.4.5"
-        frmAbout.lblIssuedDate.Text = "13/03/2018"
+        frmAbout.lblRevision.Text = "Xplorer 1.0.5.6"
+        frmAbout.lblIssuedDate.Text = "11/04/2018"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
@@ -722,5 +722,9 @@ Public Class frmMain
     End Sub
     Private Sub ChangePasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePasswordToolStripMenuItem.Click
         frmChangePassword.Show()
+    End Sub
+
+    Private Sub btnToCSV_Click(sender As Object, e As EventArgs) Handles btnToCSV.Click
+        fWriteToCsv()
     End Sub
 End Class

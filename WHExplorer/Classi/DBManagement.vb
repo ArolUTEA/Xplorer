@@ -45,9 +45,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fFindInDatabase = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -143,14 +143,16 @@ Public Class DBManagement
             da.Fill(dt)
             sqlCmd.ExecuteReader()
             If dt.Rows.Count > 0 Then
-                fLookIfHaveDataSheet = True
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return True
             Else
-                fLookIfHaveDataSheet = False
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return False
             End If
-            sqlCmd.Dispose()
-            da.Dispose()
-            dt.Dispose()
-            Return True
         Else
             Return False
         End If
@@ -165,13 +167,16 @@ Public Class DBManagement
             da.Fill(dt)
             sqlCmd.ExecuteReader()
             If dt.Rows.Count > 0 Then
-                fCheckIfAlreadyExist = True
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return True
             Else
-                fCheckIfAlreadyExist = False
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return False
             End If
-            sqlCmd.Dispose()
-            da.Dispose()
-            dt.Dispose()
         Else
             Return False
         End If
@@ -186,9 +191,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fSelectAndOrderAllInDatabase = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -207,9 +212,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fSelectElementFromColumn = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -228,9 +233,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fExecuteGenericQuery = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -249,9 +254,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 'da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fExecuteGenericInsert = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -285,9 +290,9 @@ Public Class DBManagement
             Dim dt As New DataTable
             da.Fill(dt)
             cmdDataGrid.ExecuteReader()
-            fFindInColumn = dt
             cmdDataGrid.Dispose()
             da.Dispose()
+            Return dt
         Catch ex As Exception
             MsgBox("ERROR: " & ex.ToString, MsgBoxStyle.Critical)
             Return Nothing
@@ -303,9 +308,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fFindAdvancedInDatabase = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -325,9 +330,9 @@ Public Class DBManagement
                 Dim dt As New DataTable
                 da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
-                fSelectAllAndOrderBy = dt
                 cmdDataGrid.Dispose()
                 da.Dispose()
+                Return dt
             Else
                 Return Nothing
             End If
@@ -357,14 +362,14 @@ Public Class DBManagement
                     tr.Commit()
                     sqlCmd.Dispose()
                 End Using
-                fWriteFromChildDataTable = True
+                Return True
             Else
-                fWriteFromChildDataTable = False
+                Return False
             End If
         Catch ex As Exception
             MsgBox("ERRORE NELLA SCRITTURA DELLA DATATABLE SU DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fWriteFromChildDataTable = False
+            Return False
         End Try
     End Function
     Public Function fDeleteAllFromTable(dbDestination As SQLiteConnection, strTable As String) As Boolean
@@ -374,14 +379,14 @@ Public Class DBManagement
                 Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDestination)
                 sqlCmd.ExecuteNonQuery()
                 sqlCmd.Dispose()
-                fDeleteAllFromTable = True
+                Return True
             Else
-                fDeleteAllFromTable = False
+                Return False
             End If
         Catch ex As Exception
             MsgBox("ERRORE NELLA CANCELLAZIONE DELLE RIGHE DEL DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-            fDeleteAllFromTable = False
+            Return False
         End Try
     End Function
 End Class

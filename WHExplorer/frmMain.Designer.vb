@@ -83,13 +83,16 @@ Partial Class frmMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewManufacturerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.btnToCSV = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.ChangePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.csvFileExportBrwDial = New System.Windows.Forms.FolderBrowserDialog()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
@@ -281,7 +284,7 @@ Partial Class frmMain
         '
         Me.lblOpenDocs.AutoSize = True
         Me.lblOpenDocs.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpenDocs.Location = New System.Drawing.Point(0, 46)
+        Me.lblOpenDocs.Location = New System.Drawing.Point(50, 46)
         Me.lblOpenDocs.Name = "lblOpenDocs"
         Me.lblOpenDocs.Size = New System.Drawing.Size(57, 12)
         Me.lblOpenDocs.TabIndex = 26
@@ -629,7 +632,7 @@ Partial Class frmMain
         '
         Me.btnOpenFile.BackgroundImage = CType(resources.GetObject("btnOpenFile.BackgroundImage"), System.Drawing.Image)
         Me.btnOpenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenFile.Location = New System.Drawing.Point(8, 3)
+        Me.btnOpenFile.Location = New System.Drawing.Point(58, 3)
         Me.btnOpenFile.Name = "btnOpenFile"
         Me.btnOpenFile.Size = New System.Drawing.Size(40, 40)
         Me.btnOpenFile.TabIndex = 11
@@ -718,8 +721,14 @@ Partial Class frmMain
         'ManageUserToolStripMenuItem
         '
         Me.ManageUserToolStripMenuItem.Name = "ManageUserToolStripMenuItem"
-        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ManageUserToolStripMenuItem.Text = "Manage User"
+        '
+        'ChangePasswordToolStripMenuItem
+        '
+        Me.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem"
+        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ChangePasswordToolStripMenuItem.Text = "Change Password"
         '
         'DatabaseToolStripMenuItem
         '
@@ -750,6 +759,8 @@ Partial Class frmMain
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.Label10)
+        Me.Panel1.Controls.Add(Me.btnToCSV)
         Me.Panel1.Controls.Add(Me.btnOpenFile)
         Me.Panel1.Controls.Add(Me.lblOpenDocs)
         Me.Panel1.Location = New System.Drawing.Point(187, 137)
@@ -757,15 +768,29 @@ Partial Class frmMain
         Me.Panel1.Size = New System.Drawing.Size(161, 71)
         Me.Panel1.TabIndex = 29
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(8, 46)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(40, 12)
+        Me.Label10.TabIndex = 27
+        Me.Label10.Text = "ToCSV"
+        '
+        'btnToCSV
+        '
+        Me.btnToCSV.BackgroundImage = Global.Xplorer.My.Resources.Resources.writeCSV
+        Me.btnToCSV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnToCSV.Location = New System.Drawing.Point(8, 3)
+        Me.btnToCSV.Name = "btnToCSV"
+        Me.btnToCSV.Size = New System.Drawing.Size(40, 40)
+        Me.btnToCSV.TabIndex = 27
+        Me.btnToCSV.UseVisualStyleBackColor = True
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'ChangePasswordToolStripMenuItem
-        '
-        Me.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem"
-        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ChangePasswordToolStripMenuItem.Text = "Change Password"
         '
         'frmMain
         '
@@ -881,4 +906,7 @@ Partial Class frmMain
     Friend WithEvents DatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NewManufacturerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangePasswordToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label10 As Label
+    Friend WithEvents btnToCSV As Button
+    Friend WithEvents csvFileExportBrwDial As FolderBrowserDialog
 End Class

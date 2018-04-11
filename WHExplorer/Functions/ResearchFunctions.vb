@@ -1,30 +1,36 @@
 ﻿Imports System.Data.SQLite
 Module ResearchFunctions
-    Public Function fFindElementInColumn(strItemToFind As String, strTableName As String, strColumnName As String)
+    Public Function fFindElementInColumn(strItemToFind As String, strTableName As String, strColumnName As String) As Boolean
         Try
             Dim tempData As DataTable
             tempData = frmMain.dbWarehouse.fFindInColumn(strItemToFind, strColumnName, strTableName, frmMain.dbWarehouse.SQLConn)
             If tempData.Rows.Count > 0 Then
                 fPopulateAndResizeDGV(frmMain.dgvCEDBViewer, tempData, frmMain.CompEleControl.Width)
+                tempData.Dispose()
+                Return True
             Else
                 frmMain.dgvCEDBViewer.Visible = False
                 MsgBox("NESSUNA OCCORRENZA TROVATA", MsgBoxStyle.Information)
+                tempData.Dispose()
+                Return False
             End If
-            tempData.Dispose()
         Catch ex As Exception
             MsgBox("ERRORE NELLA RICERCA DI UN ELEMENTO IN UNA COLONNA DEL DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
         End Try
     End Function
-    Public Function fResearchAdvanced()
+    Public Function fResearchAdvanced() As Boolean
         Try
-            Dim tableName As String
+            Dim tableName As String = Nothing
             'Check which table control is selected
             Select Case frmMain.CompEleControl.SelectedIndex
                 Case 0
                     tableName = "codificati"
                 Case 1
                     tableName = "consumabili"
+                Case Else
+                    Return False
             End Select
             Dim tempData As DataTable
             'Call find advanced function
@@ -35,6 +41,8 @@ Module ResearchFunctions
                         fPopulateAndResizeDGV(frmMain.dgvCEDBViewer, tempData, frmMain.CompEleControl.Width)
                     Case 1
                         fPopulateAndResizeDGV(frmMain.dgvCSDBViewer, tempData, frmMain.CompEleControl.Width)
+                    Case Else
+                        Return False
                 End Select
             Else
                 Select Case frmMain.CompEleControl.SelectedIndex
@@ -42,31 +50,38 @@ Module ResearchFunctions
                         frmMain.dgvCEDBViewer.Visible = False
                     Case 1
                         frmMain.dgvCSDBViewer.Visible = False
+                    Case Else
+                        Return False
                 End Select
                 MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
             End If
+            Return True
         Catch ex As Exception
             MsgBox("ERRORE NELLA PROCEDURA DI RICERCA AVANZATA", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
         End Try
     End Function
-    Public Function fSelectAllAndOrder(dgvSelected As DataGridView, strTableName As String)
+    Public Function fSelectAllAndOrder(dgvSelected As DataGridView, strTableName As String) As Boolean
         Try
             Dim tempData As DataTable
             'Call select all function
             tempData = frmMain.dbWarehouse.fSelectAllAndOrderBy(frmMain.dbWarehouse.SQLConn, strTableName, "ArolCode")
             If tempData.Rows.Count > 0 Then
                 fPopulateAndResizeDGV(dgvSelected, tempData, frmMain.CompEleControl.Width)
+                Return True
             Else
                 dgvSelected.Visible = False
                 MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                Return False
             End If
         Catch ex As Exception
             MsgBox("ERRORE NELLA PROCEDURA DI CARICA TUTTO DA DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
         End Try
     End Function
-    Public Function fPopulateGuidedSearchComboBoxes()
+    Public Function fPopulateGuidedSearchComboBoxes() As Boolean
         Dim dbCodingRules As New DBManagement
         Dim strDBPath As String = frmMain.xmlReader.fReadSingleNode("dbRulesPath")
         'Connect to database and check connection status
@@ -75,6 +90,7 @@ Module ResearchFunctions
         Catch ex As Exception
             MsgBox("ERRORE NELLA CONNESSIONE AL DATABASE DELLE REGOLE DI CODIFICA", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
         End Try
         'Populate category comboBox
         Dim dtCategory As New DataTable
@@ -91,6 +107,7 @@ Module ResearchFunctions
             MsgBox("ERRORE NEL POPOLAMENTO DEL COMBOBOX DELLE CATEGORIE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
             dtCategory.Dispose()
+            Return False
         End Try
         'Populate manufacturer comboBox
         Dim dtManufacturer As New DataTable
@@ -108,8 +125,10 @@ Module ResearchFunctions
             MsgBox("ERRORE NEL POPOLAMENTO DEL COMBOBOX DEI COSTRUTTORI", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
             dtManufacturer.Dispose()
+            Return False
         End Try
         dbCodingRules.fDisconnect()
+        Return True
     End Function
     Public Function fGuideSearchCategory(strTableName As String, strColumnName As String, strItemToSearch1 As String, strItemToSearch2 As String, strOrderBy As String, dtDatabaseConnection As SQLiteConnection, bAndSearchEnable As Boolean) As DataTable
         'Retrieve ArolCode related to Category
@@ -121,6 +140,7 @@ Module ResearchFunctions
         Catch ex As Exception
             MsgBox("ERRORE NELLA CONNESSIONE AL DATABASE DELLE REGOLE DI CODIFICA", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return Nothing
         End Try
         'Execute query for ArolCode
         Dim strTempQuery As String = "SELECT * FROM tbArticlesCategory WHERE Category = '" & strItemToSearch1 & "'"
@@ -149,14 +169,22 @@ Module ResearchFunctions
                 sqlCmd.ExecuteReader()
                 If dt IsNot Nothing Then
                     fGuideSearchCategory = dt
+                    sqlCmd.Dispose()
+                    da.Dispose()
+                    dt.Dispose()
+                Else
+                    sqlCmd.Dispose()
+                    da.Dispose()
+                    dt.Dispose()
+                    Return Nothing
                 End If
-                sqlCmd.Dispose()
-                da.Dispose()
-                dt.Dispose()
             Catch ex As Exception
                 MsgBox("ERRORE NELLA QUERY DELLA RICERCA GUIDATA PER CATEGORIA", MsgBoxStyle.Critical)
                 fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+                Return Nothing
             End Try
+        Else
+            Return Nothing
         End If
     End Function
     Public Function fGuideSearchManufacturer(strTableName As String, strItemToSearch1 As String, strItemToSearch2 As String, stOrderBy As String, dtDatabaseConnection As SQLiteConnection, bAndSearchEnable As Boolean) As DataTable
@@ -172,6 +200,7 @@ Module ResearchFunctions
                 Catch ex As Exception
                     MsgBox("ERRORE NELLA CONNESSIONE AL DATABASE DELLE REGOLE DI CODIFICA", MsgBoxStyle.Critical)
                     fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+                    Return Nothing
                 End Try
                 'Execute query for ArolCode
                 strTempQuery = "SELECT * FROM tbArticlesCategory WHERE Category = '" & strItemToSearch2 & "'"
@@ -198,13 +227,19 @@ Module ResearchFunctions
             sqlCmd.ExecuteReader()
             If dt IsNot Nothing Then
                 fGuideSearchManufacturer = dt
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+            Else
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return Nothing
             End If
-            sqlCmd.Dispose()
-            da.Dispose()
-            dt.Dispose()
         Catch ex As Exception
             MsgBox("ERRORE NELLA QUERY DELLA RICERCA GUIDATA PER COSTRUTTORE", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return Nothing
         End Try
     End Function
 End Module

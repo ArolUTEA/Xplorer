@@ -1,6 +1,6 @@
 ﻿#######################################
-Xplorer 1.0.X.Y
-Data Pubblicazione: XX/YY/20ZZ
+Xplorer 1.0.5.6
+Data Pubblicazione: 11/04/2018
 #######################################
 Compilato per Framework 4.0
 #######################################
@@ -15,14 +15,22 @@ Modifiche effettuate:
 2) Aggiunta funzione per controllare se il file di log è già esistente
 3) Aggiunta funzione fManagementOfDgvClickOrKeyMove nel "GeneralAuxFunctions.vb"
 4) Modificato il file config.xml: i path ora sono relativi al percorso in cui viene eseguita l'applicazione
+5) Correzione di warning
+6) Aggiunta funzione fChangePassword nel "UserManagerFunctions.vb" --> per gestire la modifica della password
+7) Modificato il frmMain, sotto il menù "User", aggiunta la voce "Change Password"
+8) Aggiunto il form frmChangePassword
+9) Aggiunta immagine writeCSV.png
+10) Aggiunta la funzione fWriteToCsv() per esportare la ricerca su file .csv
 
 #######################################
 Elementi modificati:
 M) UserManagerFunction.vb
-M) frmMain.vb
+M) frmMain.vb (codice)
 M) LoggerFunctions.vb
 M) GeneralAuxFunctions.vb
-M) frmMain.vb
+M) frmMain.vb (grafica)
++) frmChangePassword.vb
+M) FileSystemFunct
 
 #######################################
 Xplorer 1.0.4.5

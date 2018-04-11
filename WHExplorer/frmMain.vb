@@ -196,8 +196,8 @@ Public Class frmMain
         End Try
     End Sub
     Private Sub btnChildGenerator_Click(sender As Object, e As EventArgs) Handles btnChildGenerator.Click
-        Dim dsBackupFolder As String
-        Dim dsChildFolder As String
+        Dim dsBackupFolder As String = Nothing
+        Dim dsChildFolder As String = Nothing
         prgChildGeneration.Value = 0
         Try
             dsBackupFolder = xmlReader.fReadSingleNode("childBackupPath")
@@ -246,12 +246,13 @@ Public Class frmMain
                 prgChildGeneration.Increment(1)
             Next
             sw.Close()
+            sw.Dispose()
             MsgBox("FILE CREATO CON SUCCESSO!!", MsgBoxStyle.Exclamation)
         Catch ex As Exception
             MsgBox("ERRORE NELLA CREAZIONE DEL FILE FIGLI.txt", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
-        sw.Dispose()
+        'sw.Dispose()
         dtTemp.Dispose()
     End Sub
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -550,8 +551,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.0.4.5"
-        frmAbout.lblIssuedDate.Text = "13/03/2018"
+        frmAbout.lblRevision.Text = "Xplorer 1.0.5.6"
+        frmAbout.lblIssuedDate.Text = "11/04/2018"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
@@ -719,6 +720,11 @@ Public Class frmMain
             MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
+    Private Sub ChangePasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePasswordToolStripMenuItem.Click
+        frmChangePassword.Show()
+    End Sub
 
-
+    Private Sub btnToCSV_Click(sender As Object, e As EventArgs) Handles btnToCSV.Click
+        fWriteToCsv()
+    End Sub
 End Class

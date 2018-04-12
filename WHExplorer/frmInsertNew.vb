@@ -101,14 +101,7 @@ Public Class frmInsertNew
             bComboInit = False
             btnInsertNew.Enabled = False
             clearAndResetTextBoxes()
-            'txtLowCode.Text = Nothing
-            'txtCommercialCode.Text = Nothing
-            'txtDescription.Text = Nothing
-            'cbxConstructor.Items.Clear()
-            'txtSuppDescription.Text = Nothing
-            'txtDescrExample.Text = Nothing
-            'txtFileDSPath.Text = Nothing
-            cbxAddDatasheet.CheckState = False
+            cbxAddDatasheet.CheckState = CheckState.Unchecked
             checkArolCode()
             checkCommercialCode()
             checkConstructor()
@@ -124,22 +117,7 @@ Public Class frmInsertNew
                     cmbField(i).Items.Clear()
                 Next
             End If
-            For i = 0 To 6
-                txtField(i).Visible = False
-                cmbField(i).Visible = False
-                lblField(i).Visible = False
-                lblPrefisso(i).Visible = False
-                lblSuffisso(i).Visible = False
-                lblDescrField(i).Visible = False
-                astrFieldDescr(i) = Nothing
-                txtField(i).Text = Nothing
-                cmbField(i).Items.Clear()
-                cmbField(i).ResetText()
-                lblField(i).Text = Nothing
-                lblPrefisso(i).Text = Nothing
-                lblSuffisso(i).Text = Nothing
-                astrSeparatore(i) = Nothing
-            Next
+            clearPanelFour()
             dtArolCategoryIDs = dbCodingRules.fSelectElementFromColumn(dbCodingRules.SQLConn, "tbArticlesCategory", "Category", "Category", cbxCompFamily.SelectedItem.ToString)
             If dtArolCategoryIDs.Rows.Count > 1 Then
                 MsgBox("ERRORE, NOME DUPLICATO!!", MsgBoxStyle.Critical)
@@ -412,22 +390,12 @@ Public Class frmInsertNew
                 fCopyFromDirToDir(AppDomain.CurrentDomain.BaseDirectory & "Sources\CODICI.txt", strFilePath, False)
                 bInitTxtFile = True
             End If
-            'btnCreaFileTxt.Enabled = False
             strFileText = fCreateCodiciTxt(txtCode.Text & txtLowCode.Text, txtCommercialCode.Text, txtDescription.Text, cbxConstructor.SelectedItem.ToString, txtSuppDescription.Text)
             sw = File.AppendText(strFilePath)
             sw.WriteLine(strFileText)
             sw.Close()
-            cbxCompFamily.ResetText()
-            txtCode.ResetText()
-            txtLowCode.ResetText()
-            txtCommercialCode.ResetText()
-            txtDescription.ResetText()
-            cbxConstructor.ResetText()
-            txtDescrExample.ResetText()
-            txtSuppDescription.ResetText()
-            cbxAddDatasheet.CheckState = CheckState.Unchecked
-            txtFileDSPath.ResetText()
-            txtFileExtension.ResetText()
+            clearAll()
+            clearPanelFour()
         Catch ex As Exception
             MsgBox("ERRORE NELLA CREAZIONE DEL FILE CODICI.TXT", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
@@ -453,14 +421,6 @@ Public Class frmInsertNew
             strManufacturer = UCase(cbxConstructor.SelectedItem.ToString)
             strSupplementaryDescription = UCase(txtSuppDescription.Text)
             Dim strTableName As String
-            'If rdbMatComm.Checked And Not rdbMatCons.Checked Then
-            '    strTableName = "codificati"
-            'ElseIf Not rdbMatComm.Checked And rdbMatCons.Checked Then
-            '    strTableName = "consumabili"
-            'Else
-            '    strTableName = Nothing
-            '    Exit Sub
-            'End If
             strTableName = checkMatCommConsumo()
             frmMain.dbWarehouse.fInsertNewComponent(frmMain.dbWarehouse.SQLConn, strTableName, strArolCode, strCommercialCode, strDescription, strManufacturer, strSupplementaryDescription)
             If cbxAddDatasheet.Checked Then
@@ -508,18 +468,18 @@ Public Class frmInsertNew
         End If
     End Sub
     Private Sub txtDescription_TextChanged(sender As Object, e As EventArgs) Handles txtDescription.TextChanged
-        If Not txtDescription.ReadOnly Then
-            checkDescription()
-        End If
+        checkDescription()
     End Sub
     Private Sub frmInsertNew_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         bInitTxtFile = False
     End Sub
     Private Sub rdbMatComm_CheckedChanged(sender As Object, e As EventArgs) Handles rdbMatComm.CheckedChanged
-        clearAndResetTextBoxes()
+        clearAll()
         'Abilitazione / Disabilitazione materiali a commessa
         If rdbMatComm.Checked Then
             cbxCompFamily.Enabled = True
+            cbxCompFamily.ResetText()
+            cbxConstructor.ResetText()
             rdbGenerico.Enabled = True
             rdbFamComponente.Enabled = True
             rdbFamComponente.Select()
@@ -530,31 +490,39 @@ Public Class frmInsertNew
         End If
     End Sub
     Private Sub rdbMatCons_CheckedChanged(sender As Object, e As EventArgs) Handles rdbMatCons.CheckedChanged
-        clearAndResetTextBoxes()
+        clearAll()
         'Abilitazione / Disabilitazione materiali a consumo
         If rdbMatCons.Checked Then
+            cbxCompFamily.ResetText()
             cbxCompFamily.Enabled = False
+            cbxConstructor.ResetText()
             rdbGenerico.Enabled = False
             rdbFamComponente.Enabled = False
             readOnlyField(False)
+            clearPanelFour()
         Else
             cbxCompFamily.Enabled = True
             readOnlyField(True)
         End If
     End Sub
     Private Sub rdbGenerico_CheckedChanged(sender As Object, e As EventArgs) Handles rdbGenerico.CheckedChanged
-        clearAndResetTextBoxes()
+        clearAll()
         'Abilitazione / Disabilitazione generico
         If rdbGenerico.Checked Then
+            cbxCompFamily.ResetText()
             cbxCompFamily.Enabled = False
+            cbxConstructor.ResetText()
             readOnlyField(False)
+            clearPanelFour()
         End If
     End Sub
     Private Sub rdbFamComponente_CheckedChanged(sender As Object, e As EventArgs) Handles rdbFamComponente.CheckedChanged
-        clearAndResetTextBoxes()
+        clearAll()
         'Abilitazione / Disabilitazione famiglia di componenti
         If rdbFamComponente.Checked Then
             cbxCompFamily.Enabled = True
+            cbxCompFamily.ResetText()
+            cbxConstructor.ResetText()
             readOnlyField(True)
         End If
     End Sub
@@ -587,6 +555,53 @@ Public Class frmInsertNew
         txtDescription.Clear()
         txtSuppDescription.Clear()
         txtFileDSPath.Clear()
+    End Sub
+    Public Sub clearAndResetComboBoxes()
+        cbxConstructor.ResetText()
+        cbxConstructor.BackColor = Color.Red
+        cbxCompFamily.ResetText()
+    End Sub
+    Public Sub clearAll()
+        txtCode.ForeColor = Color.Black
+        txtLowCode.ForeColor = Color.Black
+        txtCommercialCode.ForeColor = Color.Black
+        txtDescription.ForeColor = Color.Black
+        txtSuppDescription.ForeColor = Color.Black
+        txtFileDSPath.ForeColor = Color.Black
+        txtFileExtension.ForeColor = Color.Black
+        txtDescrExample.ForeColor = Color.Black
+        txtCode.Clear()
+        txtLowCode.Clear()
+        txtCommercialCode.Clear()
+        txtDescription.Clear()
+        txtSuppDescription.Clear()
+        txtFileDSPath.Clear()
+        txtFileExtension.Clear()
+        txtDescrExample.Clear()
+        cbxConstructor.ResetText()
+        cbxConstructor.BackColor = Color.Red
+        cbxCompFamily.ResetText()
+        cbxAddDatasheet.Checked = CheckState.Unchecked
+    End Sub
+    Public Sub clearPanelFour()
+        If bInitDescrField Then
+            For i = 0 To 6
+                txtField(i).Visible = False
+                cmbField(i).Visible = False
+                lblField(i).Visible = False
+                lblPrefisso(i).Visible = False
+                lblSuffisso(i).Visible = False
+                lblDescrField(i).Visible = False
+                astrFieldDescr(i) = Nothing
+                txtField(i).Text = Nothing
+                cmbField(i).Items.Clear()
+                cmbField(i).ResetText()
+                lblField(i).Text = Nothing
+                lblPrefisso(i).Text = Nothing
+                lblSuffisso(i).Text = Nothing
+                astrSeparatore(i) = Nothing
+            Next
+        End If
     End Sub
     Public Function checkMatCommConsumo() As String
         If rdbMatComm.Checked And Not rdbMatCons.Checked Then

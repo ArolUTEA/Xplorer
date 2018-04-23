@@ -13,10 +13,13 @@ System.Data.SQLite.Linq		1.0.105.2
 Modifiche effettuate:
 1) Aggiunta funzione clearPanelFour() per pulizia del pannello #4.
 2) Aggiunte le funzioni clearAll() e clearAndResetComboBoxes()
+3) Aggiunto il file DataGridViewFunctions.vb
+4) Nel file DataGridViewFunctions è stata aggiunta la funzione fChangeRowColor, che consente di modificare il colore di sfondo di una riga di un datagridview
 
 #######################################
 Elementi modificati:
 M) frmInsertNew.vb
++) DataGridViewFunctions.vb
 
 
 #######################################

@@ -164,12 +164,18 @@ Module UserManagerFunctions
     End Function
     Public Function fApplyReaderOnlyPermission() As Boolean
         frmMain.btnInsertNew.Enabled = False
-        frmMain.btnEdit.Enabled = False
+        'frmMain.btnEdit.Enabled = False
         frmMain.bUserWritePerm = False
         frmMain.bManageUser = False
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = False
         frmMain.btnReadFromFile.Enabled = False
+        frmArticlesDetails.txtCommercialCode.ReadOnly = True
+        frmArticlesDetails.txtDescription.ReadOnly = True
+        frmArticlesDetails.txtConstructor.ReadOnly = True
+        frmArticlesDetails.txtSuppDescription.ReadOnly = True
+        frmArticlesDetails.txtNote.ReadOnly = True
+        frmArticlesDetails.cbxModificaStato.Enabled = False
         Return True
     End Function
     Public Function fApplyWritePermission() As Boolean
@@ -179,6 +185,12 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = False
+        frmArticlesDetails.txtCommercialCode.ReadOnly = False
+        frmArticlesDetails.txtDescription.ReadOnly = False
+        frmArticlesDetails.txtConstructor.ReadOnly = False
+        frmArticlesDetails.txtSuppDescription.ReadOnly = False
+        frmArticlesDetails.txtNote.ReadOnly = False
+        frmArticlesDetails.cbxModificaStato.Enabled = True
         Return True
     End Function
     Public Function fApplyAdvancedPermission() As Boolean
@@ -188,6 +200,12 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = True
+        frmArticlesDetails.txtCommercialCode.ReadOnly = False
+        frmArticlesDetails.txtDescription.ReadOnly = False
+        frmArticlesDetails.txtConstructor.ReadOnly = False
+        frmArticlesDetails.txtSuppDescription.ReadOnly = False
+        frmArticlesDetails.txtNote.ReadOnly = False
+        frmArticlesDetails.cbxModificaStato.Enabled = True
         Return True
     End Function
 End Module

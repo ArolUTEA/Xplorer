@@ -121,4 +121,176 @@ Module EditExistFunctions
             Return False
         End Try
     End Function
+    Public Function fRetrieveSelectedData(iSelectedID As Integer, strTableName As String) As DataTable
+        Try
+            Dim tempData As DataTable
+            tempData = frmMain.dbWarehouse.fSelectElementFromColumn(frmMain.dbWarehouse.SQLConn, strTableName, "ID", "ID", iSelectedID)
+            If tempData.Rows.Count > 0 Then
+                Return tempData
+            Else
+                MsgBox("NESSUN DATO RECUPERATO", MsgBoxStyle.Critical)
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NEL RECUPERO DATI DAL DATABASE", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return Nothing
+        End Try
+    End Function
+    Public Function fPopulateArticlesDetails(tempBasicData As DataTable, tempExtendedData As DataTable) As Boolean
+        Try
+            frmArticlesDetails.txtArolCode.Text = tempBasicData.Rows(0)("ArolCode")
+            frmArticlesDetails.txtCommercialCode.Text = tempBasicData.Rows(0)("CommercialCode")
+            frmArticlesDetails.txtDescription.Text = tempBasicData.Rows(0)("Description")
+            frmArticlesDetails.txtConstructor.Text = tempBasicData.Rows(0)("Manufacturer")
+            frmArticlesDetails.txtSuppDescription.Text = tempBasicData.Rows(0)("SupplementaryDescription")
+            If tempExtendedData IsNot Nothing Then
+                frmArticlesDetails.txtDataInserimento.Text = tempExtendedData.Rows(0)("DataInserimento")
+                frmArticlesDetails.txtCodificaRichiestaDa.Text = tempExtendedData.Rows(0)("RichiestoDa")
+                frmArticlesDetails.txtDataUltimaModifica.Text = tempExtendedData.Rows(0)("DataModifica")
+                frmArticlesDetails.txtInseritoDa.Text = tempExtendedData.Rows(0)("InseritoDa")
+                frmArticlesDetails.txtModificatoDa.Text = tempExtendedData.Rows(0)("ModificatoDa")
+                Select Case tempExtendedData.Rows(0)("Stato")
+                    Case 0
+                        frmArticlesDetails.txtStatoAttuale.Text = "Codice attivo"
+                    Case 1
+                        frmArticlesDetails.txtStatoAttuale.Text = "Solo per ricambio"
+                    Case 2
+                        frmArticlesDetails.txtStatoAttuale.Text = "In obsolescenza"
+                    Case 3
+                        frmArticlesDetails.txtStatoAttuale.Text = "Annullato"
+                    Case Else
+                        Return False
+                        Exit Function
+                End Select
+                frmArticlesDetails.txtNote.Text = tempExtendedData.Rows(0)("Note")
+            End If
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NEL POPOLAMENTO DEL FORM DETTAGLIO ARTICOLO", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fEditExistingCode() As Boolean
+        Try
+            'Recupero l'informazione di componente codificato o componente consumabile
+            Dim tableName As String
+            Select Case frmMain.CompEleControl.SelectedIndex
+                Case 0
+                    tableName = "codificati"
+                Case 1
+                    tableName = "consumabili"
+                Case Else
+                    Return False
+                    Exit Function
+            End Select
+            'Recupero il ID della tabella relativa
+            Dim tempData, tempDataEsteso As DataTable
+            tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            If tempData.Rows.Count > 0 Then
+                If tableName = "codificati" Then
+                    fUpdateCodificatiElement(tempData.Rows(0)("ID"), tempData.Rows(0)("ArolCode"), frmArticlesDetails.txtCommercialCode.Text, frmArticlesDetails.txtDescription.Text, frmArticlesDetails.txtConstructor.Text, frmArticlesDetails.txtSuppDescription.Text)
+                ElseIf tableName = "consumabili" Then
+                    fUpdateConsumabiliElement(tempData.Rows(0)("ID"), tempData.Rows(0)("ArolCode"), frmArticlesDetails.txtCommercialCode.Text, frmArticlesDetails.txtDescription.Text, frmArticlesDetails.txtConstructor.Text, frmArticlesDetails.txtSuppDescription.Text)
+                End If
+                'Aggiornare i dati estesi
+                If tempDataEsteso.Rows.Count > 0 Then
+                    Dim strTempToday As String = Date.Now.Day & "/" & Date.Now.Month & "/" & Date.Now.Year
+                    fUpdateExtendedData(tempDataEsteso.Rows(0)("ID"), frmArticlesDetails.cbxModificaStato.SelectedIndex, frmMain.strUsername, strTempToday, frmArticlesDetails.txtNote.Text)
+                End If
+                'Rileggo i dati
+                tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
+                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+                fPopulateArticlesDetails(tempData, tempDataEsteso)
+            Else
+                MsgBox("ELEMENTO NON TROVATO", MsgBoxStyle.Critical)
+                Return False
+                Exit Function
+            End If
+            'Generare la stringa per email
+            fGenerateStringForEmail(tempData.Rows(0)("ID"), tableName)
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA MODIFICA DELL'ELEMENTO ESISTENTE", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fUpdateExtendedData(selectedID As Integer, stato As Integer, modificatoDa As String, dataModifica As String, note As String) As Boolean
+        Try
+            Dim strTempQuery As String = "UPDATE datiEstesi SET Stato=@stato, ModificatoDa=@modificatoDa, DataModifica=@dataModifica, Note=@note WHERE ID = '" & selectedID & "'"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbWarehouse.SQLConn)
+            sqlCmd.Parameters.AddWithValue("@stato", stato)
+            sqlCmd.Parameters.AddWithValue("@modificatoDa", modificatoDa)
+            sqlCmd.Parameters.AddWithValue("@dataModifica", dataModifica)
+            sqlCmd.Parameters.AddWithValue("@note", note)
+            sqlCmd.ExecuteNonQuery()
+            sqlCmd.Dispose()
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA MODIFICA DEI DATI ESTESI", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fUndoModification() As Boolean
+        Try
+            'Recupero l'informazione di componente codificato o consumabile
+            Dim tableName As String
+            Select Case frmMain.CompEleControl.SelectedIndex
+                Case 0
+                    tableName = "codificati"
+                Case 1
+                    tableName = "consumabili"
+                Case Else
+                    Return False
+                    Exit Function
+            End Select
+            'Recupero il ID della tabella relativa
+            Dim tempData, tempDataEsteso As DataTable
+            tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            'Rileggo i dati
+            tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            fPopulateArticlesDetails(tempData, tempDataEsteso)
+            Return True
+        Catch ex As Exception
+            MsgBox("MO SO CAZZ....", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fDeleteExisting() As Boolean
+        Try
+            If MsgBox("SEI SICURO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                'Recupero l'informazione di componente codificato o consumabile
+                Dim tableName As String
+                Select Case frmMain.CompEleControl.SelectedIndex
+                    Case 0
+                        tableName = "codificati"
+                    Case 1
+                        tableName = "consumabili"
+                    Case Else
+                        Return False
+                        Exit Function
+                End Select
+                'Recupero il ID della tabella relativa
+                Dim tempData, tempDataEsteso As DataTable
+                tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
+                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+                fDeleteElement(tempData.Rows(0)("ID"), tableName)
+                fDeleteElement(tempDataEsteso.Rows(0)("ID"), "datiEstesi")
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA CANCELLAZIONE DELL'ELEMENTO", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
 End Module

@@ -31,7 +31,7 @@ Partial Class frmMain
         Me.CompElePage = New System.Windows.Forms.TabPage()
         Me.ConsElePage = New System.Windows.Forms.TabPage()
         Me.dgvCSDBViewer = New System.Windows.Forms.DataGridView()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.pnlInstruments = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnReadFromFile = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -41,8 +41,6 @@ Partial Class frmMain
         Me.btnChildGenerator = New System.Windows.Forms.Button()
         Me.prgChildGeneration = New System.Windows.Forms.ProgressBar()
         Me.lblOpenDocs = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.lblFindACode = New System.Windows.Forms.Label()
         Me.txtFindACode = New System.Windows.Forms.TextBox()
         Me.lblFindCCode = New System.Windows.Forms.Label()
@@ -65,7 +63,7 @@ Partial Class frmMain
         Me.rbSimpleSearch = New System.Windows.Forms.RadioButton()
         Me.rbAdvancedSearch = New System.Windows.Forms.RadioButton()
         Me.rbGuidedSearch = New System.Windows.Forms.RadioButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.pnlLogin = New System.Windows.Forms.Panel()
         Me.lblUserLogged = New System.Windows.Forms.Label()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtPassword = New System.Windows.Forms.TextBox()
@@ -75,11 +73,8 @@ Partial Class frmMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.HelpTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnOpenFile = New System.Windows.Forms.Button()
-        Me.btnConfirm = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnEdit = New System.Windows.Forms.Button()
-        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.btnDetails = New System.Windows.Forms.Button()
+        Me.pnlFutureUse = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -88,7 +83,7 @@ Partial Class frmMain
         Me.NewManufacturerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblDetails = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.btnToCSV = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -98,15 +93,13 @@ Partial Class frmMain
         Me.CompElePage.SuspendLayout()
         Me.ConsElePage.SuspendLayout()
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
+        Me.pnlInstruments.SuspendLayout()
         Me.pnlAdvancedSearch.SuspendLayout()
         Me.pnlSearch.SuspendLayout()
         Me.pnlGuidedSearch.SuspendLayout()
         Me.pnlSimpleSearch.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.Panel9.SuspendLayout()
+        Me.pnlLogin.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtOpResult
@@ -182,27 +175,33 @@ Partial Class frmMain
         Me.dgvCSDBViewer.TabIndex = 0
         Me.dgvCSDBViewer.Visible = False
         '
-        'Panel2
+        'pnlInstruments
         '
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.btnReadFromFile)
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.lblStrumenti)
-        Me.Panel2.Controls.Add(Me.btnInsertNew)
-        Me.Panel2.Controls.Add(Me.btnChildGenerator)
-        Me.Panel2.Controls.Add(Me.prgChildGeneration)
-        Me.Panel2.Location = New System.Drawing.Point(187, 31)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(161, 103)
-        Me.Panel2.TabIndex = 15
+        Me.pnlInstruments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlInstruments.Controls.Add(Me.btnOpenFile)
+        Me.pnlInstruments.Controls.Add(Me.lblOpenDocs)
+        Me.pnlInstruments.Controls.Add(Me.btnDetails)
+        Me.pnlInstruments.Controls.Add(Me.Label4)
+        Me.pnlInstruments.Controls.Add(Me.lblDetails)
+        Me.pnlInstruments.Controls.Add(Me.btnReadFromFile)
+        Me.pnlInstruments.Controls.Add(Me.Label10)
+        Me.pnlInstruments.Controls.Add(Me.Label3)
+        Me.pnlInstruments.Controls.Add(Me.btnToCSV)
+        Me.pnlInstruments.Controls.Add(Me.Label1)
+        Me.pnlInstruments.Controls.Add(Me.lblStrumenti)
+        Me.pnlInstruments.Controls.Add(Me.btnInsertNew)
+        Me.pnlInstruments.Controls.Add(Me.btnChildGenerator)
+        Me.pnlInstruments.Controls.Add(Me.prgChildGeneration)
+        Me.pnlInstruments.Location = New System.Drawing.Point(187, 31)
+        Me.pnlInstruments.Name = "pnlInstruments"
+        Me.pnlInstruments.Size = New System.Drawing.Size(161, 177)
+        Me.pnlInstruments.TabIndex = 15
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(108, 66)
+        Me.Label4.Location = New System.Drawing.Point(105, 66)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 12)
         Me.Label4.TabIndex = 26
@@ -213,7 +212,7 @@ Partial Class frmMain
         Me.btnReadFromFile.BackgroundImage = CType(resources.GetObject("btnReadFromFile.BackgroundImage"), System.Drawing.Image)
         Me.btnReadFromFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnReadFromFile.Enabled = False
-        Me.btnReadFromFile.Location = New System.Drawing.Point(112, 23)
+        Me.btnReadFromFile.Location = New System.Drawing.Point(109, 23)
         Me.btnReadFromFile.Name = "btnReadFromFile"
         Me.btnReadFromFile.Size = New System.Drawing.Size(40, 40)
         Me.btnReadFromFile.TabIndex = 25
@@ -223,7 +222,7 @@ Partial Class frmMain
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(56, 66)
+        Me.Label3.Location = New System.Drawing.Point(53, 66)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(48, 12)
         Me.Label3.TabIndex = 24
@@ -233,7 +232,7 @@ Partial Class frmMain
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(14, 66)
+        Me.Label1.Location = New System.Drawing.Point(11, 66)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(28, 12)
         Me.Label1.TabIndex = 22
@@ -254,7 +253,7 @@ Partial Class frmMain
         Me.btnInsertNew.BackgroundImage = CType(resources.GetObject("btnInsertNew.BackgroundImage"), System.Drawing.Image)
         Me.btnInsertNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnInsertNew.Enabled = False
-        Me.btnInsertNew.Location = New System.Drawing.Point(8, 23)
+        Me.btnInsertNew.Location = New System.Drawing.Point(5, 23)
         Me.btnInsertNew.Name = "btnInsertNew"
         Me.btnInsertNew.Size = New System.Drawing.Size(40, 40)
         Me.btnInsertNew.TabIndex = 12
@@ -266,7 +265,7 @@ Partial Class frmMain
         Me.btnChildGenerator.BackgroundImage = CType(resources.GetObject("btnChildGenerator.BackgroundImage"), System.Drawing.Image)
         Me.btnChildGenerator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnChildGenerator.Enabled = False
-        Me.btnChildGenerator.Location = New System.Drawing.Point(65, 23)
+        Me.btnChildGenerator.Location = New System.Drawing.Point(62, 23)
         Me.btnChildGenerator.Name = "btnChildGenerator"
         Me.btnChildGenerator.Size = New System.Drawing.Size(30, 30)
         Me.btnChildGenerator.TabIndex = 16
@@ -275,7 +274,7 @@ Partial Class frmMain
         '
         'prgChildGeneration
         '
-        Me.prgChildGeneration.Location = New System.Drawing.Point(51, 53)
+        Me.prgChildGeneration.Location = New System.Drawing.Point(48, 53)
         Me.prgChildGeneration.Name = "prgChildGeneration"
         Me.prgChildGeneration.Size = New System.Drawing.Size(56, 10)
         Me.prgChildGeneration.TabIndex = 17
@@ -284,32 +283,12 @@ Partial Class frmMain
         '
         Me.lblOpenDocs.AutoSize = True
         Me.lblOpenDocs.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpenDocs.Location = New System.Drawing.Point(50, 46)
+        Me.lblOpenDocs.Location = New System.Drawing.Point(101, 139)
         Me.lblOpenDocs.Name = "lblOpenDocs"
         Me.lblOpenDocs.Size = New System.Drawing.Size(57, 12)
         Me.lblOpenDocs.TabIndex = 26
         Me.lblOpenDocs.Text = "OpenDocs"
         Me.lblOpenDocs.Visible = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(110, 46)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 12)
-        Me.Label8.TabIndex = 28
-        Me.Label8.Text = "Delete"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(22, 47)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(25, 12)
-        Me.Label2.TabIndex = 23
-        Me.Label2.Text = "Edit"
         '
         'lblFindACode
         '
@@ -537,20 +516,20 @@ Partial Class frmMain
         Me.rbGuidedSearch.Text = "Ricerca guidata"
         Me.rbGuidedSearch.UseVisualStyleBackColor = True
         '
-        'Panel3
+        'pnlLogin
         '
-        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel3.Controls.Add(Me.lblUserLogged)
-        Me.Panel3.Controls.Add(Me.btnLogin)
-        Me.Panel3.Controls.Add(Me.txtPassword)
-        Me.Panel3.Controls.Add(Me.Label7)
-        Me.Panel3.Controls.Add(Me.txtUserName)
-        Me.Panel3.Controls.Add(Me.Label6)
-        Me.Panel3.Controls.Add(Me.Label5)
-        Me.Panel3.Location = New System.Drawing.Point(12, 31)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(169, 103)
-        Me.Panel3.TabIndex = 20
+        Me.pnlLogin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlLogin.Controls.Add(Me.lblUserLogged)
+        Me.pnlLogin.Controls.Add(Me.btnLogin)
+        Me.pnlLogin.Controls.Add(Me.txtPassword)
+        Me.pnlLogin.Controls.Add(Me.Label7)
+        Me.pnlLogin.Controls.Add(Me.txtUserName)
+        Me.pnlLogin.Controls.Add(Me.Label6)
+        Me.pnlLogin.Controls.Add(Me.Label5)
+        Me.pnlLogin.Location = New System.Drawing.Point(12, 31)
+        Me.pnlLogin.Name = "pnlLogin"
+        Me.pnlLogin.Size = New System.Drawing.Size(169, 103)
+        Me.pnlLogin.TabIndex = 20
         '
         'lblUserLogged
         '
@@ -632,74 +611,31 @@ Partial Class frmMain
         '
         Me.btnOpenFile.BackgroundImage = CType(resources.GetObject("btnOpenFile.BackgroundImage"), System.Drawing.Image)
         Me.btnOpenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenFile.Location = New System.Drawing.Point(58, 3)
+        Me.btnOpenFile.Location = New System.Drawing.Point(109, 96)
         Me.btnOpenFile.Name = "btnOpenFile"
         Me.btnOpenFile.Size = New System.Drawing.Size(40, 40)
         Me.btnOpenFile.TabIndex = 11
         Me.HelpTip.SetToolTip(Me.btnOpenFile, "Apri file allegato")
         Me.btnOpenFile.UseVisualStyleBackColor = True
         '
-        'btnConfirm
+        'btnDetails
         '
-        Me.btnConfirm.BackgroundImage = CType(resources.GetObject("btnConfirm.BackgroundImage"), System.Drawing.Image)
-        Me.btnConfirm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnConfirm.Enabled = False
-        Me.btnConfirm.Location = New System.Drawing.Point(57, 3)
-        Me.btnConfirm.Name = "btnConfirm"
-        Me.btnConfirm.Size = New System.Drawing.Size(31, 30)
-        Me.btnConfirm.TabIndex = 29
-        Me.HelpTip.SetToolTip(Me.btnConfirm, "Convalida modifiche")
-        Me.btnConfirm.UseVisualStyleBackColor = True
+        Me.btnDetails.BackgroundImage = CType(resources.GetObject("btnDetails.BackgroundImage"), System.Drawing.Image)
+        Me.btnDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDetails.Location = New System.Drawing.Point(57, 96)
+        Me.btnDetails.Name = "btnDetails"
+        Me.btnDetails.Size = New System.Drawing.Size(40, 40)
+        Me.btnDetails.TabIndex = 28
+        Me.HelpTip.SetToolTip(Me.btnDetails, "Vedi dettagli")
+        Me.btnDetails.UseVisualStyleBackColor = True
         '
-        'btnCancel
+        'pnlFutureUse
         '
-        Me.btnCancel.BackgroundImage = CType(resources.GetObject("btnCancel.BackgroundImage"), System.Drawing.Image)
-        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCancel.Enabled = False
-        Me.btnCancel.Location = New System.Drawing.Point(57, 33)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(30, 30)
-        Me.btnCancel.TabIndex = 28
-        Me.HelpTip.SetToolTip(Me.btnCancel, "Annulla modifiche")
-        Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnDelete
-        '
-        Me.btnDelete.BackgroundImage = CType(resources.GetObject("btnDelete.BackgroundImage"), System.Drawing.Image)
-        Me.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(109, 3)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(40, 40)
-        Me.btnDelete.TabIndex = 27
-        Me.HelpTip.SetToolTip(Me.btnDelete, "Cancella selezionato")
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'btnEdit
-        '
-        Me.btnEdit.BackgroundImage = CType(resources.GetObject("btnEdit.BackgroundImage"), System.Drawing.Image)
-        Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(14, 3)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(40, 40)
-        Me.btnEdit.TabIndex = 14
-        Me.HelpTip.SetToolTip(Me.btnEdit, "Modifica esistente")
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
-        'Panel9
-        '
-        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel9.Controls.Add(Me.btnConfirm)
-        Me.Panel9.Controls.Add(Me.btnCancel)
-        Me.Panel9.Controls.Add(Me.Label8)
-        Me.Panel9.Controls.Add(Me.btnDelete)
-        Me.Panel9.Controls.Add(Me.btnEdit)
-        Me.Panel9.Controls.Add(Me.Label2)
-        Me.Panel9.Location = New System.Drawing.Point(12, 137)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(169, 71)
-        Me.Panel9.TabIndex = 27
+        Me.pnlFutureUse.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlFutureUse.Location = New System.Drawing.Point(12, 137)
+        Me.pnlFutureUse.Name = "pnlFutureUse"
+        Me.pnlFutureUse.Size = New System.Drawing.Size(169, 71)
+        Me.pnlFutureUse.TabIndex = 27
         '
         'MenuStrip1
         '
@@ -756,23 +692,21 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'Panel1
+        'lblDetails
         '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel1.Controls.Add(Me.Label10)
-        Me.Panel1.Controls.Add(Me.btnToCSV)
-        Me.Panel1.Controls.Add(Me.btnOpenFile)
-        Me.Panel1.Controls.Add(Me.lblOpenDocs)
-        Me.Panel1.Location = New System.Drawing.Point(187, 137)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(161, 71)
-        Me.Panel1.TabIndex = 29
+        Me.lblDetails.AutoSize = True
+        Me.lblDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetails.Location = New System.Drawing.Point(57, 139)
+        Me.lblDetails.Name = "lblDetails"
+        Me.lblDetails.Size = New System.Drawing.Size(41, 12)
+        Me.lblDetails.TabIndex = 29
+        Me.lblDetails.Text = "Details"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(8, 46)
+        Me.Label10.Location = New System.Drawing.Point(5, 139)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(40, 12)
         Me.Label10.TabIndex = 27
@@ -782,7 +716,7 @@ Partial Class frmMain
         '
         Me.btnToCSV.BackgroundImage = Global.Xplorer.My.Resources.Resources.writeCSV
         Me.btnToCSV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnToCSV.Location = New System.Drawing.Point(8, 3)
+        Me.btnToCSV.Location = New System.Drawing.Point(5, 96)
         Me.btnToCSV.Name = "btnToCSV"
         Me.btnToCSV.Size = New System.Drawing.Size(40, 40)
         Me.btnToCSV.TabIndex = 27
@@ -798,11 +732,10 @@ Partial Class frmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1580, 903)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Panel9)
-        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.pnlFutureUse)
+        Me.Controls.Add(Me.pnlLogin)
         Me.Controls.Add(Me.pnlSearch)
-        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.pnlInstruments)
         Me.Controls.Add(Me.CompEleControl)
         Me.Controls.Add(Me.txtOpResult)
         Me.Controls.Add(Me.MenuStrip1)
@@ -818,8 +751,8 @@ Partial Class frmMain
         Me.CompElePage.ResumeLayout(False)
         Me.ConsElePage.ResumeLayout(False)
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
+        Me.pnlInstruments.ResumeLayout(False)
+        Me.pnlInstruments.PerformLayout()
         Me.pnlAdvancedSearch.ResumeLayout(False)
         Me.pnlAdvancedSearch.PerformLayout()
         Me.pnlSearch.ResumeLayout(False)
@@ -828,14 +761,10 @@ Partial Class frmMain
         Me.pnlGuidedSearch.PerformLayout()
         Me.pnlSimpleSearch.ResumeLayout(False)
         Me.pnlSimpleSearch.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel9.PerformLayout()
+        Me.pnlLogin.ResumeLayout(False)
+        Me.pnlLogin.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -849,8 +778,7 @@ Partial Class frmMain
     Friend WithEvents dgvCSDBViewer As DataGridView
     Friend WithEvents btnOpenFile As Button
     Friend WithEvents btnInsertNew As Button
-    Friend WithEvents btnEdit As Button
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents pnlInstruments As Panel
     Friend WithEvents btnChildGenerator As Button
     Friend WithEvents prgChildGeneration As ProgressBar
     Friend WithEvents lblFindACode As Label
@@ -866,11 +794,10 @@ Partial Class frmMain
     Friend WithEvents txtFindManufacturer As TextBox
     Friend WithEvents pnlSearch As Panel
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents lblStrumenti As Label
     Friend WithEvents lblOpenDocs As Label
-    Friend WithEvents Panel3 As Panel
+    Friend WithEvents pnlLogin As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents txtPassword As TextBox
@@ -878,12 +805,8 @@ Partial Class frmMain
     Friend WithEvents txtUserName As TextBox
     Friend WithEvents btnLogin As Button
     Friend WithEvents lblUserLogged As Label
-    Friend WithEvents btnCancel As Button
-    Friend WithEvents btnConfirm As Button
     Friend WithEvents HelpTip As ToolTip
-    Friend WithEvents Label8 As Label
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents Panel9 As Panel
+    Friend WithEvents pnlFutureUse As Panel
     Friend WithEvents rbSimpleSearch As RadioButton
     Friend WithEvents rbAdvancedSearch As RadioButton
     Friend WithEvents rbGuidedSearch As RadioButton
@@ -898,7 +821,6 @@ Partial Class frmMain
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManageUserToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents btnGuideSearch As Button
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents btnReadFromFile As Button
@@ -909,4 +831,6 @@ Partial Class frmMain
     Friend WithEvents Label10 As Label
     Friend WithEvents btnToCSV As Button
     Friend WithEvents csvFileExportBrwDial As FolderBrowserDialog
+    Friend WithEvents btnDetails As Button
+    Friend WithEvents lblDetails As Label
 End Class

@@ -15,11 +15,27 @@ Modifiche effettuate:
 2) Aggiunte le funzioni clearAll() e clearAndResetComboBoxes()
 3) Aggiunto il file DataGridViewFunctions.vb
 4) Nel file DataGridViewFunctions è stata aggiunta la funzione fChangeRowColor, che consente di modificare il colore di sfondo di una riga di un datagridview
+5) Aggiunto il form per i dettagli di articolo
+6) Modificato il codice dell'evento btnEdit_Click
+7) Nel file EditExistsFunctions, aggiunta la funzione fRetrieveSelectedData
+8) Nel file EditExistsFunctions, aggiunta la funzione fPopulateArticlesDetails
+9) Sul frmMain, aggiunto il pulsante btnDetails
+10) Modificato il file UserManagerFunctions, funzioni di applicazione dei permessi
+11) Modificato il database MagazzinoEle.db, aggiunta la tabella "datiEstesi"
+12) Nel file EditExistsFunctions, aggiunta la funzione fEditExistingCode
+13) Nel file EditExistsFunctions, aggiunta la funzione fUpdateExtendedData
+14) Nel file EditExistsFunctions, aggiunta la funzione fUndoModification
+15) Nel file EditExistsFunctions, aggiunta la funzione fDeleteExisting
 
 #######################################
 Elementi modificati:
 M) frmInsertNew.vb
 +) DataGridViewFunctions.vb
++) frmArticlesDetails.vb
+M) MagazzinoEle.db
+M) EditExistsFunzionts.vb
+M) frmMain.vb
+M) UserManagerFunctions.vb
 
 
 #######################################

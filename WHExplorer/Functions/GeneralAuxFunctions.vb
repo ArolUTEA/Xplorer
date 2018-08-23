@@ -65,10 +65,6 @@ Module GeneralAuxFunctions
         End Select
         If Not tempBool Then
             frmMain.sCheckIfThereAreFiles()
-            If frmMain.bUserWritePerm Then
-                frmMain.btnEdit.Enabled = True
-                frmMain.btnDelete.Enabled = True
-            End If
         End If
         Return True
     End Function

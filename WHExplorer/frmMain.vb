@@ -14,6 +14,7 @@ Public Class frmMain
     Public strApplicationPath As String = AppDomain.CurrentDomain.BaseDirectory
     Public iModifiedID As Integer
     Public iModifiedRowIndex As Integer
+    Public strTableName As String
     Public bFormLoad As Boolean = False
     Public bGuidedSearchAnd As Boolean = False
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -284,115 +285,6 @@ Public Class frmMain
             End If
         End If
     End Sub
-    Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
-        Try
-            Select Case CompEleControl.SelectedIndex
-                Case 0
-                    'CODIFICATI
-                    'Aggiorno l'elemento
-                    With dgvCEDBViewer.Rows(iModifiedRowIndex)
-                        Dim strPreviousString, strNewString As String
-                        strPreviousString = fGenerateStringForEmail(iModifiedID, "codificati")
-                        Dim tempBool As Boolean = fUpdateCodificatiElement(iModifiedID, .Cells(1).Value.ToString, .Cells(2).Value.ToString, .Cells(3).Value.ToString, .Cells(4).Value.ToString, .Cells(5).Value.ToString)
-                        If tempBool Then
-                            strNewString = fGenerateStringForEmail(iModifiedID, "codificati")
-                            frmModDetails.Show()
-                            frmModDetails.txtAfter.Text = strNewString
-                            frmModDetails.txtPrevious.Text = strPreviousString
-                        Else
-                            MsgBox("AGGIORNAMENTO FALLITO!!", MsgBoxStyle.Critical)
-                        End If
-                    End With
-                    dgvCEDBViewer.ReadOnly = True
-                Case 1
-                    'CONSUMABILI
-                    With dgvCSDBViewer.Rows(iModifiedRowIndex)
-                        Dim strPreviousString, strNewString As String
-                        strPreviousString = fGenerateStringForEmail(iModifiedID, "consumabili")
-                        Dim tempBool As Boolean = fUpdateConsumabiliElement(iModifiedID, .Cells(1).Value.ToString, .Cells(2).Value.ToString, .Cells(3).Value.ToString, .Cells(4).Value.ToString, .Cells(5).Value.ToString)
-                        If tempBool Then
-                            strNewString = fGenerateStringForEmail(iModifiedID, "consumabili")
-                            frmModDetails.Show()
-                            frmModDetails.txtAfter.Text = strNewString
-                            frmModDetails.txtPrevious.Text = strPreviousString
-                        Else
-                            MsgBox("AGGIORNAMENTO FALLITO!!", MsgBoxStyle.Critical)
-                        End If
-                    End With
-                Case Else
-                    Exit Sub
-            End Select
-            btnConfirm.Enabled = False
-            btnCancel.Enabled = False
-        Catch ex As Exception
-            MsgBox("ERRORE NELLA CONFERMA DELLA MODIFICA", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
-    End Sub
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Try
-            'Recupero i vecchi dati
-            Select Case CompEleControl.SelectedIndex
-                Case 0
-                    fUndoCodificatiModification(iModifiedID, iModifiedRowIndex)
-                    dgvCEDBViewer.ReadOnly = True
-                Case 1
-                    fUndoConsumabiliModification(iModifiedID, iModifiedRowIndex)
-                    dgvCSDBViewer.ReadOnly = True
-                Case Else
-            End Select
-            btnCancel.Enabled = False
-            btnConfirm.Enabled = False
-        Catch ex As Exception
-            MsgBox("ERRORE NELL'ANNULLAMENTO DELLA MODIFICA", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
-    End Sub
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        Try
-            Select Case CompEleControl.SelectedIndex
-                Case 0
-                    dgvCEDBViewer.ReadOnly = False
-                Case 1
-                    dgvCSDBViewer.ReadOnly = False
-                Case Else
-                    Exit Sub
-            End Select
-            'Abilito la scrittura
-            'dgvCEDBViewer.ReadOnly = False
-        Catch ex As Exception
-            MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
-    End Sub
-    Private Sub dgvCEDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCEDBViewer.CellValueChanged
-        If bFormLoad Then
-            Try
-                iModifiedRowIndex = dgvCEDBViewer.CurrentCell.RowIndex
-                iModifiedID = dgvCEDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
-                'Abilito i pulsanti di conferma/annulla modifica
-                btnConfirm.Enabled = True
-                btnCancel.Enabled = True
-            Catch ex As Exception
-                MsgBox("LA MEMORIA NON SI PUO' MEMORIZZARE", MsgBoxStyle.Critical)
-                fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-            End Try
-        End If
-    End Sub
-    Private Sub dgvCSDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellValueChanged
-        If bFormLoad Then
-            Try
-                iModifiedRowIndex = dgvCSDBViewer.CurrentCell.RowIndex
-                iModifiedID = dgvCSDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
-                'Abilito i pulsanti di conferma/annulla modifica
-                btnConfirm.Enabled = True
-                btnCancel.Enabled = True
-            Catch ex As Exception
-                MsgBox("LA MEMORIA NON SI PUO' MEMORIZZARE", MsgBoxStyle.Critical)
-                fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-            End Try
-        End If
-    End Sub
     Private Sub txtFindACode_TextChanged(sender As Object, e As EventArgs) Handles txtFindACode.TextChanged
         fResearchAdvanced()
     End Sub
@@ -408,7 +300,7 @@ Public Class frmMain
     Private Sub txtFindSupDescr_TextChanged(sender As Object, e As EventArgs) Handles txtFindSupDescr.TextChanged
         fResearchAdvanced()
     End Sub
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs)
         Try
             If MsgBox("SEI SICURO?", MsgBoxStyle.YesNoCancel) = MsgBoxResult.Yes Then
                 Select Case CompEleControl.SelectedIndex
@@ -556,28 +448,6 @@ Public Class frmMain
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
-    'Private Sub AggiornaDatasheetToolStripMenuItem_Click(sender As Object, e As EventArgs)
-    '    If bUserWritePerm Then
-    '        Dim tempCodificati As DataTable
-    '        Dim strTempQuery As String = "SELECT * FROM codificati"
-    '        tempCodificati = dbWarehouse.fExecuteGenericQuery(dbWarehouse.SQLConn, strTempQuery)
-    '        Dim i As Integer = 0
-    '        For Each element In tempCodificati.Rows
-    '            Dim tempContenuto As Integer
-    '            If dbWarehouse.fCheckIfAlreadyExist(tempCodificati.Rows(i)("ArolCode").ToString, dbWarehouse.SQLConn, "codificatiDS", "Name") Then
-    '                tempContenuto = 1
-    '            Else
-    '                tempContenuto = 0
-    '            End If
-    '            strTempQuery = "UPDATE codificati SET Datasheet = " & tempContenuto & " WHERE ArolCode = '" & tempCodificati.Rows(i)("ArolCode") & "'"
-    '            dbWarehouse.fExecuteGenericQuery(dbWarehouse.SQLConn, strTempQuery)
-    '            i = i + 1
-    '        Next
-    '    Else
-    '        MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
-    '    End If
-    'End Sub
-
     Private Sub ManageUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManageUserToolStripMenuItem.Click
         If bManageUser Then
             frmUserManagement.Show()
@@ -726,5 +596,43 @@ Public Class frmMain
 
     Private Sub btnToCSV_Click(sender As Object, e As EventArgs) Handles btnToCSV.Click
         fWriteToCsv()
+    End Sub
+
+    Private Sub btnDetails_Click(sender As Object, e As EventArgs) Handles btnDetails.Click
+        Try
+            Select Case CompEleControl.SelectedIndex
+                Case 0
+                    'Recupero l'indice della cella selezionata
+                    iModifiedRowIndex = dgvCEDBViewer.CurrentCell.RowIndex
+                    'Recupero l'ID dell'elemento che si vuole editare
+                    iModifiedID = dgvCEDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
+                    strTableName = "codificati"
+                Case 1
+                    'Recupero l'indice della cella selezionata
+                    iModifiedRowIndex = dgvCSDBViewer.CurrentCell.RowIndex
+                    'Recupero l'ID dell'elemento che si vuole editare
+                    iModifiedID = dgvCSDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
+                    strTableName = "consumabili"
+                Case Else
+                    Exit Sub
+            End Select
+            'Recupero i dati dal database
+            Dim tempBasicData, tempExtendedData As DataTable
+            tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
+            tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesi", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
+            If tempExtendedData.Rows.Count = 0 Then
+                tempExtendedData = Nothing
+            End If
+            If tempBasicData.Rows.Count > 0 Then
+                fPopulateArticlesDetails(tempBasicData, tempExtendedData)
+            Else
+                MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+            frmArticlesDetails.Show()
+        Catch ex As Exception
+            MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
+            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+        End Try
     End Sub
 End Class

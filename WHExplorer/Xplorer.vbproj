@@ -136,6 +136,12 @@
     <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmArticlesDetails.Designer.vb">
+      <DependentUpon>frmArticlesDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmArticlesDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChangePassword.Designer.vb">
       <DependentUpon>frmChangePassword.vb</DependentUpon>
     </Compile>
@@ -194,6 +200,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArticlesDetails.resx">
+      <DependentUpon>frmArticlesDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangePassword.resx">
       <DependentUpon>frmChangePassword.vb</DependentUpon>
@@ -266,6 +275,7 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\editUser.png" />
     <Content Include="Images\find.png" />
+    <Content Include="Images\info.ico" />
     <Content Include="Images\Lente_X.ico" />
     <Content Include="Images\lock.png" />
     <Content Include="Images\login.png" />
@@ -279,6 +289,7 @@
     <Content Include="Images\txt.png" />
     <None Include="Images\txt1.png" />
     <Content Include="Images\unlock.png" />
+    <None Include="Images\viewDetails.png" />
     <Content Include="Images\writeCSV.png" />
     <Content Include="Images\X.png" />
     <Content Include="Lente_X.ico" />

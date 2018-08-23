@@ -261,6 +261,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Icon simile a (Icona).
+        '''</summary>
+        Friend ReadOnly Property info() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("info", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property lock() As System.Drawing.Bitmap
@@ -366,6 +376,16 @@ Namespace My.Resources
         Friend ReadOnly Property unlock() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("unlock", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property viewDetails() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("viewDetails", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

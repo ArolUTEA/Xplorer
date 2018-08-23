@@ -176,7 +176,7 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCEDBViewer.Visible = False
-                            MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                     Case 1
                         tableName = "consumabili"
@@ -187,7 +187,7 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCSDBViewer.Visible = False
-                            MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                 End Select
             End If

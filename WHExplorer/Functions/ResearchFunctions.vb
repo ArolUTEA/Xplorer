@@ -10,7 +10,7 @@ Module ResearchFunctions
                 Return True
             Else
                 frmMain.dgvCEDBViewer.Visible = False
-                MsgBox("NESSUNA OCCORRENZA TROVATA", MsgBoxStyle.Information)
+                'MsgBox("NESSUNA OCCORRENZA TROVATA", MsgBoxStyle.Information)
                 tempData.Dispose()
                 Return False
             End If
@@ -53,7 +53,7 @@ Module ResearchFunctions
                     Case Else
                         Return False
                 End Select
-                MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
             End If
             Return True
         Catch ex As Exception
@@ -72,7 +72,7 @@ Module ResearchFunctions
                 Return True
             Else
                 dgvSelected.Visible = False
-                MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 Return False
             End If
         Catch ex As Exception

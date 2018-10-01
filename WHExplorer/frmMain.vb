@@ -85,6 +85,8 @@ Public Class frmMain
         fSelectAllAndOrder(dgvCEDBViewer, "codificati")
         'Enable Simple Search
         rbSimpleSearch.Checked = True
+        'Extended data panel invisible
+        pnlExtendedData.Visible = False
         bFormLoad = True
     End Sub
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -92,10 +94,10 @@ Public Class frmMain
         dbWarehouse.fDisconnect()
     End Sub
     Private Sub dgvCEDBViewer_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCEDBViewer.CellClick
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
     Private Sub dgvCSDBViewer_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellClick
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
     Private Sub btnOpenFile_Click(sender As Object, e As EventArgs) Handles btnOpenFile.Click
         Dim rowIndex As Integer
@@ -115,16 +117,16 @@ Public Class frmMain
         dbWarehouse.fChekHowManyExistsAndRead(ArolCode, dbWarehouse.SQLConn, "codificatiDS", "Name")
     End Sub
     Private Sub dgvCEDBViewer_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvCEDBViewer.KeyDown
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
     Private Sub dgvCSDBViewer_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvCSDBViewer.KeyDown
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
     Private Sub dgvCEDBViewer_KeyUp(sender As Object, e As KeyEventArgs) Handles dgvCEDBViewer.KeyUp
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
     Private Sub dgvCSDBViewer_KeyUp(sender As Object, e As KeyEventArgs) Handles dgvCSDBViewer.KeyUp
-        fManagementOfDgvClickOrKeyMove()
+        fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
 
     Public Sub sCheckIfThereAreFiles()
@@ -599,6 +601,16 @@ Public Class frmMain
     End Sub
 
     Private Sub btnDetails_Click(sender As Object, e As EventArgs) Handles btnDetails.Click
+        If pnlExtendedData.Visible Then
+            pnlExtendedData.Visible = False
+            CompEleControl.Width = 1565
+        Else
+            pnlExtendedData.Visible = True
+            CompEleControl.Width = 1565 - pnlExtendedData.Width - 10
+        End If
+        dgvCEDBViewer.Width = CompEleControl.Width - 15
+        dgvCSDBViewer.Width = CompEleControl.Width - 15
+
         Try
             Select Case CompEleControl.SelectedIndex
                 Case 0
@@ -616,20 +628,31 @@ Public Class frmMain
                 Case Else
                     Exit Sub
             End Select
+
             'Recupero i dati dal database
+            'Dim tempBasicData, tempExtendedData As DataTable
+            'tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
+            'If CompEleControl.SelectedIndex = 0 Then
+            '    tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesiCodificati", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
+            'ElseIf CompEleControl.SelectedIndex = 1 Then
+            '    tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesiConsumabili", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
+            'Else
+            '    tempExtendedData = Nothing
+            'End If
+            'If tempExtendedData.Rows.Count = 0 Then
+            '    tempExtendedData = Nothing
+            'End If
+
             Dim tempBasicData, tempExtendedData As DataTable
             tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
-            tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesi", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
-            If tempExtendedData.Rows.Count = 0 Then
-                tempExtendedData = Nothing
-            End If
-            If tempBasicData.Rows.Count > 0 Then
+            tempExtendedData = fRetrieveExtendedData(iModifiedID, strTableName)
+            If tempExtendedData.Rows.Count > 0 Then
                 fPopulateArticlesDetails(tempBasicData, tempExtendedData)
             Else
                 MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
                 Exit Sub
             End If
-            frmArticlesDetails.Show()
+            'frmArticlesDetails.Show()
         Catch ex As Exception
             MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)

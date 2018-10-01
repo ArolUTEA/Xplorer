@@ -29,18 +29,24 @@ Partial Class frmMain
         Me.dgvCEDBViewer = New System.Windows.Forms.DataGridView()
         Me.CompEleControl = New System.Windows.Forms.TabControl()
         Me.CompElePage = New System.Windows.Forms.TabPage()
+        Me.pnlExtendedData = New System.Windows.Forms.Panel()
         Me.ConsElePage = New System.Windows.Forms.TabPage()
         Me.dgvCSDBViewer = New System.Windows.Forms.DataGridView()
         Me.pnlInstruments = New System.Windows.Forms.Panel()
+        Me.btnOpenFile = New System.Windows.Forms.Button()
+        Me.lblOpenDocs = New System.Windows.Forms.Label()
+        Me.btnDetails = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblDetails = New System.Windows.Forms.Label()
         Me.btnReadFromFile = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.btnToCSV = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblStrumenti = New System.Windows.Forms.Label()
         Me.btnInsertNew = New System.Windows.Forms.Button()
         Me.btnChildGenerator = New System.Windows.Forms.Button()
         Me.prgChildGeneration = New System.Windows.Forms.ProgressBar()
-        Me.lblOpenDocs = New System.Windows.Forms.Label()
         Me.lblFindACode = New System.Windows.Forms.Label()
         Me.txtFindACode = New System.Windows.Forms.TextBox()
         Me.lblFindCCode = New System.Windows.Forms.Label()
@@ -72,8 +78,6 @@ Partial Class frmMain
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.HelpTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnOpenFile = New System.Windows.Forms.Button()
-        Me.btnDetails = New System.Windows.Forms.Button()
         Me.pnlFutureUse = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -83,14 +87,46 @@ Partial Class frmMain
         Me.NewManufacturerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.lblDetails = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.btnToCSV = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.csvFileExportBrwDial = New System.Windows.Forms.FolderBrowserDialog()
+        Me.pnlArolCode = New System.Windows.Forms.Panel()
+        Me.txtArolCode = New System.Windows.Forms.TextBox()
+        Me.lblArolCode = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txtCodificaRichiestaDa = New System.Windows.Forms.TextBox()
+        Me.txtInseritoDa = New System.Windows.Forms.TextBox()
+        Me.lblInseritoDa = New System.Windows.Forms.Label()
+        Me.lblCodificaRichiestaDa = New System.Windows.Forms.Label()
+        Me.txtDataInserimento = New System.Windows.Forms.TextBox()
+        Me.lblDataInserimento = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.txtStatoAttuale = New System.Windows.Forms.TextBox()
+        Me.lblStatoAttuale = New System.Windows.Forms.Label()
+        Me.cbxModificaStato = New System.Windows.Forms.ComboBox()
+        Me.lblModificaStato = New System.Windows.Forms.Label()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.txtCostoUltimo = New System.Windows.Forms.TextBox()
+        Me.txtTipoParte = New System.Windows.Forms.TextBox()
+        Me.lblCostoUltimo = New System.Windows.Forms.Label()
+        Me.lblTipoParte = New System.Windows.Forms.Label()
+        Me.txtScortaSicurezza = New System.Windows.Forms.TextBox()
+        Me.lblScortaSicurezza = New System.Windows.Forms.Label()
+        Me.txtRiordino = New System.Windows.Forms.TextBox()
+        Me.lblRiordino = New System.Windows.Forms.Label()
+        Me.txtLotto = New System.Windows.Forms.TextBox()
+        Me.lblLotto = New System.Windows.Forms.Label()
+        Me.pnlNote = New System.Windows.Forms.Panel()
+        Me.txtNote = New System.Windows.Forms.TextBox()
+        Me.lblNote = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtModificatoDa = New System.Windows.Forms.TextBox()
+        Me.txtDataUltimaModifica = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
+        Me.pnlExtendedData.SuspendLayout()
         Me.ConsElePage.SuspendLayout()
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlInstruments.SuspendLayout()
@@ -100,6 +136,12 @@ Partial Class frmMain
         Me.pnlSimpleSearch.SuspendLayout()
         Me.pnlLogin.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.pnlArolCode.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.pnlNote.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtOpResult
@@ -137,7 +179,7 @@ Partial Class frmMain
         Me.CompEleControl.Location = New System.Drawing.Point(12, 213)
         Me.CompEleControl.Name = "CompEleControl"
         Me.CompEleControl.SelectedIndex = 0
-        Me.CompEleControl.Size = New System.Drawing.Size(1565, 648)
+        Me.CompEleControl.Size = New System.Drawing.Size(1097, 648)
         Me.CompEleControl.TabIndex = 6
         '
         'CompElePage
@@ -146,10 +188,25 @@ Partial Class frmMain
         Me.CompElePage.Location = New System.Drawing.Point(4, 22)
         Me.CompElePage.Name = "CompElePage"
         Me.CompElePage.Padding = New System.Windows.Forms.Padding(3)
-        Me.CompElePage.Size = New System.Drawing.Size(1557, 622)
+        Me.CompElePage.Size = New System.Drawing.Size(1089, 622)
         Me.CompElePage.TabIndex = 0
         Me.CompElePage.Text = "Componenti Elettrici"
         Me.CompElePage.UseVisualStyleBackColor = True
+        '
+        'pnlExtendedData
+        '
+        Me.pnlExtendedData.BackColor = System.Drawing.Color.Transparent
+        Me.pnlExtendedData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlExtendedData.Controls.Add(Me.Panel1)
+        Me.pnlExtendedData.Controls.Add(Me.pnlNote)
+        Me.pnlExtendedData.Controls.Add(Me.Panel5)
+        Me.pnlExtendedData.Controls.Add(Me.Panel3)
+        Me.pnlExtendedData.Controls.Add(Me.Panel2)
+        Me.pnlExtendedData.Controls.Add(Me.pnlArolCode)
+        Me.pnlExtendedData.Location = New System.Drawing.Point(1121, 235)
+        Me.pnlExtendedData.Name = "pnlExtendedData"
+        Me.pnlExtendedData.Size = New System.Drawing.Size(452, 626)
+        Me.pnlExtendedData.TabIndex = 6
         '
         'ConsElePage
         '
@@ -197,6 +254,39 @@ Partial Class frmMain
         Me.pnlInstruments.Size = New System.Drawing.Size(161, 177)
         Me.pnlInstruments.TabIndex = 15
         '
+        'btnOpenFile
+        '
+        Me.btnOpenFile.BackgroundImage = CType(resources.GetObject("btnOpenFile.BackgroundImage"), System.Drawing.Image)
+        Me.btnOpenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOpenFile.Location = New System.Drawing.Point(109, 96)
+        Me.btnOpenFile.Name = "btnOpenFile"
+        Me.btnOpenFile.Size = New System.Drawing.Size(40, 40)
+        Me.btnOpenFile.TabIndex = 11
+        Me.HelpTip.SetToolTip(Me.btnOpenFile, "Apri file allegato")
+        Me.btnOpenFile.UseVisualStyleBackColor = True
+        '
+        'lblOpenDocs
+        '
+        Me.lblOpenDocs.AutoSize = True
+        Me.lblOpenDocs.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpenDocs.Location = New System.Drawing.Point(101, 139)
+        Me.lblOpenDocs.Name = "lblOpenDocs"
+        Me.lblOpenDocs.Size = New System.Drawing.Size(57, 12)
+        Me.lblOpenDocs.TabIndex = 26
+        Me.lblOpenDocs.Text = "OpenDocs"
+        Me.lblOpenDocs.Visible = False
+        '
+        'btnDetails
+        '
+        Me.btnDetails.BackgroundImage = CType(resources.GetObject("btnDetails.BackgroundImage"), System.Drawing.Image)
+        Me.btnDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDetails.Location = New System.Drawing.Point(57, 96)
+        Me.btnDetails.Name = "btnDetails"
+        Me.btnDetails.Size = New System.Drawing.Size(40, 40)
+        Me.btnDetails.TabIndex = 28
+        Me.HelpTip.SetToolTip(Me.btnDetails, "Vedi dettagli")
+        Me.btnDetails.UseVisualStyleBackColor = True
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -206,6 +296,16 @@ Partial Class frmMain
         Me.Label4.Size = New System.Drawing.Size(48, 12)
         Me.Label4.TabIndex = 26
         Me.Label4.Text = "Rd Child"
+        '
+        'lblDetails
+        '
+        Me.lblDetails.AutoSize = True
+        Me.lblDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetails.Location = New System.Drawing.Point(57, 139)
+        Me.lblDetails.Name = "lblDetails"
+        Me.lblDetails.Size = New System.Drawing.Size(41, 12)
+        Me.lblDetails.TabIndex = 29
+        Me.lblDetails.Text = "Details"
         '
         'btnReadFromFile
         '
@@ -218,6 +318,16 @@ Partial Class frmMain
         Me.btnReadFromFile.TabIndex = 25
         Me.btnReadFromFile.UseVisualStyleBackColor = True
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(5, 139)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(40, 12)
+        Me.Label10.TabIndex = 27
+        Me.Label10.Text = "ToCSV"
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -227,6 +337,16 @@ Partial Class frmMain
         Me.Label3.Size = New System.Drawing.Size(48, 12)
         Me.Label3.TabIndex = 24
         Me.Label3.Text = "Wr Child"
+        '
+        'btnToCSV
+        '
+        Me.btnToCSV.BackgroundImage = Global.Xplorer.My.Resources.Resources.writeCSV
+        Me.btnToCSV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnToCSV.Location = New System.Drawing.Point(5, 96)
+        Me.btnToCSV.Name = "btnToCSV"
+        Me.btnToCSV.Size = New System.Drawing.Size(40, 40)
+        Me.btnToCSV.TabIndex = 27
+        Me.btnToCSV.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -278,17 +398,6 @@ Partial Class frmMain
         Me.prgChildGeneration.Name = "prgChildGeneration"
         Me.prgChildGeneration.Size = New System.Drawing.Size(56, 10)
         Me.prgChildGeneration.TabIndex = 17
-        '
-        'lblOpenDocs
-        '
-        Me.lblOpenDocs.AutoSize = True
-        Me.lblOpenDocs.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpenDocs.Location = New System.Drawing.Point(101, 139)
-        Me.lblOpenDocs.Name = "lblOpenDocs"
-        Me.lblOpenDocs.Size = New System.Drawing.Size(57, 12)
-        Me.lblOpenDocs.TabIndex = 26
-        Me.lblOpenDocs.Text = "OpenDocs"
-        Me.lblOpenDocs.Visible = False
         '
         'lblFindACode
         '
@@ -607,28 +716,6 @@ Partial Class frmMain
         Me.HelpTip.ReshowDelay = 100
         Me.HelpTip.ToolTipTitle = "Help"
         '
-        'btnOpenFile
-        '
-        Me.btnOpenFile.BackgroundImage = CType(resources.GetObject("btnOpenFile.BackgroundImage"), System.Drawing.Image)
-        Me.btnOpenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenFile.Location = New System.Drawing.Point(109, 96)
-        Me.btnOpenFile.Name = "btnOpenFile"
-        Me.btnOpenFile.Size = New System.Drawing.Size(40, 40)
-        Me.btnOpenFile.TabIndex = 11
-        Me.HelpTip.SetToolTip(Me.btnOpenFile, "Apri file allegato")
-        Me.btnOpenFile.UseVisualStyleBackColor = True
-        '
-        'btnDetails
-        '
-        Me.btnDetails.BackgroundImage = CType(resources.GetObject("btnDetails.BackgroundImage"), System.Drawing.Image)
-        Me.btnDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnDetails.Location = New System.Drawing.Point(57, 96)
-        Me.btnDetails.Name = "btnDetails"
-        Me.btnDetails.Size = New System.Drawing.Size(40, 40)
-        Me.btnDetails.TabIndex = 28
-        Me.HelpTip.SetToolTip(Me.btnDetails, "Vedi dettagli")
-        Me.btnDetails.UseVisualStyleBackColor = True
-        '
         'pnlFutureUse
         '
         Me.pnlFutureUse.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -692,39 +779,358 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'lblDetails
-        '
-        Me.lblDetails.AutoSize = True
-        Me.lblDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDetails.Location = New System.Drawing.Point(57, 139)
-        Me.lblDetails.Name = "lblDetails"
-        Me.lblDetails.Size = New System.Drawing.Size(41, 12)
-        Me.lblDetails.TabIndex = 29
-        Me.lblDetails.Text = "Details"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(5, 139)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(40, 12)
-        Me.Label10.TabIndex = 27
-        Me.Label10.Text = "ToCSV"
-        '
-        'btnToCSV
-        '
-        Me.btnToCSV.BackgroundImage = Global.Xplorer.My.Resources.Resources.writeCSV
-        Me.btnToCSV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnToCSV.Location = New System.Drawing.Point(5, 96)
-        Me.btnToCSV.Name = "btnToCSV"
-        Me.btnToCSV.Size = New System.Drawing.Size(40, 40)
-        Me.btnToCSV.TabIndex = 27
-        Me.btnToCSV.UseVisualStyleBackColor = True
-        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'pnlArolCode
+        '
+        Me.pnlArolCode.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlArolCode.Controls.Add(Me.txtArolCode)
+        Me.pnlArolCode.Controls.Add(Me.lblArolCode)
+        Me.pnlArolCode.Location = New System.Drawing.Point(14, 6)
+        Me.pnlArolCode.Name = "pnlArolCode"
+        Me.pnlArolCode.Size = New System.Drawing.Size(119, 53)
+        Me.pnlArolCode.TabIndex = 3
+        '
+        'txtArolCode
+        '
+        Me.txtArolCode.Enabled = False
+        Me.txtArolCode.Location = New System.Drawing.Point(6, 22)
+        Me.txtArolCode.Name = "txtArolCode"
+        Me.txtArolCode.ReadOnly = True
+        Me.txtArolCode.Size = New System.Drawing.Size(100, 20)
+        Me.txtArolCode.TabIndex = 4
+        '
+        'lblArolCode
+        '
+        Me.lblArolCode.AutoSize = True
+        Me.lblArolCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblArolCode.Location = New System.Drawing.Point(3, 3)
+        Me.lblArolCode.Name = "lblArolCode"
+        Me.lblArolCode.Size = New System.Drawing.Size(89, 16)
+        Me.lblArolCode.TabIndex = 3
+        Me.lblArolCode.Text = "Codice Arol"
+        '
+        'Panel2
+        '
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel2.Controls.Add(Me.txtCodificaRichiestaDa)
+        Me.Panel2.Controls.Add(Me.txtInseritoDa)
+        Me.Panel2.Controls.Add(Me.lblInseritoDa)
+        Me.Panel2.Controls.Add(Me.lblCodificaRichiestaDa)
+        Me.Panel2.Controls.Add(Me.txtDataInserimento)
+        Me.Panel2.Controls.Add(Me.lblDataInserimento)
+        Me.Panel2.Location = New System.Drawing.Point(149, 6)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(292, 109)
+        Me.Panel2.TabIndex = 6
+        '
+        'txtCodificaRichiestaDa
+        '
+        Me.txtCodificaRichiestaDa.BackColor = System.Drawing.Color.LightGray
+        Me.txtCodificaRichiestaDa.Enabled = False
+        Me.txtCodificaRichiestaDa.Location = New System.Drawing.Point(133, 22)
+        Me.txtCodificaRichiestaDa.Name = "txtCodificaRichiestaDa"
+        Me.txtCodificaRichiestaDa.ReadOnly = True
+        Me.txtCodificaRichiestaDa.Size = New System.Drawing.Size(147, 20)
+        Me.txtCodificaRichiestaDa.TabIndex = 8
+        '
+        'txtInseritoDa
+        '
+        Me.txtInseritoDa.BackColor = System.Drawing.Color.LightGray
+        Me.txtInseritoDa.Enabled = False
+        Me.txtInseritoDa.Location = New System.Drawing.Point(6, 65)
+        Me.txtInseritoDa.Name = "txtInseritoDa"
+        Me.txtInseritoDa.ReadOnly = True
+        Me.txtInseritoDa.Size = New System.Drawing.Size(100, 20)
+        Me.txtInseritoDa.TabIndex = 6
+        '
+        'lblInseritoDa
+        '
+        Me.lblInseritoDa.AutoSize = True
+        Me.lblInseritoDa.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInseritoDa.Location = New System.Drawing.Point(3, 46)
+        Me.lblInseritoDa.Name = "lblInseritoDa"
+        Me.lblInseritoDa.Size = New System.Drawing.Size(81, 16)
+        Me.lblInseritoDa.TabIndex = 6
+        Me.lblInseritoDa.Text = "Inserito da"
+        '
+        'lblCodificaRichiestaDa
+        '
+        Me.lblCodificaRichiestaDa.AutoSize = True
+        Me.lblCodificaRichiestaDa.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCodificaRichiestaDa.Location = New System.Drawing.Point(130, 3)
+        Me.lblCodificaRichiestaDa.Name = "lblCodificaRichiestaDa"
+        Me.lblCodificaRichiestaDa.Size = New System.Drawing.Size(150, 16)
+        Me.lblCodificaRichiestaDa.TabIndex = 7
+        Me.lblCodificaRichiestaDa.Text = "Codifica richiesta da"
+        '
+        'txtDataInserimento
+        '
+        Me.txtDataInserimento.BackColor = System.Drawing.Color.LightGray
+        Me.txtDataInserimento.Enabled = False
+        Me.txtDataInserimento.Location = New System.Drawing.Point(6, 22)
+        Me.txtDataInserimento.Name = "txtDataInserimento"
+        Me.txtDataInserimento.ReadOnly = True
+        Me.txtDataInserimento.Size = New System.Drawing.Size(100, 20)
+        Me.txtDataInserimento.TabIndex = 4
+        '
+        'lblDataInserimento
+        '
+        Me.lblDataInserimento.AutoSize = True
+        Me.lblDataInserimento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDataInserimento.Location = New System.Drawing.Point(3, 3)
+        Me.lblDataInserimento.Name = "lblDataInserimento"
+        Me.lblDataInserimento.Size = New System.Drawing.Size(125, 16)
+        Me.lblDataInserimento.TabIndex = 3
+        Me.lblDataInserimento.Text = "Data inserimento"
+        '
+        'Panel3
+        '
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.cbxModificaStato)
+        Me.Panel3.Controls.Add(Me.lblModificaStato)
+        Me.Panel3.Controls.Add(Me.txtStatoAttuale)
+        Me.Panel3.Controls.Add(Me.lblStatoAttuale)
+        Me.Panel3.Location = New System.Drawing.Point(149, 121)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(292, 58)
+        Me.Panel3.TabIndex = 7
+        '
+        'txtStatoAttuale
+        '
+        Me.txtStatoAttuale.BackColor = System.Drawing.Color.LightGray
+        Me.txtStatoAttuale.Enabled = False
+        Me.txtStatoAttuale.Location = New System.Drawing.Point(6, 22)
+        Me.txtStatoAttuale.Name = "txtStatoAttuale"
+        Me.txtStatoAttuale.ReadOnly = True
+        Me.txtStatoAttuale.Size = New System.Drawing.Size(100, 20)
+        Me.txtStatoAttuale.TabIndex = 4
+        '
+        'lblStatoAttuale
+        '
+        Me.lblStatoAttuale.AutoSize = True
+        Me.lblStatoAttuale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatoAttuale.Location = New System.Drawing.Point(3, 3)
+        Me.lblStatoAttuale.Name = "lblStatoAttuale"
+        Me.lblStatoAttuale.Size = New System.Drawing.Size(95, 16)
+        Me.lblStatoAttuale.TabIndex = 3
+        Me.lblStatoAttuale.Text = "Stato attuale"
+        '
+        'cbxModificaStato
+        '
+        Me.cbxModificaStato.FormattingEnabled = True
+        Me.cbxModificaStato.Location = New System.Drawing.Point(133, 22)
+        Me.cbxModificaStato.Name = "cbxModificaStato"
+        Me.cbxModificaStato.Size = New System.Drawing.Size(115, 21)
+        Me.cbxModificaStato.TabIndex = 6
+        Me.cbxModificaStato.Text = "Seleziona stato..."
+        '
+        'lblModificaStato
+        '
+        Me.lblModificaStato.AutoSize = True
+        Me.lblModificaStato.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblModificaStato.Location = New System.Drawing.Point(130, 3)
+        Me.lblModificaStato.Name = "lblModificaStato"
+        Me.lblModificaStato.Size = New System.Drawing.Size(105, 16)
+        Me.lblModificaStato.TabIndex = 5
+        Me.lblModificaStato.Text = "Modifica stato"
+        '
+        'Panel5
+        '
+        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel5.Controls.Add(Me.txtCostoUltimo)
+        Me.Panel5.Controls.Add(Me.txtTipoParte)
+        Me.Panel5.Controls.Add(Me.lblCostoUltimo)
+        Me.Panel5.Controls.Add(Me.lblTipoParte)
+        Me.Panel5.Controls.Add(Me.txtScortaSicurezza)
+        Me.Panel5.Controls.Add(Me.lblScortaSicurezza)
+        Me.Panel5.Controls.Add(Me.txtRiordino)
+        Me.Panel5.Controls.Add(Me.lblRiordino)
+        Me.Panel5.Controls.Add(Me.txtLotto)
+        Me.Panel5.Controls.Add(Me.lblLotto)
+        Me.Panel5.Location = New System.Drawing.Point(149, 185)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(292, 168)
+        Me.Panel5.TabIndex = 18
+        '
+        'txtCostoUltimo
+        '
+        Me.txtCostoUltimo.BackColor = System.Drawing.Color.LightGray
+        Me.txtCostoUltimo.Enabled = False
+        Me.txtCostoUltimo.Location = New System.Drawing.Point(106, 115)
+        Me.txtCostoUltimo.Name = "txtCostoUltimo"
+        Me.txtCostoUltimo.ReadOnly = True
+        Me.txtCostoUltimo.Size = New System.Drawing.Size(70, 20)
+        Me.txtCostoUltimo.TabIndex = 10
+        '
+        'txtTipoParte
+        '
+        Me.txtTipoParte.BackColor = System.Drawing.Color.White
+        Me.txtTipoParte.Location = New System.Drawing.Point(106, 11)
+        Me.txtTipoParte.Name = "txtTipoParte"
+        Me.txtTipoParte.Size = New System.Drawing.Size(26, 20)
+        Me.txtTipoParte.TabIndex = 22
+        '
+        'lblCostoUltimo
+        '
+        Me.lblCostoUltimo.AutoSize = True
+        Me.lblCostoUltimo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCostoUltimo.Location = New System.Drawing.Point(3, 117)
+        Me.lblCostoUltimo.Name = "lblCostoUltimo"
+        Me.lblCostoUltimo.Size = New System.Drawing.Size(97, 16)
+        Me.lblCostoUltimo.TabIndex = 9
+        Me.lblCostoUltimo.Text = "Costo ultimo:"
+        '
+        'lblTipoParte
+        '
+        Me.lblTipoParte.AutoSize = True
+        Me.lblTipoParte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTipoParte.Location = New System.Drawing.Point(16, 13)
+        Me.lblTipoParte.Name = "lblTipoParte"
+        Me.lblTipoParte.Size = New System.Drawing.Size(84, 16)
+        Me.lblTipoParte.TabIndex = 21
+        Me.lblTipoParte.Text = "Tipo parte:"
+        Me.lblTipoParte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtScortaSicurezza
+        '
+        Me.txtScortaSicurezza.BackColor = System.Drawing.Color.White
+        Me.txtScortaSicurezza.Location = New System.Drawing.Point(106, 63)
+        Me.txtScortaSicurezza.Name = "txtScortaSicurezza"
+        Me.txtScortaSicurezza.Size = New System.Drawing.Size(70, 20)
+        Me.txtScortaSicurezza.TabIndex = 20
+        '
+        'lblScortaSicurezza
+        '
+        Me.lblScortaSicurezza.AutoSize = True
+        Me.lblScortaSicurezza.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblScortaSicurezza.Location = New System.Drawing.Point(43, 65)
+        Me.lblScortaSicurezza.Name = "lblScortaSicurezza"
+        Me.lblScortaSicurezza.Size = New System.Drawing.Size(57, 16)
+        Me.lblScortaSicurezza.TabIndex = 19
+        Me.lblScortaSicurezza.Text = "Scorta:"
+        Me.lblScortaSicurezza.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtRiordino
+        '
+        Me.txtRiordino.BackColor = System.Drawing.Color.White
+        Me.txtRiordino.Location = New System.Drawing.Point(106, 37)
+        Me.txtRiordino.Name = "txtRiordino"
+        Me.txtRiordino.Size = New System.Drawing.Size(70, 20)
+        Me.txtRiordino.TabIndex = 18
+        '
+        'lblRiordino
+        '
+        Me.lblRiordino.AutoSize = True
+        Me.lblRiordino.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRiordino.Location = New System.Drawing.Point(29, 39)
+        Me.lblRiordino.Name = "lblRiordino"
+        Me.lblRiordino.Size = New System.Drawing.Size(71, 16)
+        Me.lblRiordino.TabIndex = 17
+        Me.lblRiordino.Text = "Riordino:"
+        Me.lblRiordino.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtLotto
+        '
+        Me.txtLotto.BackColor = System.Drawing.Color.White
+        Me.txtLotto.Location = New System.Drawing.Point(106, 89)
+        Me.txtLotto.Name = "txtLotto"
+        Me.txtLotto.Size = New System.Drawing.Size(70, 20)
+        Me.txtLotto.TabIndex = 16
+        '
+        'lblLotto
+        '
+        Me.lblLotto.AutoSize = True
+        Me.lblLotto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLotto.Location = New System.Drawing.Point(54, 91)
+        Me.lblLotto.Name = "lblLotto"
+        Me.lblLotto.Size = New System.Drawing.Size(46, 16)
+        Me.lblLotto.TabIndex = 3
+        Me.lblLotto.Text = "Lotto:"
+        Me.lblLotto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'pnlNote
+        '
+        Me.pnlNote.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlNote.Controls.Add(Me.txtNote)
+        Me.pnlNote.Controls.Add(Me.lblNote)
+        Me.pnlNote.Location = New System.Drawing.Point(149, 359)
+        Me.pnlNote.Name = "pnlNote"
+        Me.pnlNote.Size = New System.Drawing.Size(292, 130)
+        Me.pnlNote.TabIndex = 19
+        '
+        'txtNote
+        '
+        Me.txtNote.BackColor = System.Drawing.Color.White
+        Me.txtNote.Location = New System.Drawing.Point(6, 22)
+        Me.txtNote.Multiline = True
+        Me.txtNote.Name = "txtNote"
+        Me.txtNote.Size = New System.Drawing.Size(274, 101)
+        Me.txtNote.TabIndex = 16
+        '
+        'lblNote
+        '
+        Me.lblNote.AutoSize = True
+        Me.lblNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNote.Location = New System.Drawing.Point(3, 3)
+        Me.lblNote.Name = "lblNote"
+        Me.lblNote.Size = New System.Drawing.Size(41, 16)
+        Me.lblNote.TabIndex = 3
+        Me.lblNote.Text = "Note"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(3, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(115, 16)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Ultima modifica"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(3, 43)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(102, 16)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Modificato da"
+        '
+        'txtModificatoDa
+        '
+        Me.txtModificatoDa.BackColor = System.Drawing.Color.LightGray
+        Me.txtModificatoDa.Enabled = False
+        Me.txtModificatoDa.Location = New System.Drawing.Point(6, 62)
+        Me.txtModificatoDa.Name = "txtModificatoDa"
+        Me.txtModificatoDa.ReadOnly = True
+        Me.txtModificatoDa.Size = New System.Drawing.Size(147, 20)
+        Me.txtModificatoDa.TabIndex = 6
+        '
+        'txtDataUltimaModifica
+        '
+        Me.txtDataUltimaModifica.BackColor = System.Drawing.Color.LightGray
+        Me.txtDataUltimaModifica.Enabled = False
+        Me.txtDataUltimaModifica.Location = New System.Drawing.Point(6, 19)
+        Me.txtDataUltimaModifica.Name = "txtDataUltimaModifica"
+        Me.txtDataUltimaModifica.ReadOnly = True
+        Me.txtDataUltimaModifica.Size = New System.Drawing.Size(147, 20)
+        Me.txtDataUltimaModifica.TabIndex = 8
+        '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.txtDataUltimaModifica)
+        Me.Panel1.Controls.Add(Me.txtModificatoDa)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label8)
+        Me.Panel1.Location = New System.Drawing.Point(149, 495)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(292, 95)
+        Me.Panel1.TabIndex = 20
         '
         'frmMain
         '
@@ -732,6 +1138,7 @@ Partial Class frmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1580, 903)
+        Me.Controls.Add(Me.pnlExtendedData)
         Me.Controls.Add(Me.pnlFutureUse)
         Me.Controls.Add(Me.pnlLogin)
         Me.Controls.Add(Me.pnlSearch)
@@ -749,6 +1156,7 @@ Partial Class frmMain
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CompEleControl.ResumeLayout(False)
         Me.CompElePage.ResumeLayout(False)
+        Me.pnlExtendedData.ResumeLayout(False)
         Me.ConsElePage.ResumeLayout(False)
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlInstruments.ResumeLayout(False)
@@ -765,6 +1173,18 @@ Partial Class frmMain
         Me.pnlLogin.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.pnlArolCode.ResumeLayout(False)
+        Me.pnlArolCode.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
+        Me.pnlNote.ResumeLayout(False)
+        Me.pnlNote.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -833,4 +1253,39 @@ Partial Class frmMain
     Friend WithEvents csvFileExportBrwDial As FolderBrowserDialog
     Friend WithEvents btnDetails As Button
     Friend WithEvents lblDetails As Label
+    Friend WithEvents pnlExtendedData As Panel
+    Friend WithEvents pnlArolCode As Panel
+    Friend WithEvents txtArolCode As TextBox
+    Friend WithEvents lblArolCode As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents txtCodificaRichiestaDa As TextBox
+    Friend WithEvents txtInseritoDa As TextBox
+    Friend WithEvents lblInseritoDa As Label
+    Friend WithEvents lblCodificaRichiestaDa As Label
+    Friend WithEvents txtDataInserimento As TextBox
+    Friend WithEvents lblDataInserimento As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents txtStatoAttuale As TextBox
+    Friend WithEvents lblStatoAttuale As Label
+    Friend WithEvents cbxModificaStato As ComboBox
+    Friend WithEvents lblModificaStato As Label
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents txtCostoUltimo As TextBox
+    Friend WithEvents txtTipoParte As TextBox
+    Friend WithEvents lblCostoUltimo As Label
+    Friend WithEvents lblTipoParte As Label
+    Friend WithEvents txtScortaSicurezza As TextBox
+    Friend WithEvents lblScortaSicurezza As Label
+    Friend WithEvents txtRiordino As TextBox
+    Friend WithEvents lblRiordino As Label
+    Friend WithEvents txtLotto As TextBox
+    Friend WithEvents lblLotto As Label
+    Friend WithEvents pnlNote As Panel
+    Friend WithEvents txtNote As TextBox
+    Friend WithEvents lblNote As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents txtDataUltimaModifica As TextBox
+    Friend WithEvents txtModificatoDa As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label8 As Label
 End Class

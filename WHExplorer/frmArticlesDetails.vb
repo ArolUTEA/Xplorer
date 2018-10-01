@@ -52,4 +52,14 @@
                 Exit Sub
         End Select
     End Sub
+
+    Private Sub txtLotto_TextChanged(sender As Object, e As EventArgs) Handles txtLotto.TextChanged
+        btnSave.Enabled = True
+        btnUndo.Enabled = True
+    End Sub
+
+    Private Sub txtRiordino_TextChanged(sender As Object, e As EventArgs) Handles txtRiordino.TextChanged
+        btnSave.Enabled = True
+        btnUndo.Enabled = True
+    End Sub
 End Class

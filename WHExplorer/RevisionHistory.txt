@@ -21,12 +21,12 @@ Modifiche effettuate:
 8) Nel file EditExistsFunctions, aggiunta la funzione fPopulateArticlesDetails
 9) Sul frmMain, aggiunto il pulsante btnDetails
 10) Modificato il file UserManagerFunctions, funzioni di applicazione dei permessi
-11) Modificato il database MagazzinoEle.db, aggiunta la tabella "datiEstesi"
+11) Modificato il database MagazzinoEle.db, aggiunte la tabelle "datiEstesiCodificati" e "datiEstesiConsumabili"
 12) Nel file EditExistsFunctions, aggiunta la funzione fEditExistingCode
 13) Nel file EditExistsFunctions, aggiunta la funzione fUpdateExtendedData
 14) Nel file EditExistsFunctions, aggiunta la funzione fUndoModification
 15) Nel file EditExistsFunctions, aggiunta la funzione fDeleteExisting
-
+16) Modificata la fPopulateAndResizeDGV per aggiungere la funzione di colorazione delle righe in funzione dello stato
 #######################################
 Elementi modificati:
 M) frmInsertNew.vb

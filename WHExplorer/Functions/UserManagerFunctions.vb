@@ -176,6 +176,12 @@ Module UserManagerFunctions
         frmArticlesDetails.txtSuppDescription.ReadOnly = True
         frmArticlesDetails.txtNote.ReadOnly = True
         frmArticlesDetails.cbxModificaStato.Enabled = False
+        frmArticlesDetails.btnDeleteExisting.Enabled = False
+        frmArticlesDetails.txtLotto.ReadOnly = True
+        frmArticlesDetails.txtRiordino.ReadOnly = True
+        frmArticlesDetails.txtTipoParte.ReadOnly = True
+        frmArticlesDetails.txtScortaSicurezza.ReadOnly = True
+        frmArticlesDetails.txtCostoUltimo.ReadOnly = True
         Return True
     End Function
     Public Function fApplyWritePermission() As Boolean
@@ -191,6 +197,12 @@ Module UserManagerFunctions
         frmArticlesDetails.txtSuppDescription.ReadOnly = False
         frmArticlesDetails.txtNote.ReadOnly = False
         frmArticlesDetails.cbxModificaStato.Enabled = True
+        frmArticlesDetails.btnDeleteExisting.Enabled = True
+        frmArticlesDetails.txtLotto.ReadOnly = False
+        frmArticlesDetails.txtRiordino.ReadOnly = False
+        frmArticlesDetails.txtTipoParte.ReadOnly = False
+        frmArticlesDetails.txtScortaSicurezza.ReadOnly = False
+        frmArticlesDetails.txtCostoUltimo.ReadOnly = False
         Return True
     End Function
     Public Function fApplyAdvancedPermission() As Boolean
@@ -206,6 +218,12 @@ Module UserManagerFunctions
         frmArticlesDetails.txtSuppDescription.ReadOnly = False
         frmArticlesDetails.txtNote.ReadOnly = False
         frmArticlesDetails.cbxModificaStato.Enabled = True
+        frmArticlesDetails.btnDeleteExisting.Enabled = True
+        frmArticlesDetails.txtLotto.ReadOnly = False
+        frmArticlesDetails.txtRiordino.ReadOnly = False
+        frmArticlesDetails.txtTipoParte.ReadOnly = False
+        frmArticlesDetails.txtScortaSicurezza.ReadOnly = False
+        frmArticlesDetails.txtCostoUltimo.ReadOnly = False
         Return True
     End Function
 End Module

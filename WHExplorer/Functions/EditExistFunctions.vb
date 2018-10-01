@@ -139,31 +139,39 @@ Module EditExistFunctions
     End Function
     Public Function fPopulateArticlesDetails(tempBasicData As DataTable, tempExtendedData As DataTable) As Boolean
         Try
-            frmArticlesDetails.txtArolCode.Text = tempBasicData.Rows(0)("ArolCode")
-            frmArticlesDetails.txtCommercialCode.Text = tempBasicData.Rows(0)("CommercialCode")
-            frmArticlesDetails.txtDescription.Text = tempBasicData.Rows(0)("Description")
-            frmArticlesDetails.txtConstructor.Text = tempBasicData.Rows(0)("Manufacturer")
-            frmArticlesDetails.txtSuppDescription.Text = tempBasicData.Rows(0)("SupplementaryDescription")
+            frmMain.txtArolCode.Text = tempBasicData.Rows(0)("ArolCode").ToString
             If tempExtendedData IsNot Nothing Then
-                frmArticlesDetails.txtDataInserimento.Text = tempExtendedData.Rows(0)("DataInserimento")
-                frmArticlesDetails.txtCodificaRichiestaDa.Text = tempExtendedData.Rows(0)("RichiestoDa")
-                frmArticlesDetails.txtDataUltimaModifica.Text = tempExtendedData.Rows(0)("DataModifica")
-                frmArticlesDetails.txtInseritoDa.Text = tempExtendedData.Rows(0)("InseritoDa")
-                frmArticlesDetails.txtModificatoDa.Text = tempExtendedData.Rows(0)("ModificatoDa")
+                frmMain.txtDataInserimento.Text = tempExtendedData.Rows(0)("DataInserimento").ToString
+                frmMain.txtCodificaRichiestaDa.Text = tempExtendedData.Rows(0)("RichiestoDa").ToString
+                If Not IsDBNull(tempExtendedData.Rows(0)("DataModifica")) Then
+                    frmMain.txtDataUltimaModifica.Text = tempExtendedData.Rows(0)("DataModifica").ToString
+                End If
+                frmMain.txtInseritoDa.Text = tempExtendedData.Rows(0)("InseritoDa").ToString
+                If Not IsDBNull(tempExtendedData.Rows(0)("ModificatoDa")) Then
+                    frmMain.txtModificatoDa.Text = tempExtendedData.Rows(0)("ModificatoDa").ToString
+                End If
                 Select Case tempExtendedData.Rows(0)("Stato")
                     Case 0
-                        frmArticlesDetails.txtStatoAttuale.Text = "Codice attivo"
+                        frmMain.txtStatoAttuale.Text = "Codice attivo"
                     Case 1
-                        frmArticlesDetails.txtStatoAttuale.Text = "Solo per ricambio"
+                        frmMain.txtStatoAttuale.Text = "Solo per ricambio"
                     Case 2
-                        frmArticlesDetails.txtStatoAttuale.Text = "In obsolescenza"
+                        frmMain.txtStatoAttuale.Text = "In obsolescenza"
                     Case 3
-                        frmArticlesDetails.txtStatoAttuale.Text = "Annullato"
+                        frmMain.txtStatoAttuale.Text = "Annullato"
                     Case Else
                         Return False
                         Exit Function
                 End Select
-                frmArticlesDetails.txtNote.Text = tempExtendedData.Rows(0)("Note")
+                If Not IsDBNull(tempExtendedData.Rows(0)("Note")) Then
+                    frmMain.txtNote.Text = tempExtendedData.Rows(0)("Note").ToString
+                End If
+                frmMain.txtLotto.Text = tempExtendedData.Rows(0)("PuntoLotto").ToString
+                frmMain.txtRiordino.Text = tempExtendedData.Rows(0)("PuntoRiordino").ToString
+                frmMain.txtTipoParte.Text = tempExtendedData.Rows(0)("TipoParte")
+                frmMain.txtScortaSicurezza.Text = tempExtendedData.Rows(0)("ScortaSicurezza").ToString
+                Dim strTemp As Array = Split(tempExtendedData.Rows(0)("CostoUltimo").ToString, ",")
+                frmMain.txtCostoUltimo.Text = strTemp(0) & "," & Left(strTemp(1), 2) & " €"
             End If
             Return True
         Catch ex As Exception
@@ -176,11 +184,14 @@ Module EditExistFunctions
         Try
             'Recupero l'informazione di componente codificato o componente consumabile
             Dim tableName As String
+            Dim tableNameEsteso As String
             Select Case frmMain.CompEleControl.SelectedIndex
                 Case 0
                     tableName = "codificati"
+                    tableNameEsteso = "datiEstesiCodificati"
                 Case 1
                     tableName = "consumabili"
+                    tableNameEsteso = "datiEstesiConsumabili"
                 Case Else
                     Return False
                     Exit Function
@@ -188,7 +199,7 @@ Module EditExistFunctions
             'Recupero il ID della tabella relativa
             Dim tempData, tempDataEsteso As DataTable
             tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
-            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableNameEsteso, frmMain.dbWarehouse.SQLConn)
             If tempData.Rows.Count > 0 Then
                 If tableName = "codificati" Then
                     fUpdateCodificatiElement(tempData.Rows(0)("ID"), tempData.Rows(0)("ArolCode"), frmArticlesDetails.txtCommercialCode.Text, frmArticlesDetails.txtDescription.Text, frmArticlesDetails.txtConstructor.Text, frmArticlesDetails.txtSuppDescription.Text)
@@ -198,11 +209,27 @@ Module EditExistFunctions
                 'Aggiornare i dati estesi
                 If tempDataEsteso.Rows.Count > 0 Then
                     Dim strTempToday As String = Date.Now.Day & "/" & Date.Now.Month & "/" & Date.Now.Year
-                    fUpdateExtendedData(tempDataEsteso.Rows(0)("ID"), frmArticlesDetails.cbxModificaStato.SelectedIndex, frmMain.strUsername, strTempToday, frmArticlesDetails.txtNote.Text)
+                    Dim iStatoComponente As Integer
+                    Dim test As Integer = frmArticlesDetails.cbxModificaStato.SelectedIndex
+                    If frmArticlesDetails.cbxModificaStato.SelectedIndex >= 0 Then
+                        iStatoComponente = frmArticlesDetails.cbxModificaStato.SelectedIndex
+                    Else
+                        Select Case frmArticlesDetails.txtStatoAttuale.Text
+                            Case "Codice attivo"
+                                iStatoComponente = 0
+                            Case "Solo per ricambio"
+                                iStatoComponente = 1
+                            Case "In obsolescenza"
+                                iStatoComponente = 2
+                            Case "Annullato"
+                                iStatoComponente = 3
+                        End Select
+                    End If
+                    fUpdateExtendedData(tempDataEsteso.Rows(0)("ID"), iStatoComponente, frmMain.strUsername, strTempToday, frmArticlesDetails.txtNote.Text, tableNameEsteso, frmArticlesDetails.txtLotto.Text, frmArticlesDetails.txtRiordino.Text, frmArticlesDetails.txtScortaSicurezza.Text, Convert.ToInt16(frmArticlesDetails.txtTipoParte.Text))
                 End If
                 'Rileggo i dati
                 tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
-                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableNameEsteso, frmMain.dbWarehouse.SQLConn)
                 fPopulateArticlesDetails(tempData, tempDataEsteso)
             Else
                 MsgBox("ELEMENTO NON TROVATO", MsgBoxStyle.Critical)
@@ -218,14 +245,18 @@ Module EditExistFunctions
             Return False
         End Try
     End Function
-    Public Function fUpdateExtendedData(selectedID As Integer, stato As Integer, modificatoDa As String, dataModifica As String, note As String) As Boolean
+    Public Function fUpdateExtendedData(selectedID As Integer, stato As Integer, modificatoDa As String, dataModifica As String, note As String, strTableName As String, strPuntoLotto As String, strPuntoRiordino As String, strScorta As String, iTipoParte As Integer) As Boolean
         Try
-            Dim strTempQuery As String = "UPDATE datiEstesi SET Stato=@stato, ModificatoDa=@modificatoDa, DataModifica=@dataModifica, Note=@note WHERE ID = '" & selectedID & "'"
+            Dim strTempQuery As String = "UPDATE " & strTableName & " SET Stato=@stato, ModificatoDa=@modificatoDa, DataModifica=@dataModifica, Note=@note, PuntoLotto=@PuntoLotto, PuntoRiordino=@PuntoRiordino, ScortaSicurezza=@Scorta, TipoParte=@TipoParte  WHERE ID = '" & selectedID & "'"
             Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbWarehouse.SQLConn)
             sqlCmd.Parameters.AddWithValue("@stato", stato)
             sqlCmd.Parameters.AddWithValue("@modificatoDa", modificatoDa)
             sqlCmd.Parameters.AddWithValue("@dataModifica", dataModifica)
             sqlCmd.Parameters.AddWithValue("@note", note)
+            sqlCmd.Parameters.AddWithValue("@PuntoLotto", strPuntoLotto)
+            sqlCmd.Parameters.AddWithValue("@PuntoRiordino", strPuntoRiordino)
+            sqlCmd.Parameters.AddWithValue("@Scorta", strScorta)
+            sqlCmd.Parameters.AddWithValue("@TipoParte", iTipoParte)
             sqlCmd.ExecuteNonQuery()
             sqlCmd.Dispose()
             Return True
@@ -239,11 +270,14 @@ Module EditExistFunctions
         Try
             'Recupero l'informazione di componente codificato o consumabile
             Dim tableName As String
+            Dim tableNameEsteso As String
             Select Case frmMain.CompEleControl.SelectedIndex
                 Case 0
                     tableName = "codificati"
+                    tableNameEsteso = "datiEstesiCodificati"
                 Case 1
                     tableName = "consumabili"
+                    tableNameEsteso = "datiEstesiConsumabili"
                 Case Else
                     Return False
                     Exit Function
@@ -251,10 +285,10 @@ Module EditExistFunctions
             'Recupero il ID della tabella relativa
             Dim tempData, tempDataEsteso As DataTable
             tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
-            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableNameEsteso, frmMain.dbWarehouse.SQLConn)
             'Rileggo i dati
             tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
-            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+            tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableNameEsteso, frmMain.dbWarehouse.SQLConn)
             fPopulateArticlesDetails(tempData, tempDataEsteso)
             Return True
         Catch ex As Exception
@@ -268,11 +302,14 @@ Module EditExistFunctions
             If MsgBox("SEI SICURO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 'Recupero l'informazione di componente codificato o consumabile
                 Dim tableName As String
+                Dim tableNameEstesi As String
                 Select Case frmMain.CompEleControl.SelectedIndex
                     Case 0
                         tableName = "codificati"
+                        tableNameEstesi = "datiEstesiCodificati"
                     Case 1
                         tableName = "consumabili"
+                        tableNameEstesi = "datiEstesiConsumabili"
                     Case Else
                         Return False
                         Exit Function
@@ -280,9 +317,9 @@ Module EditExistFunctions
                 'Recupero il ID della tabella relativa
                 Dim tempData, tempDataEsteso As DataTable
                 tempData = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableName, frmMain.dbWarehouse.SQLConn)
-                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", "datiEstesi", frmMain.dbWarehouse.SQLConn)
+                tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesDetails.txtArolCode.Text, "ArolCode", tableNameEstesi, frmMain.dbWarehouse.SQLConn)
                 fDeleteElement(tempData.Rows(0)("ID"), tableName)
-                fDeleteElement(tempDataEsteso.Rows(0)("ID"), "datiEstesi")
+                fDeleteElement(tempDataEsteso.Rows(0)("ID"), tableNameEstesi)
                 Return True
             Else
                 Return False

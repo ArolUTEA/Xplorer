@@ -27,16 +27,19 @@ Modifiche effettuate:
 14) Nel file EditExistsFunctions, aggiunta la funzione fUndoModification
 15) Nel file EditExistsFunctions, aggiunta la funzione fDeleteExisting
 16) Modificata la fPopulateAndResizeDGV per aggiungere la funzione di colorazione delle righe in funzione dello stato
+17) Aggiunta la funzione fRetrieveSelectedDgvID() che restituisce l'indice dell'elemento datagridview selezionato
+18) Modificata la Sub btnInsertNew_Click nel frmInsertNew.vb
+19) Aggiunta la funzione fClearDetailsPanel()
 #######################################
 Elementi modificati:
 M) frmInsertNew.vb
 +) DataGridViewFunctions.vb
-+) frmArticlesDetails.vb
++) frmArticlesModification.vb
 M) MagazzinoEle.db
 M) EditExistsFunzionts.vb
 M) frmMain.vb
 M) UserManagerFunctions.vb
-
+M) GeneralAuxFunctions.vb
 
 #######################################
 Xplorer 1.0.5.6

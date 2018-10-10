@@ -17,6 +17,10 @@ Public Class frmMain
     Public strTableName As String
     Public bFormLoad As Boolean = False
     Public bGuidedSearchAnd As Boolean = False
+    Public aiCodiModRow(99) As Integer
+    Public iCodiModRowIndex As Integer
+    Public aiConsModRow(99) As Integer
+    Public iConsModRowIndex As Integer
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Check if log file already exist
         fCheckIfLogFileExist(strLogFilePath)
@@ -86,7 +90,11 @@ Public Class frmMain
         'Enable Simple Search
         rbSimpleSearch.Checked = True
         'Extended data panel invisible
-        pnlExtendedData.Visible = False
+        pnlExtendedData.Visible = True
+        fEnableDisableDetails()
+        dgvCEDBViewer.ReadOnly = True
+        dgvCSDBViewer.ReadOnly = True
+        btnEditSelected.Enabled = False
         bFormLoad = True
     End Sub
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -601,16 +609,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnDetails_Click(sender As Object, e As EventArgs) Handles btnDetails.Click
-        If pnlExtendedData.Visible Then
-            pnlExtendedData.Visible = False
-            CompEleControl.Width = 1565
-        Else
-            pnlExtendedData.Visible = True
-            CompEleControl.Width = 1565 - pnlExtendedData.Width - 10
-        End If
-        dgvCEDBViewer.Width = CompEleControl.Width - 15
-        dgvCSDBViewer.Width = CompEleControl.Width - 15
-
+        fEnableDisableDetails()
         Try
             Select Case CompEleControl.SelectedIndex
                 Case 0
@@ -630,19 +629,6 @@ Public Class frmMain
             End Select
 
             'Recupero i dati dal database
-            'Dim tempBasicData, tempExtendedData As DataTable
-            'tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
-            'If CompEleControl.SelectedIndex = 0 Then
-            '    tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesiCodificati", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
-            'ElseIf CompEleControl.SelectedIndex = 1 Then
-            '    tempExtendedData = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "datiEstesiConsumabili", "ArolCode", "ArolCode", tempBasicData.Rows(0)("ArolCode"))
-            'Else
-            '    tempExtendedData = Nothing
-            'End If
-            'If tempExtendedData.Rows.Count = 0 Then
-            '    tempExtendedData = Nothing
-            'End If
-
             Dim tempBasicData, tempExtendedData As DataTable
             tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
             tempExtendedData = fRetrieveExtendedData(iModifiedID, strTableName)
@@ -652,10 +638,61 @@ Public Class frmMain
                 MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
                 Exit Sub
             End If
-            'frmArticlesDetails.Show()
         Catch ex As Exception
             MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs)
+        fEditExistingCode()
+    End Sub
+
+    Private Sub btnUndo_Click(sender As Object, e As EventArgs)
+        fUndoModification()
+    End Sub
+
+    Private Sub btnDeleteExisting_Click(sender As Object, e As EventArgs)
+        fDeleteExisting()
+        Select Case CompEleControl.SelectedIndex
+            Case 0
+                fSelectAllAndOrder(dgvCEDBViewer, "codificati")
+            Case 1
+                fSelectAllAndOrder(dgvCSDBViewer, "consumabili")
+            Case Else
+                Exit Sub
+        End Select
+    End Sub
+
+    Private Sub dgvCEDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCEDBViewer.CellValueChanged
+        Dim rowIndex As Integer
+        rowIndex = dgvCEDBViewer.CurrentCell.RowIndex
+        aiCodiModRow(iCodiModRowIndex) = dgvCEDBViewer.Rows(rowIndex).Cells(0).Value
+        iCodiModRowIndex = iCodiModRowIndex + 1
+    End Sub
+
+    Private Sub dgvCSDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellValueChanged
+        Dim rowIndex As Integer
+        rowIndex = dgvCSDBViewer.CurrentCell.RowIndex
+        aiConsModRow(iConsModRowIndex) = dgvCSDBViewer.Rows(rowIndex).Cells(0).Value
+        iConsModRowIndex = iConsModRowIndex + 1
+    End Sub
+
+    Private Sub btnEditSelected_Click(sender As Object, e As EventArgs) Handles btnEditSelected.Click
+        Dim iDgvSelectedIndex As Integer = fRetrieveSelectedDgvID()
+        Dim strItemToFind, strTableName As String
+        Select Case CompEleControl.SelectedIndex
+            Case 0
+                strItemToFind = dgvCEDBViewer.Rows(iDgvSelectedIndex).Cells(1).Value.ToString
+                strTableName = "codificati"
+            Case 1
+                strItemToFind = dgvCSDBViewer.Rows(iDgvSelectedIndex).Cells(1).Value.ToString
+                strTableName = "consumabili"
+            Case Else
+                Exit Sub
+        End Select
+        Dim tempData As DataTable = dbWarehouse.fFindInColumn(strItemToFind, "ArolCode", strTableName, dbWarehouse.SQLConn)
+        fPopulateArticlesModification(tempData)
+        frmArticlesModification.Show()
     End Sub
 End Class

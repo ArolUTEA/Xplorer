@@ -33,7 +33,7 @@ Module GeneralAuxFunctions
             dgvSelected.AutoResizeColumns()
             dgvSelected.AutoResizeRows()
             'Make datagrid viewer readonly
-            dgvSelected.ReadOnly = True
+            'dgvSelected.ReadOnly = True
             'All datagrid viewer rows in green
             dgvSelected.RowsDefaultCellStyle.BackColor = Color.FromArgb(204, 255, 204)
             'Leggo la tabella dei codici estesi
@@ -118,6 +118,7 @@ Module GeneralAuxFunctions
                             iModifiedID = frmMain.dgvCSDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
                             strTableName = "consumabili"
                         Case Else
+                            Return False
                             Exit Function
                     End Select
 
@@ -129,6 +130,7 @@ Module GeneralAuxFunctions
                         fPopulateArticlesDetails(tempBasicData, tempExtendedData)
                     Else
                         MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
+                        Return False
                         Exit Function
                     End If
                     'frmArticlesDetails.Show()
@@ -137,6 +139,7 @@ Module GeneralAuxFunctions
                     fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
                 End Try
             End If
+            Return True
         End If
         Return True
     End Function
@@ -155,5 +158,33 @@ Module GeneralAuxFunctions
         If fRetrieveExtendedData.Rows.Count = 0 Then
             fRetrieveExtendedData = Nothing
         End If
+    End Function
+    Public Function fEnableDisableDetails() As Boolean
+        If frmMain.pnlExtendedData.Visible Then
+            frmMain.pnlExtendedData.Visible = False
+            frmMain.CompEleControl.Width = 1565
+        Else
+            frmMain.pnlExtendedData.Visible = True
+            frmMain.CompEleControl.Width = 1565 - frmMain.pnlExtendedData.Width - 10
+        End If
+        frmMain.dgvCEDBViewer.Width = frmMain.CompEleControl.Width - 15
+        frmMain.dgvCSDBViewer.Width = frmMain.CompEleControl.Width - 15
+        Return True
+    End Function
+    Public Function fClearDetailsPanel() As Boolean
+        frmMain.txtArolCode.Clear()
+        frmMain.txtCodificaRichiestaDa.Clear()
+        frmMain.txtDataInserimento.Clear()
+        frmMain.txtInseritoDa.Clear()
+        frmMain.txtStatoAttuale.Clear()
+        frmMain.txtTipoParte.Clear()
+        frmMain.txtRiordino.Clear()
+        frmMain.txtScortaSicurezza.Clear()
+        frmMain.txtLotto.Clear()
+        frmMain.txtCostoUltimo.Clear()
+        frmMain.txtNote.Clear()
+        frmMain.txtDataUltimaModifica.Clear()
+        frmMain.txtModificatoDa.Clear()
+        Return True
     End Function
 End Module

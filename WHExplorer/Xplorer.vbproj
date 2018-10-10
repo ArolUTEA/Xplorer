@@ -136,10 +136,10 @@
     <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmArticlesDetails.Designer.vb">
-      <DependentUpon>frmArticlesDetails.vb</DependentUpon>
+    <Compile Include="frmArticlesModification.Designer.vb">
+      <DependentUpon>frmArticlesModification.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmArticlesDetails.vb">
+    <Compile Include="frmArticlesModification.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmChangePassword.Designer.vb">
@@ -201,8 +201,8 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmArticlesDetails.resx">
-      <DependentUpon>frmArticlesDetails.vb</DependentUpon>
+    <EmbeddedResource Include="frmArticlesModification.resx">
+      <DependentUpon>frmArticlesModification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangePassword.resx">
       <DependentUpon>frmChangePassword.vb</DependentUpon>

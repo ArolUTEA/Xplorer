@@ -430,6 +430,25 @@ Public Class frmInsertNew
             End If
             btnInsertNew.Enabled = False
             btnCreaFileTxt.Enabled = True
+            Dim strRichiestoDa, strNote, strTipoParte, strPuntoLotto, strPuntoRiordino, strScortaSicurezza, strStato, strTableNameExtended As String
+            txtDataInserimento.Text = Date.Now.Day & "/" & Date.Now.Month & "/" & Date.Now.Year
+            txtInseritoDa.Text = frmMain.strUsername
+            strRichiestoDa = txtRichiestoDa.Text
+            strNote = txtNote.Text
+            strTipoParte = txtTipoParte.Text
+            strPuntoLotto = txtPuntoLotto.Text
+            strPuntoRiordino = txtPuntoRiordino.Text
+            strScortaSicurezza = txtScortaSicurezza.Text
+            strStato = "0"
+            Select Case strTableName
+                Case "codificati"
+                    strTableNameExtended = "datiEstesiCodificati"
+                Case "consumabili"
+                    strTableNameExtended = "datiEstesiConsumabili"
+                Case Else
+                    Exit Sub
+            End Select
+            frmMain.dbWarehouse.fInsertNewExtendedData(frmMain.dbWarehouse.SQLConn, strTableNameExtended, strArolCode, strStato, txtDataInserimento.Text, txtInseritoDa.Text, strRichiestoDa, strNote, strTipoParte, strPuntoLotto, strPuntoRiordino, strScortaSicurezza)
         Catch ex As Exception
             MsgBox("ERRORE NELL'INSERIMENTO DI UN NUOVO ELEMENTO", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)

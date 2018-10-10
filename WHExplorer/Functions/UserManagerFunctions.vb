@@ -170,18 +170,20 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = False
         frmMain.btnReadFromFile.Enabled = False
-        frmArticlesDetails.txtCommercialCode.ReadOnly = True
-        frmArticlesDetails.txtDescription.ReadOnly = True
-        frmArticlesDetails.txtConstructor.ReadOnly = True
-        frmArticlesDetails.txtSuppDescription.ReadOnly = True
-        frmArticlesDetails.txtNote.ReadOnly = True
-        frmArticlesDetails.cbxModificaStato.Enabled = False
-        frmArticlesDetails.btnDeleteExisting.Enabled = False
-        frmArticlesDetails.txtLotto.ReadOnly = True
-        frmArticlesDetails.txtRiordino.ReadOnly = True
-        frmArticlesDetails.txtTipoParte.ReadOnly = True
-        frmArticlesDetails.txtScortaSicurezza.ReadOnly = True
-        frmArticlesDetails.txtCostoUltimo.ReadOnly = True
+        frmMain.dgvCEDBViewer.ReadOnly = True
+        frmMain.dgvCSDBViewer.ReadOnly = True
+        frmMain.btnEditSelected.Enabled = False
+        'frmMain.btnDeleteExisting.Enabled = False
+        'frmMain.btnSave.Enabled = False
+        'frmMain.btnUndo.Enabled = False
+        frmMain.txtNote.ReadOnly = True
+        'frmMain.cbxModificaStato.Enabled = False
+        frmMain.txtLotto.ReadOnly = True
+        frmMain.txtRiordino.ReadOnly = True
+        frmMain.txtTipoParte.ReadOnly = True
+        frmMain.txtScortaSicurezza.ReadOnly = True
+        frmMain.txtCostoUltimo.ReadOnly = True
+        frmArticlesModification.btnDeleteExisting.Enabled = False
         Return True
     End Function
     Public Function fApplyWritePermission() As Boolean
@@ -191,18 +193,20 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = False
-        frmArticlesDetails.txtCommercialCode.ReadOnly = False
-        frmArticlesDetails.txtDescription.ReadOnly = False
-        frmArticlesDetails.txtConstructor.ReadOnly = False
-        frmArticlesDetails.txtSuppDescription.ReadOnly = False
-        frmArticlesDetails.txtNote.ReadOnly = False
-        frmArticlesDetails.cbxModificaStato.Enabled = True
-        frmArticlesDetails.btnDeleteExisting.Enabled = True
-        frmArticlesDetails.txtLotto.ReadOnly = False
-        frmArticlesDetails.txtRiordino.ReadOnly = False
-        frmArticlesDetails.txtTipoParte.ReadOnly = False
-        frmArticlesDetails.txtScortaSicurezza.ReadOnly = False
-        frmArticlesDetails.txtCostoUltimo.ReadOnly = False
+        frmMain.btnEditSelected.Enabled = True
+        'frmMain.dgvCEDBViewer.ReadOnly = False
+        'frmMain.dgvCSDBViewer.ReadOnly = False
+        'frmMain.btnDeleteExisting.Enabled = True
+        'frmMain.btnSave.Enabled = True
+        'frmMain.btnUndo.Enabled = True
+        frmMain.txtNote.ReadOnly = False
+        'frmMain.cbxModificaStato.Enabled = True
+        frmMain.txtLotto.ReadOnly = False
+        frmMain.txtRiordino.ReadOnly = False
+        frmMain.txtTipoParte.ReadOnly = False
+        frmMain.txtScortaSicurezza.ReadOnly = False
+        frmMain.txtCostoUltimo.ReadOnly = False
+        frmArticlesModification.btnDeleteExisting.Enabled = True
         Return True
     End Function
     Public Function fApplyAdvancedPermission() As Boolean
@@ -212,18 +216,20 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = True
-        frmArticlesDetails.txtCommercialCode.ReadOnly = False
-        frmArticlesDetails.txtDescription.ReadOnly = False
-        frmArticlesDetails.txtConstructor.ReadOnly = False
-        frmArticlesDetails.txtSuppDescription.ReadOnly = False
-        frmArticlesDetails.txtNote.ReadOnly = False
-        frmArticlesDetails.cbxModificaStato.Enabled = True
-        frmArticlesDetails.btnDeleteExisting.Enabled = True
-        frmArticlesDetails.txtLotto.ReadOnly = False
-        frmArticlesDetails.txtRiordino.ReadOnly = False
-        frmArticlesDetails.txtTipoParte.ReadOnly = False
-        frmArticlesDetails.txtScortaSicurezza.ReadOnly = False
-        frmArticlesDetails.txtCostoUltimo.ReadOnly = False
+        frmMain.btnEditSelected.Enabled = True
+        'frmMain.dgvCEDBViewer.ReadOnly = False
+        'frmMain.dgvCSDBViewer.ReadOnly = False
+        'frmMain.btnDeleteExisting.Enabled = True
+        'frmMain.btnSave.Enabled = True
+        'frmMain.btnUndo.Enabled = True
+        frmMain.txtNote.ReadOnly = False
+        'frmMain.cbxModificaStato.Enabled = True
+        frmMain.txtLotto.ReadOnly = False
+        frmMain.txtRiordino.ReadOnly = False
+        frmMain.txtTipoParte.ReadOnly = False
+        frmMain.txtScortaSicurezza.ReadOnly = False
+        frmMain.txtCostoUltimo.ReadOnly = False
+        frmArticlesModification.btnDeleteExisting.Enabled = True
         Return True
     End Function
 End Module

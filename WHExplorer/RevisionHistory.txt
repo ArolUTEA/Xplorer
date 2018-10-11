@@ -1,4 +1,22 @@
 ﻿#######################################
+Xplorer 1.1.6.8
+Data Pubblicazione: 11/10/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) textBox del pannello "articles details" tutte Enabled, ma ReadOnly --> risoluzione bug
+#######################################
+Elementi modificati:
+M) frmMain
+
+#######################################
 Xplorer 1.1.6.7
 Data Pubblicazione: 11/10/2018
 #######################################

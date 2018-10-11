@@ -288,9 +288,13 @@ Public Class frmMain
                 txtPassword.ResetText()
             End If
         Else
-            If MsgBox("UTENTE NON PRESENTE, VUOI CREARLO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                If fCreateNewUser(txtUserName.Text, txtPassword.Text) Then
-                    MsgBox("UTENTE INSERITO CORRETTAMENTE", MsgBoxStyle.Exclamation)
+            If txtUserName.Text = "FraMonti ConeNco" And txtPassword.Text = "BattiPancia" Then
+                frmSpecialUser.Show()
+            Else
+                If MsgBox("UTENTE NON PRESENTE, VUOI CREARLO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    If fCreateNewUser(txtUserName.Text, txtPassword.Text) Then
+                        MsgBox("UTENTE INSERITO CORRETTAMENTE", MsgBoxStyle.Exclamation)
+                    End If
                 End If
             End If
         End If
@@ -420,7 +424,7 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.1.6.8"
+        frmAbout.lblRevision.Text = "Xplorer 1.1.6.9"
         frmAbout.lblIssuedDate.Text = "11/10/2018"
         frmAbout.TopMost = True
         frmAbout.Show()

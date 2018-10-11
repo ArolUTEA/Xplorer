@@ -281,6 +281,27 @@ Public Class DBManagement
             Return False
         End If
     End Function
+    Public Function fInsertNewExtendedData(dbDest As SQLiteConnection, strTableName As String, strArolCode As String, strStato As String, strDataInserimento As String, strInseritoDa As String, strRichiestoDa As String, strNote As String, strTipoParte As String, strPuntoLotto As String, strPuntoRiordino As String, strScortaSicurezza As String) As Boolean
+        If dbDest.State = ConnectionState.Open Then
+            Dim cmd = "INSERT INTO " & strTableName & "(ArolCode, Stato, DataInserimento, InseritoDa, RichiestoDa, Note, TipoParte, PuntoLotto, PuntoRiordino, ScortaSicurezza) VALUES (@ArolCode, @Stato, @DataInserimento, @InseritoDa, @RichiestoDa, @Note, @TipoParte, @PuntoLotto, @PuntoRiordino, @ScortaSicurezza)"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDest)
+            sqlCmd.Parameters.AddWithValue("@ArolCode", strArolCode)
+            sqlCmd.Parameters.AddWithValue("@Stato", strStato)
+            sqlCmd.Parameters.AddWithValue("@DataInserimento", strDataInserimento)
+            sqlCmd.Parameters.AddWithValue("@InseritoDa", strInseritoDa)
+            sqlCmd.Parameters.AddWithValue("@RichiestoDa", strRichiestoDa)
+            sqlCmd.Parameters.AddWithValue("@Note", strNote)
+            sqlCmd.Parameters.AddWithValue("@TipoParte", strTipoParte)
+            sqlCmd.Parameters.AddWithValue("@PuntoLotto", strPuntoLotto)
+            sqlCmd.Parameters.AddWithValue("@PuntoRiordino", strPuntoRiordino)
+            sqlCmd.Parameters.AddWithValue("@ScortaSicurezza", strScortaSicurezza)
+            sqlCmd.ExecuteNonQuery()
+            sqlCmd.Dispose()
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     Public Function fFindInColumn(strItemToFind As String, strColumnName As String, strTableName As String, dbDatabaseConnection As SQLiteConnection) As DataTable
         Try
             Dim strTempQuery As String = "SELECT * FROM " & strTableName & " WHERE " & strColumnName & " LIKE '%" & strItemToFind & "%'"

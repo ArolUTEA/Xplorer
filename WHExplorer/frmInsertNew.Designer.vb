@@ -71,10 +71,45 @@ Partial Class frmInsertNew
         Me.rdbGenerico = New System.Windows.Forms.RadioButton()
         Me.rdbFamComponente = New System.Windows.Forms.RadioButton()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.btnInsertNew = New System.Windows.Forms.Button()
         Me.btnCreaFileTxt = New System.Windows.Forms.Button()
         Me.frmInsertNewHelpTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.txtDataInserimento = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.txtInseritoDa = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.txtRichiestoDa = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.txtTipoParte = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.txtPuntoLotto = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.txtPuntoRiordino = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.PictureBox17 = New System.Windows.Forms.PictureBox()
+        Me.txtScortaSicurezza = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.PictureBox19 = New System.Windows.Forms.PictureBox()
+        Me.txtNote = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.PictureBox18 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -92,7 +127,26 @@ Partial Class frmInsertNew
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel11.SuspendLayout()
         Me.Panel9.SuspendLayout()
+        Me.Panel12.SuspendLayout()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel13.SuspendLayout()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel14.SuspendLayout()
+        Me.Panel15.SuspendLayout()
+        Me.Panel16.SuspendLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel17.SuspendLayout()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel18.SuspendLayout()
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel19.SuspendLayout()
+        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblFamily
@@ -395,7 +449,7 @@ Partial Class frmInsertNew
         Me.Panel7.Controls.Add(Me.cbxAddDatasheet)
         Me.Panel7.Location = New System.Drawing.Point(527, 378)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(625, 55)
+        Me.Panel7.Size = New System.Drawing.Size(801, 55)
         Me.Panel7.TabIndex = 21
         '
         'PictureBox7
@@ -444,7 +498,7 @@ Partial Class frmInsertNew
         Me.txtFileDSPath.Location = New System.Drawing.Point(290, 3)
         Me.txtFileDSPath.Name = "txtFileDSPath"
         Me.txtFileDSPath.ReadOnly = True
-        Me.txtFileDSPath.Size = New System.Drawing.Size(325, 20)
+        Me.txtFileDSPath.Size = New System.Drawing.Size(492, 20)
         Me.txtFileDSPath.TabIndex = 10
         '
         'lblDatasheet
@@ -562,24 +616,14 @@ Partial Class frmInsertNew
         'Panel9
         '
         Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel9.Controls.Add(Me.PictureBox15)
         Me.Panel9.Controls.Add(Me.PictureBox8)
         Me.Panel9.Controls.Add(Me.btnInsertNew)
         Me.Panel9.Controls.Add(Me.btnCreaFileTxt)
-        Me.Panel9.Location = New System.Drawing.Point(1159, 378)
+        Me.Panel9.Location = New System.Drawing.Point(12, 500)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(171, 55)
         Me.Panel9.TabIndex = 23
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.BackgroundImage = CType(resources.GetObject("PictureBox8.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox8.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 28
-        Me.PictureBox8.TabStop = False
         '
         'btnInsertNew
         '
@@ -603,11 +647,386 @@ Partial Class frmInsertNew
         Me.frmInsertNewHelpTip.SetToolTip(Me.btnCreaFileTxt, "Aggiungi a file Codici.txt")
         Me.btnCreaFileTxt.UseVisualStyleBackColor = True
         '
+        'Panel12
+        '
+        Me.Panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel12.Controls.Add(Me.txtDataInserimento)
+        Me.Panel12.Controls.Add(Me.Label1)
+        Me.Panel12.Location = New System.Drawing.Point(1157, 500)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(171, 55)
+        Me.Panel12.TabIndex = 24
+        '
+        'txtDataInserimento
+        '
+        Me.txtDataInserimento.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txtDataInserimento.Location = New System.Drawing.Point(11, 23)
+        Me.txtDataInserimento.Name = "txtDataInserimento"
+        Me.txtDataInserimento.ReadOnly = True
+        Me.txtDataInserimento.Size = New System.Drawing.Size(119, 20)
+        Me.txtDataInserimento.TabIndex = 25
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(5, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(125, 16)
+        Me.Label1.TabIndex = 28
+        Me.Label1.Text = "Data Inserimento"
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.BackgroundImage = CType(resources.GetObject("PictureBox9.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox9.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox9.TabIndex = 28
+        Me.PictureBox9.TabStop = False
+        '
+        'Panel13
+        '
+        Me.Panel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel13.Controls.Add(Me.txtInseritoDa)
+        Me.Panel13.Controls.Add(Me.Label2)
+        Me.Panel13.Location = New System.Drawing.Point(980, 500)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(171, 55)
+        Me.Panel13.TabIndex = 25
+        '
+        'txtInseritoDa
+        '
+        Me.txtInseritoDa.Location = New System.Drawing.Point(3, 23)
+        Me.txtInseritoDa.Name = "txtInseritoDa"
+        Me.txtInseritoDa.ReadOnly = True
+        Me.txtInseritoDa.Size = New System.Drawing.Size(157, 20)
+        Me.txtInseritoDa.TabIndex = 25
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(3, 4)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(81, 16)
+        Me.Label2.TabIndex = 28
+        Me.Label2.Text = "Inserito da"
+        '
+        'PictureBox10
+        '
+        Me.PictureBox10.BackgroundImage = CType(resources.GetObject("PictureBox10.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox10.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox10.TabIndex = 28
+        Me.PictureBox10.TabStop = False
+        '
+        'Panel14
+        '
+        Me.Panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel14.Controls.Add(Me.txtRichiestoDa)
+        Me.Panel14.Controls.Add(Me.Label3)
+        Me.Panel14.Controls.Add(Me.PictureBox9)
+        Me.Panel14.Location = New System.Drawing.Point(13, 439)
+        Me.Panel14.Name = "Panel14"
+        Me.Panel14.Size = New System.Drawing.Size(171, 55)
+        Me.Panel14.TabIndex = 29
+        '
+        'txtRichiestoDa
+        '
+        Me.txtRichiestoDa.BackColor = System.Drawing.Color.White
+        Me.txtRichiestoDa.Location = New System.Drawing.Point(49, 23)
+        Me.txtRichiestoDa.Name = "txtRichiestoDa"
+        Me.txtRichiestoDa.Size = New System.Drawing.Size(111, 20)
+        Me.txtRichiestoDa.TabIndex = 25
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(49, 4)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(95, 16)
+        Me.Label3.TabIndex = 28
+        Me.Label3.Text = "Richiesto da"
+        '
+        'Panel15
+        '
+        Me.Panel15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel15.Controls.Add(Me.txtTipoParte)
+        Me.Panel15.Controls.Add(Me.Label4)
+        Me.Panel15.Controls.Add(Me.PictureBox10)
+        Me.Panel15.Location = New System.Drawing.Point(190, 439)
+        Me.Panel15.Name = "Panel15"
+        Me.Panel15.Size = New System.Drawing.Size(154, 55)
+        Me.Panel15.TabIndex = 30
+        '
+        'txtTipoParte
+        '
+        Me.txtTipoParte.BackColor = System.Drawing.Color.White
+        Me.txtTipoParte.Location = New System.Drawing.Point(49, 23)
+        Me.txtTipoParte.Name = "txtTipoParte"
+        Me.txtTipoParte.Size = New System.Drawing.Size(55, 20)
+        Me.txtTipoParte.TabIndex = 25
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(45, 4)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(81, 16)
+        Me.Label4.TabIndex = 28
+        Me.Label4.Text = "Tipo Parte"
+        '
+        'Panel16
+        '
+        Me.Panel16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel16.Controls.Add(Me.PictureBox13)
+        Me.Panel16.Controls.Add(Me.txtPuntoLotto)
+        Me.Panel16.Controls.Add(Me.Label5)
+        Me.Panel16.Controls.Add(Me.PictureBox12)
+        Me.Panel16.Location = New System.Drawing.Point(350, 439)
+        Me.Panel16.Name = "Panel16"
+        Me.Panel16.Size = New System.Drawing.Size(154, 55)
+        Me.Panel16.TabIndex = 31
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.BackgroundImage = CType(resources.GetObject("PictureBox13.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox13.Location = New System.Drawing.Point(3, 24)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox13.TabIndex = 33
+        Me.PictureBox13.TabStop = False
+        '
+        'txtPuntoLotto
+        '
+        Me.txtPuntoLotto.BackColor = System.Drawing.Color.White
+        Me.txtPuntoLotto.Location = New System.Drawing.Point(49, 23)
+        Me.txtPuntoLotto.Name = "txtPuntoLotto"
+        Me.txtPuntoLotto.Size = New System.Drawing.Size(55, 20)
+        Me.txtPuntoLotto.TabIndex = 25
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(45, 4)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(85, 16)
+        Me.Label5.TabIndex = 28
+        Me.Label5.Text = "Punto Lotto"
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.BackgroundImage = CType(resources.GetObject("PictureBox12.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox12.Location = New System.Drawing.Point(3, -1)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox12.TabIndex = 32
+        Me.PictureBox12.TabStop = False
+        '
+        'Panel17
+        '
+        Me.Panel17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel17.Controls.Add(Me.PictureBox11)
+        Me.Panel17.Controls.Add(Me.txtPuntoRiordino)
+        Me.Panel17.Controls.Add(Me.Label6)
+        Me.Panel17.Controls.Add(Me.PictureBox14)
+        Me.Panel17.Location = New System.Drawing.Point(510, 439)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(154, 55)
+        Me.Panel17.TabIndex = 32
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.BackgroundImage = CType(resources.GetObject("PictureBox11.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox11.Location = New System.Drawing.Point(3, 24)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox11.TabIndex = 33
+        Me.PictureBox11.TabStop = False
+        '
+        'txtPuntoRiordino
+        '
+        Me.txtPuntoRiordino.BackColor = System.Drawing.Color.White
+        Me.txtPuntoRiordino.Location = New System.Drawing.Point(49, 23)
+        Me.txtPuntoRiordino.Name = "txtPuntoRiordino"
+        Me.txtPuntoRiordino.Size = New System.Drawing.Size(55, 20)
+        Me.txtPuntoRiordino.TabIndex = 25
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(34, 4)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(110, 16)
+        Me.Label6.TabIndex = 28
+        Me.Label6.Text = "Punto Riordino"
+        '
+        'PictureBox14
+        '
+        Me.PictureBox14.BackgroundImage = CType(resources.GetObject("PictureBox14.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox14.Location = New System.Drawing.Point(3, -1)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox14.TabIndex = 32
+        Me.PictureBox14.TabStop = False
+        '
+        'Panel18
+        '
+        Me.Panel18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel18.Controls.Add(Me.PictureBox17)
+        Me.Panel18.Controls.Add(Me.txtScortaSicurezza)
+        Me.Panel18.Controls.Add(Me.Label7)
+        Me.Panel18.Controls.Add(Me.PictureBox16)
+        Me.Panel18.Location = New System.Drawing.Point(670, 439)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(154, 55)
+        Me.Panel18.TabIndex = 34
+        '
+        'PictureBox17
+        '
+        Me.PictureBox17.BackgroundImage = CType(resources.GetObject("PictureBox17.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox17.Location = New System.Drawing.Point(3, 24)
+        Me.PictureBox17.Name = "PictureBox17"
+        Me.PictureBox17.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox17.TabIndex = 35
+        Me.PictureBox17.TabStop = False
+        '
+        'txtScortaSicurezza
+        '
+        Me.txtScortaSicurezza.BackColor = System.Drawing.Color.White
+        Me.txtScortaSicurezza.Location = New System.Drawing.Point(49, 23)
+        Me.txtScortaSicurezza.Name = "txtScortaSicurezza"
+        Me.txtScortaSicurezza.Size = New System.Drawing.Size(55, 20)
+        Me.txtScortaSicurezza.TabIndex = 25
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(26, 4)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(124, 16)
+        Me.Label7.TabIndex = 28
+        Me.Label7.Text = "Scorta Sicurezza"
+        '
+        'PictureBox16
+        '
+        Me.PictureBox16.BackgroundImage = CType(resources.GetObject("PictureBox16.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox16.Location = New System.Drawing.Point(3, -1)
+        Me.PictureBox16.Name = "PictureBox16"
+        Me.PictureBox16.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox16.TabIndex = 32
+        Me.PictureBox16.TabStop = False
+        '
+        'Panel19
+        '
+        Me.Panel19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel19.Controls.Add(Me.PictureBox19)
+        Me.Panel19.Controls.Add(Me.txtNote)
+        Me.Panel19.Controls.Add(Me.Label8)
+        Me.Panel19.Controls.Add(Me.PictureBox18)
+        Me.Panel19.Location = New System.Drawing.Point(830, 439)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(498, 55)
+        Me.Panel19.TabIndex = 36
+        '
+        'PictureBox19
+        '
+        Me.PictureBox19.BackgroundImage = CType(resources.GetObject("PictureBox19.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox19.Location = New System.Drawing.Point(3, 24)
+        Me.PictureBox19.Name = "PictureBox19"
+        Me.PictureBox19.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox19.TabIndex = 25
+        Me.PictureBox19.TabStop = False
+        '
+        'txtNote
+        '
+        Me.txtNote.BackColor = System.Drawing.Color.White
+        Me.txtNote.Location = New System.Drawing.Point(37, 22)
+        Me.txtNote.Name = "txtNote"
+        Me.txtNote.Size = New System.Drawing.Size(442, 20)
+        Me.txtNote.TabIndex = 25
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(34, 3)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 16)
+        Me.Label8.TabIndex = 28
+        Me.Label8.Text = "Note"
+        '
+        'PictureBox18
+        '
+        Me.PictureBox18.BackgroundImage = CType(resources.GetObject("PictureBox18.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox18.Location = New System.Drawing.Point(3, -1)
+        Me.PictureBox18.Name = "PictureBox18"
+        Me.PictureBox18.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox18.TabIndex = 32
+        Me.PictureBox18.TabStop = False
+        '
+        'PictureBox8
+        '
+        Me.PictureBox8.BackgroundImage = CType(resources.GetObject("PictureBox8.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox8.Location = New System.Drawing.Point(4, 0)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox8.TabIndex = 33
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox15
+        '
+        Me.PictureBox15.BackgroundImage = CType(resources.GetObject("PictureBox15.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox15.Location = New System.Drawing.Point(4, 25)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox15.TabIndex = 27
+        Me.PictureBox15.TabStop = False
+        '
         'frmInsertNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1340, 441)
+        Me.ClientSize = New System.Drawing.Size(1340, 563)
+        Me.Controls.Add(Me.Panel19)
+        Me.Controls.Add(Me.Panel18)
+        Me.Controls.Add(Me.Panel17)
+        Me.Controls.Add(Me.Panel16)
+        Me.Controls.Add(Me.Panel15)
+        Me.Controls.Add(Me.Panel14)
+        Me.Controls.Add(Me.Panel13)
+        Me.Controls.Add(Me.Panel12)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel8)
         Me.Controls.Add(Me.Panel7)
@@ -647,7 +1066,34 @@ Partial Class frmInsertNew
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
         Me.Panel9.ResumeLayout(False)
+        Me.Panel12.ResumeLayout(False)
+        Me.Panel12.PerformLayout()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel13.ResumeLayout(False)
+        Me.Panel13.PerformLayout()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel14.ResumeLayout(False)
+        Me.Panel14.PerformLayout()
+        Me.Panel15.ResumeLayout(False)
+        Me.Panel15.PerformLayout()
+        Me.Panel16.ResumeLayout(False)
+        Me.Panel16.PerformLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel17.ResumeLayout(False)
+        Me.Panel17.PerformLayout()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel18.ResumeLayout(False)
+        Me.Panel18.PerformLayout()
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel19.ResumeLayout(False)
+        Me.Panel19.PerformLayout()
+        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -694,7 +1140,6 @@ Partial Class frmInsertNew
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents Panel9 As Panel
-    Friend WithEvents PictureBox8 As PictureBox
     Friend WithEvents btnLockUnlockDescr As Button
     Friend WithEvents frmInsertNewHelpTip As ToolTip
     Friend WithEvents rdbMatComm As RadioButton
@@ -703,4 +1148,40 @@ Partial Class frmInsertNew
     Friend WithEvents rdbGenerico As RadioButton
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Panel11 As Panel
+    Friend WithEvents Panel12 As Panel
+    Friend WithEvents txtDataInserimento As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents PictureBox9 As PictureBox
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents txtInseritoDa As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents PictureBox10 As PictureBox
+    Friend WithEvents Panel14 As Panel
+    Friend WithEvents txtRichiestoDa As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Panel15 As Panel
+    Friend WithEvents txtTipoParte As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Panel16 As Panel
+    Friend WithEvents PictureBox13 As PictureBox
+    Friend WithEvents txtPuntoLotto As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents PictureBox12 As PictureBox
+    Friend WithEvents Panel17 As Panel
+    Friend WithEvents PictureBox11 As PictureBox
+    Friend WithEvents txtPuntoRiordino As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents PictureBox14 As PictureBox
+    Friend WithEvents Panel18 As Panel
+    Friend WithEvents PictureBox17 As PictureBox
+    Friend WithEvents txtScortaSicurezza As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents PictureBox16 As PictureBox
+    Friend WithEvents Panel19 As Panel
+    Friend WithEvents PictureBox19 As PictureBox
+    Friend WithEvents txtNote As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents PictureBox18 As PictureBox
+    Friend WithEvents PictureBox15 As PictureBox
+    Friend WithEvents PictureBox8 As PictureBox
 End Class

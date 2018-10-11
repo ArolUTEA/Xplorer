@@ -136,6 +136,12 @@
     <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmArticlesModification.Designer.vb">
+      <DependentUpon>frmArticlesModification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmArticlesModification.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChangePassword.Designer.vb">
       <DependentUpon>frmChangePassword.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,7 @@
     <Compile Include="frmUserManagement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Functions\DataGridViewFunctions.vb" />
     <Compile Include="Functions\DescriptionConstructor.vb" />
     <Compile Include="Functions\EditExistFunctions.vb" />
     <Compile Include="Functions\FileSystemFunct.vb" />
@@ -193,6 +200,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArticlesModification.resx">
+      <DependentUpon>frmArticlesModification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangePassword.resx">
       <DependentUpon>frmChangePassword.vb</DependentUpon>
@@ -265,6 +275,7 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\editUser.png" />
     <Content Include="Images\find.png" />
+    <Content Include="Images\info.ico" />
     <Content Include="Images\Lente_X.ico" />
     <Content Include="Images\lock.png" />
     <Content Include="Images\login.png" />
@@ -278,6 +289,7 @@
     <Content Include="Images\txt.png" />
     <None Include="Images\txt1.png" />
     <Content Include="Images\unlock.png" />
+    <None Include="Images\viewDetails.png" />
     <Content Include="Images\writeCSV.png" />
     <Content Include="Images\X.png" />
     <Content Include="Lente_X.ico" />

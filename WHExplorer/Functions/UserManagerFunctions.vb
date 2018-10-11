@@ -164,12 +164,21 @@ Module UserManagerFunctions
     End Function
     Public Function fApplyReaderOnlyPermission() As Boolean
         frmMain.btnInsertNew.Enabled = False
-        frmMain.btnEdit.Enabled = False
         frmMain.bUserWritePerm = False
         frmMain.bManageUser = False
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = False
         frmMain.btnReadFromFile.Enabled = False
+        frmMain.dgvCEDBViewer.ReadOnly = True
+        frmMain.dgvCSDBViewer.ReadOnly = True
+        frmMain.btnEditSelected.Enabled = False
+        frmMain.txtNote.ReadOnly = True
+        frmMain.txtLotto.ReadOnly = True
+        frmMain.txtRiordino.ReadOnly = True
+        frmMain.txtTipoParte.ReadOnly = True
+        frmMain.txtScortaSicurezza.ReadOnly = True
+        frmMain.txtCostoUltimo.ReadOnly = True
+        frmArticlesModification.btnDeleteExisting.Enabled = False
         Return True
     End Function
     Public Function fApplyWritePermission() As Boolean
@@ -179,6 +188,14 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = False
+        frmMain.btnEditSelected.Enabled = True
+        frmMain.txtNote.ReadOnly = False
+        frmMain.txtLotto.ReadOnly = False
+        frmMain.txtRiordino.ReadOnly = False
+        frmMain.txtTipoParte.ReadOnly = False
+        frmMain.txtScortaSicurezza.ReadOnly = False
+        frmMain.txtCostoUltimo.ReadOnly = False
+        frmArticlesModification.btnDeleteExisting.Enabled = True
         Return True
     End Function
     Public Function fApplyAdvancedPermission() As Boolean
@@ -188,6 +205,14 @@ Module UserManagerFunctions
         frmMain.bChangePassword = True
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = True
+        frmMain.btnEditSelected.Enabled = True
+        frmMain.txtNote.ReadOnly = False
+        frmMain.txtLotto.ReadOnly = False
+        frmMain.txtRiordino.ReadOnly = False
+        frmMain.txtTipoParte.ReadOnly = False
+        frmMain.txtScortaSicurezza.ReadOnly = False
+        frmMain.txtCostoUltimo.ReadOnly = False
+        frmArticlesModification.btnDeleteExisting.Enabled = True
         Return True
     End Function
 End Module

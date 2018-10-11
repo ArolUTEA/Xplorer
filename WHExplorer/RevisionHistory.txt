@@ -1,4 +1,48 @@
 ﻿#######################################
+Xplorer 1.1.6.7
+Data Pubblicazione: 11/10/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Aggiunta funzione clearPanelFour() per pulizia del pannello #4.
+2) Aggiunte le funzioni clearAll() e clearAndResetComboBoxes()
+3) Aggiunto il file DataGridViewFunctions.vb
+4) Nel file DataGridViewFunctions è stata aggiunta la funzione fChangeRowColor, che consente di modificare il colore di sfondo di una riga di un datagridview
+5) Aggiunto il form per i dettagli di articolo
+6) Modificato il codice dell'evento btnEdit_Click
+7) Nel file EditExistsFunctions, aggiunta la funzione fRetrieveSelectedData
+8) Nel file EditExistsFunctions, aggiunta la funzione fPopulateArticlesDetails
+9) Sul frmMain, aggiunto il pulsante btnDetails
+10) Modificato il file UserManagerFunctions, funzioni di applicazione dei permessi
+11) Modificato il database MagazzinoEle.db, aggiunte la tabelle "datiEstesiCodificati" e "datiEstesiConsumabili"
+12) Nel file EditExistsFunctions, aggiunta la funzione fEditExistingCode
+13) Nel file EditExistsFunctions, aggiunta la funzione fUpdateExtendedData
+14) Nel file EditExistsFunctions, aggiunta la funzione fUndoModification
+15) Nel file EditExistsFunctions, aggiunta la funzione fDeleteExisting
+16) Modificata la fPopulateAndResizeDGV per aggiungere la funzione di colorazione delle righe in funzione dello stato
+17) Aggiunta la funzione fRetrieveSelectedDgvID() che restituisce l'indice dell'elemento datagridview selezionato
+18) Modificata la Sub btnInsertNew_Click nel frmInsertNew.vb
+19) Aggiunta la funzione fClearDetailsPanel()
+20) Pulizia del codice
+#######################################
+Elementi modificati:
+M) frmInsertNew.vb
++) DataGridViewFunctions.vb
++) frmArticlesModification.vb
+M) MagazzinoEle.db
+M) EditExistsFunzionts.vb
+M) frmMain.vb
+M) UserManagerFunctions.vb
+M) GeneralAuxFunctions.vb
+
+#######################################
 Xplorer 1.0.5.6
 Data Pubblicazione: 11/04/2018
 #######################################

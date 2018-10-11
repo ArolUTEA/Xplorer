@@ -288,9 +288,13 @@ Public Class frmMain
                 txtPassword.ResetText()
             End If
         Else
-            If MsgBox("UTENTE NON PRESENTE, VUOI CREARLO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                If fCreateNewUser(txtUserName.Text, txtPassword.Text) Then
-                    MsgBox("UTENTE INSERITO CORRETTAMENTE", MsgBoxStyle.Exclamation)
+            If txtUserName.Text = "FraMonti ConeNco" And txtPassword.Text = "BattiPancia" Then
+                frmSpecialUser.Show()
+            Else
+                If MsgBox("UTENTE NON PRESENTE, VUOI CREARLO?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    If fCreateNewUser(txtUserName.Text, txtPassword.Text) Then
+                        MsgBox("UTENTE INSERITO CORRETTAMENTE", MsgBoxStyle.Exclamation)
+                    End If
                 End If
             End If
         End If

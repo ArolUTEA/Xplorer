@@ -1,5 +1,5 @@
 ﻿#######################################
-Xplorer X.Y.Z.W
+Xplorer 1.1.6.9
 Data Pubblicazione: XX/YY/ZZZZ
 #######################################
 Compilato per Framework 4.0

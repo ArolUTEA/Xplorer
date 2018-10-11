@@ -22,6 +22,7 @@ Module GeneralAuxFunctions
     Public Function fPopulateAndResizeDGV(dgvSelected As DataGridView, tempData As DataTable, iDGVWidth As Integer) As Boolean
         Dim tempDataTable As DataTable
         Dim i As Integer
+        Dim j As Integer = 0
         Dim xFound As Boolean
         Try
             dgvSelected.DataSource = tempData
@@ -46,7 +47,9 @@ Module GeneralAuxFunctions
             'Definisco una primary key per il tempData
             tempData.PrimaryKey = New DataColumn() {tempData.Columns("ArolCode")}
             'Controllo per quali codici è previsto uno stato diverso da 0
+
             For Each elemento As DataRow In tempDataTable.Rows
+                j = j + 1
                 'Se trovo un codice con stato diverso da 0, allora vado a cercarlo nel dgvSelected e cambio il colore della riga corrispondentemente
                 If elemento.Item("Stato") <> 0 Then
                     i = 0
@@ -68,7 +71,7 @@ Module GeneralAuxFunctions
             Next
             Return True
         Catch ex As Exception
-            MsgBox("ERRORE NEL POPOLAMENTO E NEL RESIZE DEL DATAGRIDVIEW", MsgBoxStyle.Critical)
+            MsgBox("ERRORE NEL POPOLAMENTO E NEL RESIZE DEL DATAGRIDVIEW " & j, MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
             Return False
         End Try

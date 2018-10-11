@@ -420,8 +420,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.0.5.6"
-        frmAbout.lblIssuedDate.Text = "11/04/2018"
+        frmAbout.lblRevision.Text = "Xplorer 1.1.6.7"
+        frmAbout.lblIssuedDate.Text = "11/10/2018"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub

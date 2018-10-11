@@ -11,10 +11,10 @@ System.Data.SQLite.EF6		1.0.105.2
 System.Data.SQLite.Linq		1.0.105.2
 #######################################
 Modifiche effettuate:
-
+1) Aggiunto frmSpecialUser
 #######################################
 Elementi modificati:
-
++) frmSpecialUser
 
 
 #######################################

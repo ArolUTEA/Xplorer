@@ -51,10 +51,10 @@ Partial Class frmMain
         Me.lblRiordino = New System.Windows.Forms.Label()
         Me.txtLotto = New System.Windows.Forms.TextBox()
         Me.lblLotto = New System.Windows.Forms.Label()
-        Me.txtStatoAttuale = New System.Windows.Forms.TextBox()
-        Me.lblStatoAttuale = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txtStatoAttuale = New System.Windows.Forms.TextBox()
         Me.txtCodificaRichiestaDa = New System.Windows.Forms.TextBox()
+        Me.lblStatoAttuale = New System.Windows.Forms.Label()
         Me.txtInseritoDa = New System.Windows.Forms.TextBox()
         Me.lblInseritoDa = New System.Windows.Forms.Label()
         Me.lblCodificaRichiestaDa = New System.Windows.Forms.Label()
@@ -244,8 +244,7 @@ Partial Class frmMain
         '
         'txtDataUltimaModifica
         '
-        Me.txtDataUltimaModifica.BackColor = System.Drawing.Color.LightGray
-        Me.txtDataUltimaModifica.Enabled = False
+        Me.txtDataUltimaModifica.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtDataUltimaModifica.Location = New System.Drawing.Point(6, 19)
         Me.txtDataUltimaModifica.Name = "txtDataUltimaModifica"
         Me.txtDataUltimaModifica.ReadOnly = True
@@ -254,8 +253,7 @@ Partial Class frmMain
         '
         'txtModificatoDa
         '
-        Me.txtModificatoDa.BackColor = System.Drawing.Color.LightGray
-        Me.txtModificatoDa.Enabled = False
+        Me.txtModificatoDa.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtModificatoDa.Location = New System.Drawing.Point(6, 62)
         Me.txtModificatoDa.Name = "txtModificatoDa"
         Me.txtModificatoDa.ReadOnly = True
@@ -294,10 +292,11 @@ Partial Class frmMain
         '
         'txtNote
         '
-        Me.txtNote.BackColor = System.Drawing.Color.White
+        Me.txtNote.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtNote.Location = New System.Drawing.Point(6, 22)
         Me.txtNote.Multiline = True
         Me.txtNote.Name = "txtNote"
+        Me.txtNote.ReadOnly = True
         Me.txtNote.Size = New System.Drawing.Size(274, 186)
         Me.txtNote.TabIndex = 16
         '
@@ -331,8 +330,7 @@ Partial Class frmMain
         '
         'txtCostoUltimo
         '
-        Me.txtCostoUltimo.BackColor = System.Drawing.Color.LightGray
-        Me.txtCostoUltimo.Enabled = False
+        Me.txtCostoUltimo.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtCostoUltimo.Location = New System.Drawing.Point(106, 115)
         Me.txtCostoUltimo.Name = "txtCostoUltimo"
         Me.txtCostoUltimo.ReadOnly = True
@@ -341,9 +339,10 @@ Partial Class frmMain
         '
         'txtTipoParte
         '
-        Me.txtTipoParte.BackColor = System.Drawing.Color.White
+        Me.txtTipoParte.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtTipoParte.Location = New System.Drawing.Point(106, 11)
         Me.txtTipoParte.Name = "txtTipoParte"
+        Me.txtTipoParte.ReadOnly = True
         Me.txtTipoParte.Size = New System.Drawing.Size(26, 20)
         Me.txtTipoParte.TabIndex = 22
         '
@@ -370,9 +369,10 @@ Partial Class frmMain
         '
         'txtScortaSicurezza
         '
-        Me.txtScortaSicurezza.BackColor = System.Drawing.Color.White
+        Me.txtScortaSicurezza.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtScortaSicurezza.Location = New System.Drawing.Point(106, 63)
         Me.txtScortaSicurezza.Name = "txtScortaSicurezza"
+        Me.txtScortaSicurezza.ReadOnly = True
         Me.txtScortaSicurezza.Size = New System.Drawing.Size(70, 20)
         Me.txtScortaSicurezza.TabIndex = 20
         '
@@ -389,9 +389,10 @@ Partial Class frmMain
         '
         'txtRiordino
         '
-        Me.txtRiordino.BackColor = System.Drawing.Color.White
+        Me.txtRiordino.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtRiordino.Location = New System.Drawing.Point(106, 37)
         Me.txtRiordino.Name = "txtRiordino"
+        Me.txtRiordino.ReadOnly = True
         Me.txtRiordino.Size = New System.Drawing.Size(70, 20)
         Me.txtRiordino.TabIndex = 18
         '
@@ -408,9 +409,10 @@ Partial Class frmMain
         '
         'txtLotto
         '
-        Me.txtLotto.BackColor = System.Drawing.Color.White
+        Me.txtLotto.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtLotto.Location = New System.Drawing.Point(106, 89)
         Me.txtLotto.Name = "txtLotto"
+        Me.txtLotto.ReadOnly = True
         Me.txtLotto.Size = New System.Drawing.Size(70, 20)
         Me.txtLotto.TabIndex = 16
         '
@@ -424,26 +426,6 @@ Partial Class frmMain
         Me.lblLotto.TabIndex = 3
         Me.lblLotto.Text = "Lotto:"
         Me.lblLotto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtStatoAttuale
-        '
-        Me.txtStatoAttuale.BackColor = System.Drawing.Color.LightGray
-        Me.txtStatoAttuale.Enabled = False
-        Me.txtStatoAttuale.Location = New System.Drawing.Point(133, 65)
-        Me.txtStatoAttuale.Name = "txtStatoAttuale"
-        Me.txtStatoAttuale.ReadOnly = True
-        Me.txtStatoAttuale.Size = New System.Drawing.Size(100, 20)
-        Me.txtStatoAttuale.TabIndex = 4
-        '
-        'lblStatoAttuale
-        '
-        Me.lblStatoAttuale.AutoSize = True
-        Me.lblStatoAttuale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatoAttuale.Location = New System.Drawing.Point(130, 46)
-        Me.lblStatoAttuale.Name = "lblStatoAttuale"
-        Me.lblStatoAttuale.Size = New System.Drawing.Size(95, 16)
-        Me.lblStatoAttuale.TabIndex = 3
-        Me.lblStatoAttuale.Text = "Stato attuale"
         '
         'Panel2
         '
@@ -461,20 +443,37 @@ Partial Class frmMain
         Me.Panel2.Size = New System.Drawing.Size(292, 109)
         Me.Panel2.TabIndex = 6
         '
+        'txtStatoAttuale
+        '
+        Me.txtStatoAttuale.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.txtStatoAttuale.Location = New System.Drawing.Point(133, 65)
+        Me.txtStatoAttuale.Name = "txtStatoAttuale"
+        Me.txtStatoAttuale.ReadOnly = True
+        Me.txtStatoAttuale.Size = New System.Drawing.Size(100, 20)
+        Me.txtStatoAttuale.TabIndex = 4
+        '
         'txtCodificaRichiestaDa
         '
-        Me.txtCodificaRichiestaDa.BackColor = System.Drawing.Color.LightGray
-        Me.txtCodificaRichiestaDa.Enabled = False
+        Me.txtCodificaRichiestaDa.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtCodificaRichiestaDa.Location = New System.Drawing.Point(133, 22)
         Me.txtCodificaRichiestaDa.Name = "txtCodificaRichiestaDa"
         Me.txtCodificaRichiestaDa.ReadOnly = True
         Me.txtCodificaRichiestaDa.Size = New System.Drawing.Size(147, 20)
         Me.txtCodificaRichiestaDa.TabIndex = 8
         '
+        'lblStatoAttuale
+        '
+        Me.lblStatoAttuale.AutoSize = True
+        Me.lblStatoAttuale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatoAttuale.Location = New System.Drawing.Point(130, 46)
+        Me.lblStatoAttuale.Name = "lblStatoAttuale"
+        Me.lblStatoAttuale.Size = New System.Drawing.Size(95, 16)
+        Me.lblStatoAttuale.TabIndex = 3
+        Me.lblStatoAttuale.Text = "Stato attuale"
+        '
         'txtInseritoDa
         '
-        Me.txtInseritoDa.BackColor = System.Drawing.Color.LightGray
-        Me.txtInseritoDa.Enabled = False
+        Me.txtInseritoDa.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtInseritoDa.Location = New System.Drawing.Point(6, 65)
         Me.txtInseritoDa.Name = "txtInseritoDa"
         Me.txtInseritoDa.ReadOnly = True
@@ -503,8 +502,7 @@ Partial Class frmMain
         '
         'txtDataInserimento
         '
-        Me.txtDataInserimento.BackColor = System.Drawing.Color.LightGray
-        Me.txtDataInserimento.Enabled = False
+        Me.txtDataInserimento.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtDataInserimento.Location = New System.Drawing.Point(6, 22)
         Me.txtDataInserimento.Name = "txtDataInserimento"
         Me.txtDataInserimento.ReadOnly = True
@@ -533,7 +531,6 @@ Partial Class frmMain
         '
         'txtArolCode
         '
-        Me.txtArolCode.Enabled = False
         Me.txtArolCode.Location = New System.Drawing.Point(6, 22)
         Me.txtArolCode.Name = "txtArolCode"
         Me.txtArolCode.ReadOnly = True

@@ -1,6 +1,24 @@
 ﻿#######################################
-Xplorer 1.1.6.9
+Xplorer X.Y.Z.W
 Data Pubblicazione: XX/YY/ZZZZ
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+
+#######################################
+Elementi modificati:
+
+
+#######################################
+Xplorer 1.1.6.9
+Data Pubblicazione: 11/10/2018
 #######################################
 Compilato per Framework 4.0
 #######################################

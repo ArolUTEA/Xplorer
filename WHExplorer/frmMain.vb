@@ -310,39 +310,6 @@ Public Class frmMain
     Private Sub txtFindSupDescr_TextChanged(sender As Object, e As EventArgs) Handles txtFindSupDescr.TextChanged
         fResearchAdvanced()
     End Sub
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs)
-        Try
-            If MsgBox("SEI SICURO?", MsgBoxStyle.YesNoCancel) = MsgBoxResult.Yes Then
-                Select Case CompEleControl.SelectedIndex
-                    Case 0
-                        'Recupero l'ID selezionato
-                        Dim rowIndex As Integer = dgvCEDBViewer.CurrentCell.RowIndex
-                        Dim deletedIndex As Integer = dgvCEDBViewer.Rows(rowIndex).Cells(0).Value
-                        'Elimino l'elemento dal database
-                        Dim tempBool As Boolean = fDeleteElement(deletedIndex, "codificati")
-                        'Elimino l'elemento dal datagridview
-                        If tempBool Then
-                            fDeleteFromDGV(dgvCEDBViewer, rowIndex)
-                        End If
-                    Case 1
-                        'Recupero l'ID selezionato
-                        Dim rowIndex As Integer = dgvCSDBViewer.CurrentCell.RowIndex
-                        Dim deletedIndex As Integer = dgvCSDBViewer.Rows(rowIndex).Cells(0).Value
-                        'Elimino l'elemento dal database
-                        Dim tempBool As Boolean = fDeleteElement(deletedIndex, "consumabili")
-                        'Elimino l'elemento dal datagridview
-                        If tempBool Then
-                            fDeleteFromDGV(dgvCSDBViewer, rowIndex)
-                        End If
-                    Case Else
-                        Exit Sub
-                End Select
-            End If
-        Catch ex As Exception
-            MsgBox("ERRORE NELLA CANCELLAZIONE DELL'ELEMENTO", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
-    End Sub
     Private Sub rbAdvancedSearch_CheckedChanged(sender As Object, e As EventArgs) Handles rbAdvancedSearch.CheckedChanged
         pnlAdvancedSearch.Enabled = rbAdvancedSearch.Checked
         If Not pnlAdvancedSearch.Enabled Then
@@ -465,7 +432,6 @@ Public Class frmMain
             MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
-
     Private Sub btnGuideSearch_Click(sender As Object, e As EventArgs) Handles btnGuideSearch.Click
         If btnGuideSearch.Text = "OR" Then
             btnGuideSearch.Text = "AND"
@@ -551,7 +517,6 @@ Public Class frmMain
                 btnGuideSearch.Enabled = False
         End Select
     End Sub
-
     Private Sub NewManufacturerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewManufacturerToolStripMenuItem.Click
         If bUserWritePerm Then
             Dim strNewManufacturer As String
@@ -603,11 +568,9 @@ Public Class frmMain
     Private Sub ChangePasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePasswordToolStripMenuItem.Click
         frmChangePassword.Show()
     End Sub
-
     Private Sub btnToCSV_Click(sender As Object, e As EventArgs) Handles btnToCSV.Click
         fWriteToCsv()
     End Sub
-
     Private Sub btnDetails_Click(sender As Object, e As EventArgs) Handles btnDetails.Click
         fEnableDisableDetails()
         Try
@@ -643,41 +606,24 @@ Public Class frmMain
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
     End Sub
-
     Private Sub btnSave_Click(sender As Object, e As EventArgs)
         fEditExistingCode()
     End Sub
-
     Private Sub btnUndo_Click(sender As Object, e As EventArgs)
         fUndoModification()
     End Sub
-
-    Private Sub btnDeleteExisting_Click(sender As Object, e As EventArgs)
-        fDeleteExisting()
-        Select Case CompEleControl.SelectedIndex
-            Case 0
-                fSelectAllAndOrder(dgvCEDBViewer, "codificati")
-            Case 1
-                fSelectAllAndOrder(dgvCSDBViewer, "consumabili")
-            Case Else
-                Exit Sub
-        End Select
-    End Sub
-
     Private Sub dgvCEDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCEDBViewer.CellValueChanged
         Dim rowIndex As Integer
         rowIndex = dgvCEDBViewer.CurrentCell.RowIndex
         aiCodiModRow(iCodiModRowIndex) = dgvCEDBViewer.Rows(rowIndex).Cells(0).Value
         iCodiModRowIndex = iCodiModRowIndex + 1
     End Sub
-
     Private Sub dgvCSDBViewer_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellValueChanged
         Dim rowIndex As Integer
         rowIndex = dgvCSDBViewer.CurrentCell.RowIndex
         aiConsModRow(iConsModRowIndex) = dgvCSDBViewer.Rows(rowIndex).Cells(0).Value
         iConsModRowIndex = iConsModRowIndex + 1
     End Sub
-
     Private Sub btnEditSelected_Click(sender As Object, e As EventArgs) Handles btnEditSelected.Click
         Dim iDgvSelectedIndex As Integer = fRetrieveSelectedDgvID()
         Dim strItemToFind, strTableName As String

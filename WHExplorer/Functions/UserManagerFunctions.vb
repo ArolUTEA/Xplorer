@@ -164,7 +164,6 @@ Module UserManagerFunctions
     End Function
     Public Function fApplyReaderOnlyPermission() As Boolean
         frmMain.btnInsertNew.Enabled = False
-        'frmMain.btnEdit.Enabled = False
         frmMain.bUserWritePerm = False
         frmMain.bManageUser = False
         frmMain.bChangePassword = True
@@ -173,11 +172,7 @@ Module UserManagerFunctions
         frmMain.dgvCEDBViewer.ReadOnly = True
         frmMain.dgvCSDBViewer.ReadOnly = True
         frmMain.btnEditSelected.Enabled = False
-        'frmMain.btnDeleteExisting.Enabled = False
-        'frmMain.btnSave.Enabled = False
-        'frmMain.btnUndo.Enabled = False
         frmMain.txtNote.ReadOnly = True
-        'frmMain.cbxModificaStato.Enabled = False
         frmMain.txtLotto.ReadOnly = True
         frmMain.txtRiordino.ReadOnly = True
         frmMain.txtTipoParte.ReadOnly = True
@@ -194,13 +189,7 @@ Module UserManagerFunctions
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = False
         frmMain.btnEditSelected.Enabled = True
-        'frmMain.dgvCEDBViewer.ReadOnly = False
-        'frmMain.dgvCSDBViewer.ReadOnly = False
-        'frmMain.btnDeleteExisting.Enabled = True
-        'frmMain.btnSave.Enabled = True
-        'frmMain.btnUndo.Enabled = True
         frmMain.txtNote.ReadOnly = False
-        'frmMain.cbxModificaStato.Enabled = True
         frmMain.txtLotto.ReadOnly = False
         frmMain.txtRiordino.ReadOnly = False
         frmMain.txtTipoParte.ReadOnly = False
@@ -217,13 +206,7 @@ Module UserManagerFunctions
         frmMain.btnChildGenerator.Enabled = True
         frmMain.btnReadFromFile.Enabled = True
         frmMain.btnEditSelected.Enabled = True
-        'frmMain.dgvCEDBViewer.ReadOnly = False
-        'frmMain.dgvCSDBViewer.ReadOnly = False
-        'frmMain.btnDeleteExisting.Enabled = True
-        'frmMain.btnSave.Enabled = True
-        'frmMain.btnUndo.Enabled = True
         frmMain.txtNote.ReadOnly = False
-        'frmMain.cbxModificaStato.Enabled = True
         frmMain.txtLotto.ReadOnly = False
         frmMain.txtRiordino.ReadOnly = False
         frmMain.txtTipoParte.ReadOnly = False

@@ -30,6 +30,7 @@ Modifiche effettuate:
 17) Aggiunta la funzione fRetrieveSelectedDgvID() che restituisce l'indice dell'elemento datagridview selezionato
 18) Modificata la Sub btnInsertNew_Click nel frmInsertNew.vb
 19) Aggiunta la funzione fClearDetailsPanel()
+20) Pulizia del codice
 #######################################
 Elementi modificati:
 M) frmInsertNew.vb

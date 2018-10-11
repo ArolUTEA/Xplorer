@@ -575,11 +575,6 @@ Public Class frmInsertNew
         txtSuppDescription.Clear()
         txtFileDSPath.Clear()
     End Sub
-    Public Sub clearAndResetComboBoxes()
-        cbxConstructor.ResetText()
-        cbxConstructor.BackColor = Color.Red
-        cbxCompFamily.ResetText()
-    End Sub
     Public Sub clearAll()
         txtCode.ForeColor = Color.Black
         txtLowCode.ForeColor = Color.Black

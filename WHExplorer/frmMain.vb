@@ -397,6 +397,9 @@ Public Class frmMain
         Dim strTempManufacturer As String
         If cbxSearchCategory.SelectedItem Is Nothing Then
             strTempCategory = ""
+            If bGuidedSearchAnd Then
+                Exit Sub
+            End If
         Else
             strTempCategory = cbxSearchCategory.SelectedItem.ToString
         End If
@@ -424,8 +427,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.1.6.9"
-        frmAbout.lblIssuedDate.Text = "11/10/2018"
+        frmAbout.lblRevision.Text = "Xplorer 1.1.6.10"
+        frmAbout.lblIssuedDate.Text = "24/10/2018"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
@@ -489,7 +492,7 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCEDBViewer.Visible = False
-                    MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
             Case 1
                 tableName = "consumabili"
@@ -500,7 +503,7 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCSDBViewer.Visible = False
-                    MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
+                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
         End Select
     End Sub

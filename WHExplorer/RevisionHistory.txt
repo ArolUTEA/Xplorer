@@ -1,6 +1,28 @@
 ﻿#######################################
+Xplorer 1.1.6.10
+Data Pubblicazione: 24/10/2018
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) Nella funzione fManagementOfDgvClickOrKeyMove aggiunta la chiamata alla funzione fClearDetailsPanel per pulire il pannello dettagli (risoluzione di bug)
+2) Nella funzione fPopulateDataGridView() commentato il messaggio di "Nessuna occorrenza trovata"
+3) Nella funzione cbxSearchManufacturer_SelectedIndexChanged aggiunto controllo che, nel caso di ricerca con AND abilitato, controlla che anche il cbxSearchCategory abbia un elemento selezionato.
+   Veniva generato un errore se, con ricerca AND abilitata, si seleziona la cbxSearchManufacturer senza selezionare il il cbxSearchCategory.
+#######################################
+Elementi modificati:
+M) GeneralAuxFunctions.vb
+M) frmMain.vb
+
+#######################################
 Xplorer 1.1.6.9
-Data Pubblicazione: XX/YY/ZZZZ
+Data Pubblicazione: 11/10/2018
 #######################################
 Compilato per Framework 4.0
 #######################################

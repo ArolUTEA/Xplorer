@@ -90,6 +90,7 @@ Module GeneralAuxFunctions
         End Try
     End Function
     Public Function fManagementOfDgvClickOrKeyMove(xExtendedEnabled As Boolean) As Boolean
+        fClearDetailsPanel()
         Dim tempBool As Boolean
         Select Case frmMain.CompEleControl.SelectedIndex
             Case 0

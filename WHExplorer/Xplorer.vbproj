@@ -167,6 +167,12 @@
     <Compile Include="frmModDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmNewDocument.Designer.vb">
+      <DependentUpon>frmNewDocument.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewDocument.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSpecialUser.Designer.vb">
       <DependentUpon>frmSpecialUser.vb</DependentUpon>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModDetails.resx">
       <DependentUpon>frmModDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewDocument.resx">
+      <DependentUpon>frmNewDocument.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSpecialUser.resx">
       <DependentUpon>frmSpecialUser.vb</DependentUpon>

@@ -118,6 +118,7 @@ Partial Class frmMain
         Me.ChangePasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewManufacturerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -1092,7 +1093,7 @@ Partial Class frmMain
         '
         'DatabaseToolStripMenuItem
         '
-        Me.DatabaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewManufacturerToolStripMenuItem})
+        Me.DatabaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewManufacturerToolStripMenuItem, Me.NewDocumentToolStripMenuItem})
         Me.DatabaseToolStripMenuItem.Name = "DatabaseToolStripMenuItem"
         Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
         Me.DatabaseToolStripMenuItem.Text = "Database"
@@ -1102,6 +1103,12 @@ Partial Class frmMain
         Me.NewManufacturerToolStripMenuItem.Name = "NewManufacturerToolStripMenuItem"
         Me.NewManufacturerToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.NewManufacturerToolStripMenuItem.Text = "New Manufacturer..."
+        '
+        'NewDocumentToolStripMenuItem
+        '
+        Me.NewDocumentToolStripMenuItem.Name = "NewDocumentToolStripMenuItem"
+        Me.NewDocumentToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.NewDocumentToolStripMenuItem.Text = "New Document..."
         '
         'HelpToolStripMenuItem
         '
@@ -1275,4 +1282,5 @@ Partial Class frmMain
     Friend WithEvents Label8 As Label
     Friend WithEvents lblEditSelected As Label
     Friend WithEvents btnEditSelected As Button
+    Friend WithEvents NewDocumentToolStripMenuItem As ToolStripMenuItem
 End Class

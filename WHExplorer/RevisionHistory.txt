@@ -1,4 +1,32 @@
 ﻿#######################################
+Xplorer X.X.X.XY
+Data Pubblicazione: XX/YY/ZZZZ
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) sul database, aggiunte le tabelle "documentazione", "linkToDoc", "tipologiaDocumentazione"
+2) nel menù "Database", aggiunta la voce "New Document..."
+3) aggiunto il form frmNewDocument
+
+#######################################
+Elementi modificati:
+M) MagazzinoEle.db
+M) frmMain.vb
++) frmNewDocument
+
+
+
+
+
+
+#######################################
 Xplorer 1.1.6.10
 Data Pubblicazione: 24/10/2018
 #######################################

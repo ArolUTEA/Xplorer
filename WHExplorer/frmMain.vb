@@ -648,4 +648,88 @@ Public Class frmMain
         fPopulateArticlesModification(tempData)
         frmArticlesModification.Show()
     End Sub
+
+    Private Sub NewDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDocumentToolStripMenuItem.Click
+        'Controllo se hai i diritti di scrittura
+        If bUserWritePerm Then
+            frmNewDocument.Show()
+        Else
+            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+        End If
+    End Sub
+
+
+
+
+
+
+
+    '    Private Sub NewDocumentTypeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDocumentTypeToolStripMenuItem.Click
+    '        If bUserWritePerm Then
+    '            Dim strNewDocType As String
+    '            strNewDocType = InputBox("INSERIRE LA NUOVA CATEGORIA", "NUOVO COSTRUTTORE")
+    '            If strNewDocType <> "" Then
+    '                'Backup the Warehouse database
+    '                Dim strConfigDBBackupPath As String = xmlReader.fReadSingleNode("dbBackupPath")
+    '                Dim strDBOriginalPath As String = RegularExpressions.Regex.Replace(xmlReader.fReadSingleNode("dbPath"), """", "")
+    '                Dim strTempDateTime As String
+    '                With DateTime.Now
+    '                    strTempDateTime = (.Year & .Month & .Day & .Hour & .Minute & .Second)
+    '                End With
+    '                Try
+    '                    Dim strDBBackupPath As String = RegularExpressions.Regex.Replace(String.Concat(strConfigDBBackupPath, ".", strTempDateTime, ".db"), """", "")
+    '                    fCopyFromDirToDir(strDBOriginalPath, strDBBackupPath, False)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NEL BACKUP DEL DATABASE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+
+
+    '            End If
+
+    '            strNewManufacturer = InputBox("INSERIRE IL NOME DEL COSTRUTTORE", "NUOVO COSTRUTTORE")
+    '            If strNewManufacturer <> "" Then
+    '                'Check if Len is correct
+    '                If Len(strNewManufacturer) > 12 Then
+    '                    MsgBox("NOME COSTRUTTORE TROPPO LUNGO (MAX. 12 CARATTERI)", MsgBoxStyle.Critical)
+    '                    Exit Sub
+    '                End If
+    '                'Backup the Rules database
+    '                With DateTime.Now
+    '                    strTempDateTime = (.Year & .Month & .Day & .Hour & .Minute & .Second)
+    '                End With
+    '                Try
+    '                    Dim strDBBackupPath As String = RegularExpressions.Regex.Replace(String.Concat(strConfigDBBackupPath, ".", strTempDateTime, ".db"), """", "")
+    '                    fCopyFromDirToDir(strDBPath, strDBBackupPath, False)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NEL BACKUP DEL DATABASE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '                'Connect to database and check connection status
+    '                Try
+    '                    dbCodingRules.fConnection("Data Source =" & strDBPath & ";Version = 3")
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NELLA CONNESSIONE AL DATABASE DELLE REGOLE DI CODIFICA", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '                'Add the new element to the database
+    '                Try
+    '                    Dim strGenericQuery As String = "INSERT INTO tbSupplier (SUPPLIER) VALUES ('" & strNewManufacturer & "')"
+    '                    dbCodingRules.fExecuteGenericInsert(dbCodingRules.SQLConn, strGenericQuery)
+    '                    MsgBox("INSERIMENTO COMPLETATO CON SUCCESSO!!", MsgBoxStyle.Exclamation)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NELL'INSERIMENTO DEL NUOVO COSTRUTTORE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '            Else
+    '                Exit Sub
+    '            End If
+
+
+
+
+    '        Else
+    '            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+    '        End If
+    '    End Sub
 End Class

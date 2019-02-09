@@ -79,4 +79,76 @@ Public Class frmNewDocument
             Return True
         End If
     End Function
+    Public Function fInitFields() As Boolean
+        Dim iTipoID As Integer
+        Dim strTitoloDoc, strRevisione, strFilePath, strUrl As String
+        If dgvConnectTo.Rows.Count > 0 Then
+            If cbxSelectType.SelectedItem IsNot Nothing Then
+                Dim tempDataTable As DataTable
+                tempDataTable = frmMain.dbWarehouse.fFindInColumn(cbxSelectType.SelectedItem, "Descrizione", "tipologiaDocumentazione", frmMain.dbWarehouse.SQLConn)
+                If tempDataTable.Rows.Count > 0 Then
+                    iTipoID = tempDataTable.Rows(0)(0).ToString
+                    If txtDocTitle.Text <> "" Then
+                        strTitoloDoc = txtDocTitle.Text
+                        If txtRevision.Text <> "" Then
+                            strRevisione = txtRevision.Text
+                            If txtFilePath.Text <> "" Then
+                                strFilePath = txtFilePath.Text
+                                'If txtUrl.Text <> "" Then
+                                strUrl = txtUrl.Text
+                                fPopulateDocumentTable(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl)
+                                'End If
+                            Else
+                                MsgBox("Selezionare un file", MsgBoxStyle.OkOnly)
+                                Return False
+                            End If
+                        Else
+                            MsgBox("Inserire un indice di revisione", MsgBoxStyle.OkOnly)
+                            Return False
+                        End If
+                    Else
+                        MsgBox("Inserire un titolo al documento", MsgBoxStyle.OkOnly)
+                        Return False
+                    End If
+                Else
+                    MsgBox("La memoria non poteva essere read", MsgBoxStyle.Critical)
+                    Return False
+                End If
+            Else
+                MsgBox("Necessario selezionare una tipologia", MsgBoxStyle.OkOnly)
+            End If
+            Return True
+        Else
+            MsgBox("Necessario collegare il documento ad un codice Arol", MsgBoxStyle.OkOnly)
+            Return False
+        End If
+    End Function
+    Public Function fPopulateDocumentTable(iTipoID As Integer, strTitolo As String, strVersione As String, strFilePath As String, strUrlPath As String) As Boolean
+        Dim tempBool As Boolean
+        Dim tempDataTable As DataTable
+        Dim i As Integer
+        Dim strLinkToDocID As String
+        'Popolo da tabella documentazione
+        tempBool = frmMain.dbWarehouse.fInsertNewDocument(frmMain.dbWarehouse.SQLConn, "documentazione", iTipoID, strTitolo, strVersione, strFilePath, strUrlPath)
+        If tempBool Then
+            'Recupero il ID dell'ultimo elemento inserito
+            tempDataTable = frmMain.dbWarehouse.fExecuteGenericQuery(frmMain.dbWarehouse.SQLConn, "SELECT last_insert_rowid()")
+            If tempDataTable.Rows.Count > 0 Then
+                strLinkToDocID = tempDataTable.Rows(0)(0).ToString
+                i = 0
+                'Popolo la tabella linkToDoc
+                For i = 0 To dgvConnectTo.Rows.Count - 2
+                    frmMain.dbWarehouse.fInsertNewLinkToDoc(frmMain.dbWarehouse.SQLConn, "linkToDoc", dgvConnectTo.Item(0, i).Value.ToString, strLinkToDocID)
+                Next
+            Else
+                Return False
+            End If
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        fInitFields()
+    End Sub
 End Class

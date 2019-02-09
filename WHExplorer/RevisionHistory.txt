@@ -14,6 +14,10 @@ Modifiche effettuate:
 1) sul database, aggiunte le tabelle "documentazione", "linkToDoc", "tipologiaDocumentazione"
 2) nel menù "Database", aggiunta la voce "New Document..."
 3) aggiunto il form frmNewDocument
+4) aggiunta la funzione fInitFields nel frmNewDocument
+5) aggiunta la funzione fPopulateDocumentTable nel frmNewDocument
+6) aggiunta la funzione fInsertNewDocument nel DBManagement.vb
+7) aggiunta la funzione fInsertNewLinkToDoc nel DBManagement.vb
 
 #######################################
 Elementi modificati:

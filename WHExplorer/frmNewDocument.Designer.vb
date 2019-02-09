@@ -52,14 +52,14 @@ Partial Class frmNewDocument
         Me.lblSaveUndo = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.dgvConnectTo = New System.Windows.Forms.DataGridView()
-        Me.btnSub = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.lblLinkTo = New System.Windows.Forms.Label()
         Me.ArolCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CommercialCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Description = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Constructor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnSub = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.lblLinkTo = New System.Windows.Forms.Label()
         Me.pnlSelectType.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -363,6 +363,34 @@ Partial Class frmNewDocument
         Me.dgvConnectTo.Size = New System.Drawing.Size(752, 167)
         Me.dgvConnectTo.TabIndex = 30
         '
+        'ArolCode
+        '
+        Me.ArolCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.ArolCode.HeaderText = "Arol Code"
+        Me.ArolCode.Name = "ArolCode"
+        Me.ArolCode.Width = 72
+        '
+        'CommercialCode
+        '
+        Me.CommercialCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CommercialCode.HeaderText = "Commercial Code"
+        Me.CommercialCode.Name = "CommercialCode"
+        Me.CommercialCode.ReadOnly = True
+        '
+        'Description
+        '
+        Me.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Description.HeaderText = "Description"
+        Me.Description.Name = "Description"
+        Me.Description.ReadOnly = True
+        '
+        'Constructor
+        '
+        Me.Constructor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Constructor.HeaderText = "Constructor"
+        Me.Constructor.Name = "Constructor"
+        Me.Constructor.ReadOnly = True
+        '
         'btnSub
         '
         Me.btnSub.BackgroundImage = CType(resources.GetObject("btnSub.BackgroundImage"), System.Drawing.Image)
@@ -403,34 +431,6 @@ Partial Class frmNewDocument
         Me.lblLinkTo.Size = New System.Drawing.Size(75, 16)
         Me.lblLinkTo.TabIndex = 0
         Me.lblLinkTo.Text = "Collega a"
-        '
-        'ArolCode
-        '
-        Me.ArolCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.ArolCode.HeaderText = "Arol Code"
-        Me.ArolCode.Name = "ArolCode"
-        Me.ArolCode.Width = 78
-        '
-        'CommercialCode
-        '
-        Me.CommercialCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.CommercialCode.HeaderText = "Commercial Code"
-        Me.CommercialCode.Name = "CommercialCode"
-        Me.CommercialCode.ReadOnly = True
-        '
-        'Description
-        '
-        Me.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Description.HeaderText = "Description"
-        Me.Description.Name = "Description"
-        Me.Description.ReadOnly = True
-        '
-        'Constructor
-        '
-        Me.Constructor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Constructor.HeaderText = "Constructor"
-        Me.Constructor.Name = "Constructor"
-        Me.Constructor.ReadOnly = True
         '
         'frmNewDocument
         '

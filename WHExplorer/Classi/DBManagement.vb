@@ -410,4 +410,45 @@ Public Class DBManagement
             Return False
         End Try
     End Function
+    Public Function fInsertNewDocument(dbDestination As SQLiteConnection, strTableName As String, iTipo As Integer, strTitolo As String, strVersione As String, strFilePath As String, strFileUrl As String) As Boolean
+        Try
+            If dbDestination.State = ConnectionState.Open Then
+                Dim cmd = "INSERT INTO " & strTableName & "(Tipo,Titolo,Versione,File,Link) VALUES (@Tipo,@Titolo,@Versione,@File,@Link)"
+                Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDestination)
+                sqlCmd.Parameters.AddWithValue("@Tipo", iTipo)
+                sqlCmd.Parameters.AddWithValue("@Titolo", strTitolo)
+                sqlCmd.Parameters.AddWithValue("@Versione", strVersione)
+                sqlCmd.Parameters.AddWithValue("@File", strFilePath)
+                sqlCmd.Parameters.AddWithValue("@Link", strFileUrl)
+                sqlCmd.ExecuteNonQuery()
+                sqlCmd.Dispose()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NEL AGGIORNAMENTO DELLA TABELLA DOCUMENTAZIONE", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fInsertNewLinkToDoc(dbDestination As SQLiteConnection, strTableName As String, strArolCode As String, strLinkToDocID As String) As Boolean
+        Try
+            If dbDestination.State = ConnectionState.Open Then
+                Dim cmd = "INSERT INTO " & strTableName & "(ArolCode, LinkDoc) VALUES (@ArolCode, @LinkDocId)"
+                Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDestination)
+                sqlCmd.Parameters.AddWithValue("@ArolCode", strArolCode)
+                sqlCmd.Parameters.AddWithValue("@LinkDocId", strLinkToDocID)
+                sqlCmd.ExecuteNonQuery()
+                sqlCmd.Dispose()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NEL AGGIORNAMENTO DELLA TABELLA LINKTODOC", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
 End Class

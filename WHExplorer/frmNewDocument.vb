@@ -146,6 +146,7 @@ Public Class frmNewDocument
         Else
             Return False
         End If
+        Return True
     End Function
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click

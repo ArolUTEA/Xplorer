@@ -136,11 +136,12 @@ Public Class frmMain
     Private Sub dgvCSDBViewer_KeyUp(sender As Object, e As KeyEventArgs) Handles dgvCSDBViewer.KeyUp
         fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
-
     Public Sub sCheckIfThereAreFiles()
         Try
-            Dim rowIndex As Integer
+            Dim rowIndex, i, j, k As Integer
             Dim ArolCode As String
+            Dim tempLinkToDoc, tempDocumentation, tempDocType As DataTable
+            'Recupero l'informazione del rowIndex del datagridView e l'informazione del ArolCode
             Select Case CompEleControl.SelectedIndex
                 Case 0
                     'CODIFICATI
@@ -153,12 +154,71 @@ Public Class frmMain
                 Case Else
                     Exit Sub
             End Select
-            'Dim rowIndex As Integer = dgvCEDBViewer.CurrentCell.RowIndex
-            'Dim ArolCode As String = dgvCEDBViewer.Rows(rowIndex).Cells(1).Value
-            btnOpenFile.Visible = dbWarehouse.fLookIfHaveDataSheet(ArolCode, dbWarehouse.SQLConn, "codificatiDS", "Name")
-            lblOpenDocs.Visible = btnOpenFile.Visible
+            'Controllo se ci sono dei documenti
+            tempLinkToDoc = dbWarehouse.fLookIfThereAreDocuments(ArolCode, dbWarehouse.SQLConn, "linkToDoc", "ArolCode")
+            'If tempLinkToDoc.Rows.Count > 0 Then
+            If tempLinkToDoc IsNot Nothing Then
+                'pnlDocumentazione.Visible = True
+                For i = 0 To tempLinkToDoc.Rows.Count - 1
+                    'Recupero le informazioni sui documenti presenti
+                    tempDocumentation = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "documentazione", "ID", "ID", tempLinkToDoc.Rows(i)(2).ToString)
+                    If tempDocumentation.Rows.Count > 0 Then
+                        'Aggiorno la grafica
+                        'For Each value In tempDocumentation.Rows
+                        For j = 0 To tempDocumentation.Rows.Count - 1
+                            tempDocType = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "tipologiaDocumentazione", "ID", "ID", tempDocumentation.Rows(j)(1).ToString)
+                            If tempDocType.Rows.Count > 0 Then
+                                'For Each result In tempDocType.Rows
+                                For k = 0 To tempDocType.Rows.Count - 1
+                                    Select Case tempDocType.Rows(k)(1).ToString
+                                        Case "1"
+                                            btnDatasheet.Enabled = True
+                                            lblDatasheet.Enabled = True
+                                        Case "2"
+                                            btnUserManual.Enabled = True
+                                            lblUserManual.Enabled = True
+                                        Case "3"
+                                            btnElectricalDrawing.Enabled = True
+                                            lblElectricalDrawing.Enabled = True
+                                        Case "4"
+                                            btnApplicationNote.Enabled = True
+                                            lblApplicationNote.Enabled = True
+                                        Case "5"
+                                            btnOffertaEconomica.Enabled = True
+                                            lblOffertaEconomica.Enabled = True
+                                    End Select
+                                Next
+                            Else
+                                btnDatasheet.Enabled = False
+                                lblDatasheet.Enabled = False
+                                btnUserManual.Enabled = False
+                                lblUserManual.Enabled = False
+                                btnElectricalDrawing.Enabled = False
+                                lblElectricalDrawing.Enabled = False
+                                btnApplicationNote.Enabled = False
+                                lblApplicationNote.Enabled = False
+                                btnOffertaEconomica.Enabled = False
+                                lblOffertaEconomica.Enabled = False
+                            End If
+                        Next
+                    End If
+
+                Next
+            Else
+                'pnlDocumentazione.Visible = False
+                btnDatasheet.Enabled = False
+                lblDatasheet.Enabled = False
+                btnUserManual.Enabled = False
+                lblUserManual.Enabled = False
+                btnElectricalDrawing.Enabled = False
+                lblElectricalDrawing.Enabled = False
+                btnApplicationNote.Enabled = False
+                lblApplicationNote.Enabled = False
+                btnOffertaEconomica.Enabled = False
+                lblOffertaEconomica.Enabled = False
+            End If
         Catch ex As Exception
-            MsgBox("ERRORE NELLA RICERCA DI DATASHEET", MsgBoxStyle.Critical)
+            MsgBox("ERRORE NELLA RICERCA DELLA DOCUMENTAZIONE", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
     End Sub
@@ -656,6 +716,21 @@ Public Class frmMain
         Else
             MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
+    End Sub
+    Private Sub btnDatasheet_Click(sender As Object, e As EventArgs) Handles btnDatasheet.Click
+        fOpenDocument(fReadDocuments(1))
+    End Sub
+    Private Sub btnUserManual_Click(sender As Object, e As EventArgs) Handles btnUserManual.Click
+        fOpenDocument(fReadDocuments(2))
+    End Sub
+    Private Sub btnElectricalDrawing_Click(sender As Object, e As EventArgs) Handles btnElectricalDrawing.Click
+        fOpenDocument(fReadDocuments(3))
+    End Sub
+    Private Sub btnApplicationNote_Click(sender As Object, e As EventArgs) Handles btnApplicationNote.Click
+        fOpenDocument(fReadDocuments(4))
+    End Sub
+    Private Sub btnOffertaEconomica_Click(sender As Object, e As EventArgs) Handles btnOffertaEconomica.Click
+        fOpenDocument(fReadDocuments(5))
     End Sub
 
 

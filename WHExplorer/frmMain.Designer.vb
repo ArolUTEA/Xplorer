@@ -32,6 +32,18 @@ Partial Class frmMain
         Me.ConsElePage = New System.Windows.Forms.TabPage()
         Me.dgvCSDBViewer = New System.Windows.Forms.DataGridView()
         Me.pnlExtendedData = New System.Windows.Forms.Panel()
+        Me.pnlDocumentazione = New System.Windows.Forms.Panel()
+        Me.lblOffertaEconomica = New System.Windows.Forms.Label()
+        Me.btnOffertaEconomica = New System.Windows.Forms.Button()
+        Me.lblApplicationNote = New System.Windows.Forms.Label()
+        Me.btnApplicationNote = New System.Windows.Forms.Button()
+        Me.lblElectricalDrawing = New System.Windows.Forms.Label()
+        Me.btnElectricalDrawing = New System.Windows.Forms.Button()
+        Me.lblUserManual = New System.Windows.Forms.Label()
+        Me.btnUserManual = New System.Windows.Forms.Button()
+        Me.lblDatasheet = New System.Windows.Forms.Label()
+        Me.btnDatasheet = New System.Windows.Forms.Button()
+        Me.lblDocTitle = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txtDataUltimaModifica = New System.Windows.Forms.TextBox()
         Me.txtModificatoDa = New System.Windows.Forms.TextBox()
@@ -129,6 +141,7 @@ Partial Class frmMain
         Me.ConsElePage.SuspendLayout()
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlExtendedData.SuspendLayout()
+        Me.pnlDocumentazione.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlNote.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -221,6 +234,7 @@ Partial Class frmMain
         '
         Me.pnlExtendedData.BackColor = System.Drawing.Color.Transparent
         Me.pnlExtendedData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlExtendedData.Controls.Add(Me.pnlDocumentazione)
         Me.pnlExtendedData.Controls.Add(Me.Panel1)
         Me.pnlExtendedData.Controls.Add(Me.pnlNote)
         Me.pnlExtendedData.Controls.Add(Me.Panel5)
@@ -230,6 +244,145 @@ Partial Class frmMain
         Me.pnlExtendedData.Name = "pnlExtendedData"
         Me.pnlExtendedData.Size = New System.Drawing.Size(452, 626)
         Me.pnlExtendedData.TabIndex = 6
+        '
+        'pnlDocumentazione
+        '
+        Me.pnlDocumentazione.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlDocumentazione.Controls.Add(Me.lblOffertaEconomica)
+        Me.pnlDocumentazione.Controls.Add(Me.btnOffertaEconomica)
+        Me.pnlDocumentazione.Controls.Add(Me.lblApplicationNote)
+        Me.pnlDocumentazione.Controls.Add(Me.btnApplicationNote)
+        Me.pnlDocumentazione.Controls.Add(Me.lblElectricalDrawing)
+        Me.pnlDocumentazione.Controls.Add(Me.btnElectricalDrawing)
+        Me.pnlDocumentazione.Controls.Add(Me.lblUserManual)
+        Me.pnlDocumentazione.Controls.Add(Me.btnUserManual)
+        Me.pnlDocumentazione.Controls.Add(Me.lblDatasheet)
+        Me.pnlDocumentazione.Controls.Add(Me.btnDatasheet)
+        Me.pnlDocumentazione.Controls.Add(Me.lblDocTitle)
+        Me.pnlDocumentazione.Location = New System.Drawing.Point(14, 121)
+        Me.pnlDocumentazione.Name = "pnlDocumentazione"
+        Me.pnlDocumentazione.Size = New System.Drawing.Size(119, 202)
+        Me.pnlDocumentazione.TabIndex = 5
+        '
+        'lblOffertaEconomica
+        '
+        Me.lblOffertaEconomica.AutoSize = True
+        Me.lblOffertaEconomica.Enabled = False
+        Me.lblOffertaEconomica.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOffertaEconomica.Location = New System.Drawing.Point(41, 166)
+        Me.lblOffertaEconomica.Name = "lblOffertaEconomica"
+        Me.lblOffertaEconomica.Size = New System.Drawing.Size(62, 15)
+        Me.lblOffertaEconomica.TabIndex = 13
+        Me.lblOffertaEconomica.Text = "Offerta €"
+        '
+        'btnOffertaEconomica
+        '
+        Me.btnOffertaEconomica.BackgroundImage = CType(resources.GetObject("btnOffertaEconomica.BackgroundImage"), System.Drawing.Image)
+        Me.btnOffertaEconomica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnOffertaEconomica.Enabled = False
+        Me.btnOffertaEconomica.Location = New System.Drawing.Point(4, 159)
+        Me.btnOffertaEconomica.Name = "btnOffertaEconomica"
+        Me.btnOffertaEconomica.Size = New System.Drawing.Size(30, 30)
+        Me.btnOffertaEconomica.TabIndex = 12
+        Me.btnOffertaEconomica.UseVisualStyleBackColor = True
+        '
+        'lblApplicationNote
+        '
+        Me.lblApplicationNote.AutoSize = True
+        Me.lblApplicationNote.Enabled = False
+        Me.lblApplicationNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblApplicationNote.Location = New System.Drawing.Point(40, 132)
+        Me.lblApplicationNote.Name = "lblApplicationNote"
+        Me.lblApplicationNote.Size = New System.Drawing.Size(67, 15)
+        Me.lblApplicationNote.TabIndex = 11
+        Me.lblApplicationNote.Text = "App. note"
+        '
+        'btnApplicationNote
+        '
+        Me.btnApplicationNote.BackgroundImage = CType(resources.GetObject("btnApplicationNote.BackgroundImage"), System.Drawing.Image)
+        Me.btnApplicationNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnApplicationNote.Enabled = False
+        Me.btnApplicationNote.Location = New System.Drawing.Point(3, 125)
+        Me.btnApplicationNote.Name = "btnApplicationNote"
+        Me.btnApplicationNote.Size = New System.Drawing.Size(30, 30)
+        Me.btnApplicationNote.TabIndex = 10
+        Me.btnApplicationNote.UseVisualStyleBackColor = True
+        '
+        'lblElectricalDrawing
+        '
+        Me.lblElectricalDrawing.AutoSize = True
+        Me.lblElectricalDrawing.Enabled = False
+        Me.lblElectricalDrawing.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblElectricalDrawing.Location = New System.Drawing.Point(40, 98)
+        Me.lblElectricalDrawing.Name = "lblElectricalDrawing"
+        Me.lblElectricalDrawing.Size = New System.Drawing.Size(59, 15)
+        Me.lblElectricalDrawing.TabIndex = 9
+        Me.lblElectricalDrawing.Text = "Schema"
+        '
+        'btnElectricalDrawing
+        '
+        Me.btnElectricalDrawing.BackgroundImage = CType(resources.GetObject("btnElectricalDrawing.BackgroundImage"), System.Drawing.Image)
+        Me.btnElectricalDrawing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnElectricalDrawing.Enabled = False
+        Me.btnElectricalDrawing.Location = New System.Drawing.Point(3, 91)
+        Me.btnElectricalDrawing.Name = "btnElectricalDrawing"
+        Me.btnElectricalDrawing.Size = New System.Drawing.Size(30, 30)
+        Me.btnElectricalDrawing.TabIndex = 8
+        Me.btnElectricalDrawing.UseVisualStyleBackColor = True
+        '
+        'lblUserManual
+        '
+        Me.lblUserManual.AutoSize = True
+        Me.lblUserManual.Enabled = False
+        Me.lblUserManual.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUserManual.Location = New System.Drawing.Point(40, 65)
+        Me.lblUserManual.Name = "lblUserManual"
+        Me.lblUserManual.Size = New System.Drawing.Size(63, 15)
+        Me.lblUserManual.TabIndex = 7
+        Me.lblUserManual.Text = "Manuale"
+        '
+        'btnUserManual
+        '
+        Me.btnUserManual.BackgroundImage = CType(resources.GetObject("btnUserManual.BackgroundImage"), System.Drawing.Image)
+        Me.btnUserManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnUserManual.Enabled = False
+        Me.btnUserManual.Location = New System.Drawing.Point(3, 58)
+        Me.btnUserManual.Name = "btnUserManual"
+        Me.btnUserManual.Size = New System.Drawing.Size(30, 30)
+        Me.btnUserManual.TabIndex = 6
+        Me.btnUserManual.UseVisualStyleBackColor = True
+        '
+        'lblDatasheet
+        '
+        Me.lblDatasheet.AutoSize = True
+        Me.lblDatasheet.Enabled = False
+        Me.lblDatasheet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDatasheet.Location = New System.Drawing.Point(40, 32)
+        Me.lblDatasheet.Name = "lblDatasheet"
+        Me.lblDatasheet.Size = New System.Drawing.Size(72, 15)
+        Me.lblDatasheet.TabIndex = 5
+        Me.lblDatasheet.Text = "Datasheet"
+        '
+        'btnDatasheet
+        '
+        Me.btnDatasheet.BackgroundImage = CType(resources.GetObject("btnDatasheet.BackgroundImage"), System.Drawing.Image)
+        Me.btnDatasheet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnDatasheet.Enabled = False
+        Me.btnDatasheet.Location = New System.Drawing.Point(3, 25)
+        Me.btnDatasheet.Name = "btnDatasheet"
+        Me.btnDatasheet.Size = New System.Drawing.Size(30, 30)
+        Me.btnDatasheet.TabIndex = 4
+        Me.btnDatasheet.UseVisualStyleBackColor = True
+        '
+        'lblDocTitle
+        '
+        Me.lblDocTitle.AutoSize = True
+        Me.lblDocTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDocTitle.Location = New System.Drawing.Point(1, 3)
+        Me.lblDocTitle.Name = "lblDocTitle"
+        Me.lblDocTitle.Size = New System.Drawing.Size(115, 15)
+        Me.lblDocTitle.TabIndex = 3
+        Me.lblDocTitle.Text = "Documentazione"
         '
         'Panel1
         '
@@ -1154,6 +1307,8 @@ Partial Class frmMain
         Me.ConsElePage.ResumeLayout(False)
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlExtendedData.ResumeLayout(False)
+        Me.pnlDocumentazione.ResumeLayout(False)
+        Me.pnlDocumentazione.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.pnlNote.ResumeLayout(False)
@@ -1283,4 +1438,16 @@ Partial Class frmMain
     Friend WithEvents lblEditSelected As Label
     Friend WithEvents btnEditSelected As Button
     Friend WithEvents NewDocumentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents pnlDocumentazione As Panel
+    Friend WithEvents lblDatasheet As Label
+    Friend WithEvents btnDatasheet As Button
+    Friend WithEvents lblDocTitle As Label
+    Friend WithEvents lblUserManual As Label
+    Friend WithEvents btnUserManual As Button
+    Friend WithEvents lblApplicationNote As Label
+    Friend WithEvents btnApplicationNote As Button
+    Friend WithEvents lblElectricalDrawing As Label
+    Friend WithEvents btnElectricalDrawing As Button
+    Friend WithEvents lblOffertaEconomica As Label
+    Friend WithEvents btnOffertaEconomica As Button
 End Class

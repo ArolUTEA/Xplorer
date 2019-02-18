@@ -157,6 +157,29 @@ Public Class DBManagement
             Return False
         End If
     End Function
+    Public Function fLookIfThereAreDocuments(strElement As String, dbSource As SQLiteConnection, strTableName As String, strColumn As String) As DataTable
+        If dbSource.State = ConnectionState.Open Then
+            Dim cmd = "SELECT * FROM " & strTableName & " WHERE ArolCode = '" & strElement & "'"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbSource)
+            Dim da As New SQLiteDataAdapter
+            da.SelectCommand = sqlCmd
+            Dim dt As New DataTable
+            da.Fill(dt)
+            sqlCmd.ExecuteReader()
+            If dt.Rows.Count > 0 Then
+                sqlCmd.Dispose()
+                da.Dispose()
+                Return dt
+            Else
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return Nothing
+            End If
+        Else
+            Return Nothing
+        End If
+    End Function
     Public Function fCheckIfAlreadyExist(strElement As String, dbSource As SQLiteConnection, strTableName As String, strColumn As String) As Boolean
         If dbSource.State = ConnectionState.Open Then
             Dim cmd = "SELECT * FROM " & strTableName & " WHERE " & strColumn & " = '" & strElement & "'"

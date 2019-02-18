@@ -18,12 +18,22 @@ Modifiche effettuate:
 5) aggiunta la funzione fPopulateDocumentTable nel frmNewDocument
 6) aggiunta la funzione fInsertNewDocument nel DBManagement.vb
 7) aggiunta la funzione fInsertNewLinkToDoc nel DBManagement.vb
+8) aggiunta la funzione fRetrieveSelectedElementInfo nel GeneralAuxFunctions.vb
+9) aggiunta la funzione fGetDataFromDB nel GeneralAuxFunction.vb
+10) modificata la funzione fManagementOfDgvClickOrKeyMove nel GeneralAuxFunction.vb
+11) aggiunta la funzione fLookIfThereAreDocuments nel DBManagement.vb
+12) aggiunto il pannello documentazione nel pannello "dati estesi"
+13) modificata la subroutine sCheckIfThereAreFiles()
+14) aggiunta la funzione fReadDocuments
+15) aggiunta la funzione fOpenDcoument
 
 #######################################
 Elementi modificati:
 M) MagazzinoEle.db
 M) frmMain.vb
 +) frmNewDocument
+M) GeneralAuxFunctions.vb
+M) DBManagement.vb
 
 
 

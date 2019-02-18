@@ -90,62 +90,49 @@ Module GeneralAuxFunctions
         End Try
     End Function
     Public Function fManagementOfDgvClickOrKeyMove(xExtendedEnabled As Boolean) As Boolean
-        fClearDetailsPanel()
-        Dim tempBool As Boolean
-        Select Case frmMain.CompEleControl.SelectedIndex
-            Case 0
-                'CODIFICATI
-                tempBool = IsDBNull(frmMain.dgvCEDBViewer.CurrentCell.Value)
-            Case 1
-                'CONSUMABILI
-                tempBool = IsDBNull(frmMain.dgvCSDBViewer.CurrentCell.Value)
-            Case Else
-                Return False
-        End Select
-        Dim iModifiedRowIndex, iModifiedID As Integer
-        Dim strTableName As String
-        If Not tempBool Then
-            frmMain.sCheckIfThereAreFiles()
-            If xExtendedEnabled Then
-                Try
-                    Select Case frmMain.CompEleControl.SelectedIndex
-                        Case 0
-                            'Recupero l'indice della cella selezionata
-                            iModifiedRowIndex = frmMain.dgvCEDBViewer.CurrentCell.RowIndex
-                            'Recupero l'ID dell'elemento che si vuole editare
-                            iModifiedID = frmMain.dgvCEDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
-                            strTableName = "codificati"
-                        Case 1
-                            'Recupero l'indice della cella selezionata
-                            iModifiedRowIndex = frmMain.dgvCSDBViewer.CurrentCell.RowIndex
-                            'Recupero l'ID dell'elemento che si vuole editare
-                            iModifiedID = frmMain.dgvCSDBViewer.Rows(iModifiedRowIndex).Cells(0).Value
-                            strTableName = "consumabili"
-                        Case Else
-                            Return False
-                            Exit Function
-                    End Select
-
-                    'Recupero i dati dal database
-                    Dim tempBasicData, tempExtendedData As DataTable
-                    tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
-                    tempExtendedData = fRetrieveExtendedData(iModifiedID, strTableName)
-                    If tempExtendedData.Rows.Count > 0 Then
-                        fPopulateArticlesDetails(tempBasicData, tempExtendedData)
-                    Else
-                        MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
+        Try
+            'Controllo se il pannello dati estesi è abilitato
+            If Not xExtendedEnabled Then
+                fEnableDisableDetails()
+            End If
+            'Pulisco il pannello dei dati estesi
+            fClearDetailsPanel()
+            'Controllo che la selezione non sia nulla
+            Dim tempBool As Boolean
+            Select Case frmMain.CompEleControl.SelectedIndex
+                Case 0
+                    'Tabella dei codificati
+                    tempBool = IsDBNull(frmMain.dgvCEDBViewer.CurrentCell.Value)
+                Case 1
+                    'Tabella dei consumabili
+                    tempBool = IsDBNull(frmMain.dgvCSDBViewer.CurrentCell.Value)
+                Case Else
+                    Return False
+            End Select
+            If Not tempBool Then
+                Dim dgvCurrent As DataGridView
+                Dim strCurrentTable As String
+                Select Case frmMain.CompEleControl.SelectedIndex
+                    Case 0
+                        dgvCurrent = frmMain.dgvCEDBViewer
+                        strCurrentTable = "codificati"
+                    Case 1
+                        dgvCurrent = frmMain.dgvCSDBViewer
+                        strCurrentTable = "consumabili"
+                    Case Else
+                        dgvCurrent = Nothing
+                        strCurrentTable = ""
                         Return False
-                        Exit Function
-                    End If
-                    'frmArticlesDetails.Show()
-                Catch ex As Exception
-                    MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
-                    fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
-                End Try
+                End Select
+                fGetDataFromDB(fRetrieveSelectedElementInfo(dgvCurrent), strCurrentTable)
+                frmMain.sCheckIfThereAreFiles()
             End If
             Return True
-        End If
-        Return True
+        Catch ex As Exception
+            MsgBox("LA MEMORIA NON POTEVA ESSERE READ", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
     End Function
 
     Public Function fRetrieveExtendedData(iModifiedID As Integer, strTableName As String) As DataTable
@@ -189,6 +176,66 @@ Module GeneralAuxFunctions
         frmMain.txtNote.Clear()
         frmMain.txtDataUltimaModifica.Clear()
         frmMain.txtModificatoDa.Clear()
+        Return True
+    End Function
+    Public Function fRetrieveSelectedElementInfo(dgvSelected As DataGridView) As Integer
+        Return dgvSelected.Rows(dgvSelected.CurrentCell.RowIndex).Cells(0).Value
+    End Function
+    Public Function fGetDataFromDB(iElementID As Integer, strTableName As String) As Boolean
+        'Recupero i dati dal database
+        Dim tempBasicData, tempExtendedData As DataTable
+        tempBasicData = fRetrieveSelectedData(iElementID, strTableName)
+        tempExtendedData = fRetrieveExtendedData(iElementID, strTableName)
+        If tempExtendedData.Rows.Count > 0 Then
+            fPopulateArticlesDetails(tempBasicData, tempExtendedData)
+            Return True
+        Else
+            MsgBox("DATI NON DISPONIBILI", MsgBoxStyle.Critical)
+            Return False
+        End If
+    End Function
+    Public Function fReadDocuments(iDocType As Integer) As String
+        Dim rowIndex As Integer
+        Dim ArolCode As String
+        Dim tempLinkToDoc, tempDocumentation As DataTable
+        'Recupero l'informazione del rowIndex del datagridView e l'informazione del ArolCode
+        Select Case frmMain.CompEleControl.SelectedIndex
+            Case 0
+                'CODIFICATI
+                rowIndex = frmMain.dgvCEDBViewer.CurrentCell.RowIndex
+                ArolCode = frmMain.dgvCEDBViewer.Rows(rowIndex).Cells(1).Value
+            Case 1
+                'CONSUMABILI
+                rowIndex = frmMain.dgvCSDBViewer.CurrentCell.RowIndex
+                ArolCode = frmMain.dgvCSDBViewer.Rows(rowIndex).Cells(1).Value
+            Case Else
+                Return Nothing
+        End Select
+        'Controllo se ci sono dei documenti
+        tempLinkToDoc = frmMain.dbWarehouse.fLookIfThereAreDocuments(ArolCode, frmMain.dbWarehouse.SQLConn, "linkToDoc", "ArolCode")
+        If tempLinkToDoc IsNot Nothing Then
+            For i = 0 To tempLinkToDoc.Rows.Count - 1
+                'Recupero le informazioni sui documenti presenti
+                tempDocumentation = frmMain.dbWarehouse.fSelectElementFromColumn(frmMain.dbWarehouse.SQLConn, "documentazione", "ID", "ID", tempLinkToDoc.Rows(i)(2).ToString)
+                If tempDocumentation.Rows.Count > 0 Then
+                    For j = 0 To tempDocumentation.Rows.Count - 1
+                        If tempDocumentation.Rows(j)(1) = iDocType Then
+                            Return tempDocumentation.Rows(j)(4).ToString
+                        Else
+                            'Return Nothing
+                        End If
+                    Next
+                Else
+                    Return Nothing
+                End If
+            Next
+        Else
+            Return Nothing
+        End If
+        Return Nothing
+    End Function
+    Public Function fOpenDocument(strLink As String) As Boolean
+        Process.Start(Convert.ToString(strLink))
         Return True
     End Function
 End Module

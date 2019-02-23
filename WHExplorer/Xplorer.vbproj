@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="Functions\DataGridViewFunctions.vb" />
     <Compile Include="Functions\DescriptionConstructor.vb" />
+    <Compile Include="Functions\DocumentManagementFunctions.vb" />
     <Compile Include="Functions\EditExistFunctions.vb" />
     <Compile Include="Functions\FileSystemFunct.vb" />
     <Compile Include="Functions\GeneralAuxFunctions.vb" />

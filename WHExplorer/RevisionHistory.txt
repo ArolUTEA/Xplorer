@@ -26,6 +26,8 @@ Modifiche effettuate:
 13) modificata la subroutine sCheckIfThereAreFiles()
 14) aggiunta la funzione fReadDocuments
 15) aggiunta la funzione fOpenDcoument
+16) aggiunta la funzione fEnableSaveButton()
+17) aggiunto il file DocumentManagementFunctions.vb che racchiude tutte le funzioni necessarie alla gestione della documentazione
 
 #######################################
 Elementi modificati:
@@ -34,6 +36,7 @@ M) frmMain.vb
 +) frmNewDocument
 M) GeneralAuxFunctions.vb
 M) DBManagement.vb
++) DocumentManagementFunctions.vb
 
 
 

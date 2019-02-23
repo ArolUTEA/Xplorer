@@ -474,4 +474,19 @@ Public Class DBManagement
             Return False
         End Try
     End Function
+    Public Function fUpdateLinkToDoc(dbDestination As SQLiteConnection, strTableName As String, strArolCode As String, strNewLinkDoc As String, strOldLinkDoc As String) As Boolean
+        Try
+            Dim strTempQuery As String = "UPDATE linkToDoc SET ArolCode=@ArolCode, LinkDoc=@LinkDoc WHERE ArolCode = '" & strArolCode & "' AND LinkDoc = '" & strOldLinkDoc & "'"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbWarehouse.SQLConn)
+            sqlCmd.Parameters.AddWithValue("@ArolCode", strArolCode)
+            sqlCmd.Parameters.AddWithValue("@LinkDoc", strNewLinkDoc)
+            sqlCmd.ExecuteNonQuery()
+            sqlCmd.Dispose()
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA MODIFICA DELLA TABELLA LINKTODOC", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
 End Class

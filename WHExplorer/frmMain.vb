@@ -21,6 +21,7 @@ Public Class frmMain
     Public iCodiModRowIndex As Integer
     Public aiConsModRow(99) As Integer
     Public iConsModRowIndex As Integer
+    Public strDocArchivePath(5) As String
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Check if log file already exist
         fCheckIfLogFileExist(strLogFilePath)
@@ -86,6 +87,18 @@ Public Class frmMain
             MsgBox("ERRORE NELLA COPIA DEI NUOVI DATASHEETS", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
+        'Leggo i path di archiviazione dei documenti
+        Try
+            strDocArchivePath(0) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsDatasheet"), """", "")
+            strDocArchivePath(1) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsUserManual"), """", "")
+            strDocArchivePath(2) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsElectricalDrawing"), """", "")
+            strDocArchivePath(3) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsApplicationNote"), """", "")
+            strDocArchivePath(4) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsEconomicBid"), """", "")
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA LETTURA DEI PATH DI ARCHIVIAZIONE DEI DOCUMENTI", MsgBoxStyle.Critical)
+            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+        End Try
+
         fSelectAllAndOrder(dgvCEDBViewer, "codificati")
         'Enable Simple Search
         rbSimpleSearch.Checked = True
@@ -732,6 +745,8 @@ Public Class frmMain
     Private Sub btnOffertaEconomica_Click(sender As Object, e As EventArgs) Handles btnOffertaEconomica.Click
         fOpenDocument(fReadDocuments(5))
     End Sub
+
+
 
 
 

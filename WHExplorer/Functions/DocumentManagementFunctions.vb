@@ -1,4 +1,6 @@
-﻿Module DocumentManagementFunctions
+﻿Imports System.Text
+Imports System.IO
+Module DocumentManagementFunctions
     'Funzione per controllare che il codice arol selezionato sia univoco e popolare il datagrid view
     Public Function fCheckIfOnlyOneAndPopulateDgv(dataValue As DataTable) As Boolean
         If dataValue.Rows.Count > 1 Then
@@ -29,11 +31,8 @@
                             strRevisione = frmNewDocument.txtRevision.Text
                             If frmNewDocument.txtFilePath.Text <> "" Then
                                 strFilePath = frmNewDocument.txtFilePath.Text
-                                'If txtUrl.Text <> "" Then
                                 strUrl = frmNewDocument.txtUrl.Text
-                                'fPopulateDocumentTable(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl)
-                                fCheckIfDocTypeAlreadyExist(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl)
-                                'End If
+                                fInsertNewDocument(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl)
                             Else
                                 MsgBox("Selezionare un file", MsgBoxStyle.OkOnly)
                                 Return False
@@ -59,37 +58,21 @@
             Return False
         End If
     End Function
-    'Funzione per popolare la tabella documentazione
-    Public Function fPopulateDocumentTable(iTipoID As Integer, strTitolo As String, strVersione As String, strFilePath As String, strUrlPath As String, strArolCode As String) As Boolean
+    'Funzione per popolare la tabella documentazione NUOVA
+    Public Function fPopulateDocumentTable(iTipoID As Integer, strTitolo As String, strVersione As String, strFilePath As String, strUrlPath As String) As Boolean
         Dim tempBool As Boolean
-        Dim tempDataTable As DataTable
-        Dim i As Integer
-        Dim strLinkToDocID As String
-        'Popolo da tabella documentazione
         tempBool = frmMain.dbWarehouse.fInsertNewDocument(frmMain.dbWarehouse.SQLConn, "documentazione", iTipoID, strTitolo, strVersione, strFilePath, strUrlPath)
-        If tempBool Then
-            'Recupero il ID dell'ultimo elemento inserito
-            tempDataTable = frmMain.dbWarehouse.fExecuteGenericQuery(frmMain.dbWarehouse.SQLConn, "SELECT last_insert_rowid()")
-            If tempDataTable.Rows.Count > 0 Then
-                strLinkToDocID = tempDataTable.Rows(0)(0).ToString
-                'i = 0
-                'Popolo la tabella linkToDoc
-                'For i = 0 To frmNewDocument.dgvConnectTo.Rows.Count - 2
-                frmMain.dbWarehouse.fInsertNewLinkToDoc(frmMain.dbWarehouse.SQLConn, "linkToDoc", strArolCode, strLinkToDocID)
-                'Next
-            Else
-                Return False
-            End If
-        Else
-            Return False
-        End If
+        Return True
+    End Function
+    'Funzione per popolare la tabella linkToDoc
+    Public Function fPopulateLinkToDoc(strArolCode As String, strLinkToDocID As String) As Boolean
+        frmMain.dbWarehouse.fInsertNewLinkToDoc(frmMain.dbWarehouse.SQLConn, "linkToDoc", strArolCode, strLinkToDocID)
         Return True
     End Function
     'Funzione per aggiornare il link di una documentazione esistente
     Public Function fUpdateDocumentTable(iTipoID As Integer, strTitolo As String, strVersione As String, strFilePath As String, strUrlPath As String, strArolCode As String, strOldLinkDoc As String) As Boolean
         Dim tempBool As Boolean
         Dim tempDataTable As DataTable
-        Dim i As Integer
         Dim strLinkToDocID As String
         'Popolo la tabella documentazione
         tempBool = frmMain.dbWarehouse.fInsertNewDocument(frmMain.dbWarehouse.SQLConn, "documentazione", iTipoID, strTitolo, strVersione, strFilePath, strUrlPath)
@@ -98,10 +81,11 @@
             tempDataTable = frmMain.dbWarehouse.fExecuteGenericQuery(frmMain.dbWarehouse.SQLConn, "SELECT last_insert_rowid()")
             If tempDataTable.Rows.Count > 0 Then
                 strLinkToDocID = tempDataTable.Rows(0)(0).ToString
+                'Aggiorno la linkToDoc table
                 frmMain.dbWarehouse.fUpdateLinkToDoc(frmMain.dbWarehouse.SQLConn, "linkToDoc", strArolCode, strLinkToDocID, strOldLinkDoc)
             End If
-
         End If
+        Return True
     End Function
     'Funzione per abilitare/disabilitare il pulsante di "Salva"
     Public Function fEnableSaveButton(xEnable As Boolean) As Boolean
@@ -112,53 +96,49 @@
         End If
         Return True
     End Function
-    'Funzione per controllare che per un dato codice Arol, non sia già presente un documento dello stesso tipo che si vuole inserire
-    Public Function fCheckIfDocTypeAlreadyExist(iTipoID As Integer, strTitoloDoc As String, strRevisione As String, strFilePath As String, strUrl As String) As Boolean
+    'Funzione per inserimento di una nuova documentazione
+    Public Function fInsertNewDocument(iTipoID As Integer, strTitoloDoc As String, strRevisione As String, strFilePath As String, strUrl As String) As Boolean
         'Controllo che sia selezionato un codice dal datagridview
+        Dim strLinkToDocID As String
         If frmNewDocument.dgvConnectTo.Rows.Count > 0 Then
-            'Per ogni codice Arol inserito
+            'Popolo la document table
+            fPopulateDocumentTable(iTipoID, strTitoloDoc, strRevisione, fMoveFileToArchive(iTipoID), strUrl)
+            'Recupero il ID dell'ultimo elemento inserito
+            Dim tempDataTable As DataTable
+            tempDataTable = frmMain.dbWarehouse.fExecuteGenericQuery(frmMain.dbWarehouse.SQLConn, "SELECT last_insert_rowid()")
+            If tempDataTable.Rows.Count > 0 Then
+                strLinkToDocID = tempDataTable.Rows(0)(0).ToString
+            Else
+                strLinkToDocID = ""
+                MsgBox("INSERIMENTO FALLITO", MsgBoxStyle.Critical)
+                Return False
+            End If
+            Dim strArolCode As String
             For i = 0 To frmNewDocument.dgvConnectTo.Rows.Count - 2
-                'Controllo che nella tabella linkToDoc sia presente un link o meno
-                If frmMain.dbWarehouse.fCheckIfAlreadyExist(frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString, frmMain.dbWarehouse.SQLConn, "linkToDoc", "ArolCode") Then
-                    Dim tempDataTable, tempDocDataTable As DataTable
-                    'Se si, allora leggo la tabella dei link
-                    tempDataTable = frmMain.dbWarehouse.fLookIfThereAreDocuments(frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString, frmMain.dbWarehouse.SQLConn, "linkToDoc", "ArolCode")
-                    If tempDataTable.Rows.Count > 0 Then
-                        'Per ogni link definito ne estrapolo la tipologia di documentazione dalla tabella "documentazione"
-                        For j = 0 To tempDataTable.Rows.Count - 1
-                            tempDocDataTable = frmMain.dbWarehouse.fSelectElementFromColumn(frmMain.dbWarehouse.SQLConn, "documentazione", "ID", "ID", tempDataTable.Rows(j)(2).ToString)
-                            If tempDocDataTable.Rows.Count > 0 Then
-                                'Controllo che la tipologia di documentazione non sia già stata inserita
-                                If tempDocDataTable.Rows(0)(1).ToString = fCalculateTypeOfDoc() Then
-                                    'Se si, chiedo se voglio sovrascrivere il documento o meno
-                                    If MsgBox("Per il codice Arol " & frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString & " è già presente un documento della tipologia selezionata, vuoi sovrascrivere?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                                        fUpdateDocumentTable(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl)
-                                    Else
-                                        MsgBox("Bravo, saggia decisione!!", MsgBoxStyle.Exclamation)
-                                    End If
-                                Else
-                                    fPopulateDocumentTable(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl, frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString)
-                                End If
-                            End If
-                        Next
-                    End If
-                Else
-                    fPopulateDocumentTable(iTipoID, strTitoloDoc, strRevisione, strFilePath, strUrl, frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString)
-                End If
+                strArolCode = frmNewDocument.dgvConnectTo.Item(0, i).Value.ToString
+                fPopulateLinkToDoc(strArolCode, strLinkToDocID)
             Next
+            Return True
         Else
             MsgBox("Nessun codice Arol selezionato!!", MsgBoxStyle.Exclamation)
             Return False
         End If
-        Return False
     End Function
-    Public Function fCalculateTypeOfDoc() As String
-        Dim tempDataTable As DataTable
-        tempDataTable = frmMain.dbWarehouse.fFindInColumn(frmNewDocument.cbxSelectType.SelectedItem, "Descrizione", "tipologiaDocumentazione", frmMain.dbWarehouse.SQLConn)
-        If tempDataTable.Rows.Count > 0 Then
-            Return tempDataTable.Rows(0)(0).ToString
-        Else
-            Return ""
-        End If
+    'Funzione per spostare i file dal path sorgente al path di archiviazione
+    Public Function fMoveFileToArchive(iTipoID As Integer) As String
+        Dim strDestFolder As String = frmMain.strDocArchivePath(iTipoID - 1)
+        Try
+            'chiamo la funzione che mi restituisce un array contenente i nomi dei files
+            Dim strFullFileName, strFileExtension As String
+            Dim information = My.Computer.FileSystem.GetFileInfo(RegularExpressions.Regex.Replace(frmNewDocument.txtFilePath.Text.ToString, """", ""))
+            strFullFileName = Path.GetFileNameWithoutExtension(information.FullName)
+            strFileExtension = information.Extension
+            fCopyFromDirToDir(RegularExpressions.Regex.Replace(frmNewDocument.txtFilePath.Text.ToString, """", ""), RegularExpressions.Regex.Replace(strDestFolder & strFullFileName & strFileExtension, """", ""), False)
+            Return RegularExpressions.Regex.Replace(strDestFolder & strFullFileName & strFileExtension, """", "")
+        Catch ex As Exception
+            MsgBox("ERRORE NELL'ARCHIVIAZIONE DEL DOCUMENTO")
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return Nothing
+        End Try
     End Function
 End Module

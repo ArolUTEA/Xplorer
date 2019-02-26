@@ -28,6 +28,10 @@ Modifiche effettuate:
 15) aggiunta la funzione fOpenDcoument
 16) aggiunta la funzione fEnableSaveButton()
 17) aggiunto il file DocumentManagementFunctions.vb che racchiude tutte le funzioni necessarie alla gestione della documentazione
+18) aggiunta la funzione fUpdateLinkToDoc() nella classe DBManagement.vb
+19) modificato il file config.xml con i path dei percorsi in cui archiviare la documentazione
+20) aggiunta la variabile srtDocArchivePath(5) come pubblica nel frmMain.vb. Tale variabile conterrà i path dei percorsi in cui archiviare i documenti
+21) aggiunta la funzione fMoveFileToArchive() nel file DocumentManagement.vb
 
 #######################################
 Elementi modificati:
@@ -37,6 +41,7 @@ M) frmMain.vb
 M) GeneralAuxFunctions.vb
 M) DBManagement.vb
 +) DocumentManagementFunctions.vb
+M) config.xml
 
 
 

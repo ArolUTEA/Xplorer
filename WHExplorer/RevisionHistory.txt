@@ -32,6 +32,14 @@ Modifiche effettuate:
 19) modificato il file config.xml con i path dei percorsi in cui archiviare la documentazione
 20) aggiunta la variabile srtDocArchivePath(5) come pubblica nel frmMain.vb. Tale variabile conterrà i path dei percorsi in cui archiviare i documenti
 21) aggiunta la funzione fMoveFileToArchive() nel file DocumentManagement.vb
+22) modificata la dimensione del frmMain
+23) aggiunto il tab per la visualizzazione dei documenti
+24) aggiunti i datagridview per la visualizzazione dell'elenco dei documenti (1 per ogni categoria)
+25) aggiunta la funzione fPopulateDocumentDgvs()
+26) aggiunta la funzione fCleanDatagridView()
+27) aggiunta la funzione fHideDataGridViews()
+28) aggiunta la funzione fDocumentMigration() per effettuare la migrazione dei link dei documenti dalla tabella "codificatiDS" alle tabelle "documentazione" e "linkToDoc". 
+    Molto probabilmente verrà rimossa nella prossima release.
 
 #######################################
 Elementi modificati:

@@ -32,18 +32,6 @@ Partial Class frmMain
         Me.ConsElePage = New System.Windows.Forms.TabPage()
         Me.dgvCSDBViewer = New System.Windows.Forms.DataGridView()
         Me.pnlExtendedData = New System.Windows.Forms.Panel()
-        Me.pnlDocumentazione = New System.Windows.Forms.Panel()
-        Me.lblOffertaEconomica = New System.Windows.Forms.Label()
-        Me.btnOffertaEconomica = New System.Windows.Forms.Button()
-        Me.lblApplicationNote = New System.Windows.Forms.Label()
-        Me.btnApplicationNote = New System.Windows.Forms.Button()
-        Me.lblElectricalDrawing = New System.Windows.Forms.Label()
-        Me.btnElectricalDrawing = New System.Windows.Forms.Button()
-        Me.lblUserManual = New System.Windows.Forms.Label()
-        Me.btnUserManual = New System.Windows.Forms.Button()
-        Me.lblDatasheet = New System.Windows.Forms.Label()
-        Me.btnDatasheet = New System.Windows.Forms.Button()
-        Me.lblDocTitle = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txtDataUltimaModifica = New System.Windows.Forms.TextBox()
         Me.txtModificatoDa = New System.Windows.Forms.TextBox()
@@ -135,13 +123,58 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.csvFileExportBrwDial = New System.Windows.Forms.FolderBrowserDialog()
+        Me.tabDocuments = New System.Windows.Forms.TabControl()
+        Me.datasheetTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvDatasheets = New System.Windows.Forms.DataGridView()
+        Me.UserManualTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvUserManuals = New System.Windows.Forms.DataGridView()
+        Me.electricalDrawingTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvElectricalDrawings = New System.Windows.Forms.DataGridView()
+        Me.ApplicationNoteTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvApplicationNotes = New System.Windows.Forms.DataGridView()
+        Me.EconomicTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvEconomicBids = New System.Windows.Forms.DataGridView()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Titolo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Versione = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FilePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Url = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Open = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Percorso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Open2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PercorsoFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Open3 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PercorsoFile2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Open4 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PercorsoFile3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Open5 = New System.Windows.Forms.DataGridViewButtonColumn()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
         Me.ConsElePage.SuspendLayout()
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlExtendedData.SuspendLayout()
-        Me.pnlDocumentazione.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlNote.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -155,6 +188,17 @@ Partial Class frmMain
         Me.pnlLogin.SuspendLayout()
         Me.pnlFutureUse.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.tabDocuments.SuspendLayout()
+        Me.datasheetTabPage.SuspendLayout()
+        CType(Me.dgvDatasheets, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.UserManualTabPage.SuspendLayout()
+        CType(Me.dgvUserManuals, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.electricalDrawingTabPage.SuspendLayout()
+        CType(Me.dgvElectricalDrawings, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ApplicationNoteTabPage.SuspendLayout()
+        CType(Me.dgvApplicationNotes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.EconomicTabPage.SuspendLayout()
+        CType(Me.dgvEconomicBids, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtOpResult
@@ -234,7 +278,6 @@ Partial Class frmMain
         '
         Me.pnlExtendedData.BackColor = System.Drawing.Color.Transparent
         Me.pnlExtendedData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnlExtendedData.Controls.Add(Me.pnlDocumentazione)
         Me.pnlExtendedData.Controls.Add(Me.Panel1)
         Me.pnlExtendedData.Controls.Add(Me.pnlNote)
         Me.pnlExtendedData.Controls.Add(Me.Panel5)
@@ -244,145 +287,6 @@ Partial Class frmMain
         Me.pnlExtendedData.Name = "pnlExtendedData"
         Me.pnlExtendedData.Size = New System.Drawing.Size(452, 626)
         Me.pnlExtendedData.TabIndex = 6
-        '
-        'pnlDocumentazione
-        '
-        Me.pnlDocumentazione.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnlDocumentazione.Controls.Add(Me.lblOffertaEconomica)
-        Me.pnlDocumentazione.Controls.Add(Me.btnOffertaEconomica)
-        Me.pnlDocumentazione.Controls.Add(Me.lblApplicationNote)
-        Me.pnlDocumentazione.Controls.Add(Me.btnApplicationNote)
-        Me.pnlDocumentazione.Controls.Add(Me.lblElectricalDrawing)
-        Me.pnlDocumentazione.Controls.Add(Me.btnElectricalDrawing)
-        Me.pnlDocumentazione.Controls.Add(Me.lblUserManual)
-        Me.pnlDocumentazione.Controls.Add(Me.btnUserManual)
-        Me.pnlDocumentazione.Controls.Add(Me.lblDatasheet)
-        Me.pnlDocumentazione.Controls.Add(Me.btnDatasheet)
-        Me.pnlDocumentazione.Controls.Add(Me.lblDocTitle)
-        Me.pnlDocumentazione.Location = New System.Drawing.Point(14, 121)
-        Me.pnlDocumentazione.Name = "pnlDocumentazione"
-        Me.pnlDocumentazione.Size = New System.Drawing.Size(119, 202)
-        Me.pnlDocumentazione.TabIndex = 5
-        '
-        'lblOffertaEconomica
-        '
-        Me.lblOffertaEconomica.AutoSize = True
-        Me.lblOffertaEconomica.Enabled = False
-        Me.lblOffertaEconomica.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOffertaEconomica.Location = New System.Drawing.Point(41, 166)
-        Me.lblOffertaEconomica.Name = "lblOffertaEconomica"
-        Me.lblOffertaEconomica.Size = New System.Drawing.Size(62, 15)
-        Me.lblOffertaEconomica.TabIndex = 13
-        Me.lblOffertaEconomica.Text = "Offerta €"
-        '
-        'btnOffertaEconomica
-        '
-        Me.btnOffertaEconomica.BackgroundImage = CType(resources.GetObject("btnOffertaEconomica.BackgroundImage"), System.Drawing.Image)
-        Me.btnOffertaEconomica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnOffertaEconomica.Enabled = False
-        Me.btnOffertaEconomica.Location = New System.Drawing.Point(4, 159)
-        Me.btnOffertaEconomica.Name = "btnOffertaEconomica"
-        Me.btnOffertaEconomica.Size = New System.Drawing.Size(30, 30)
-        Me.btnOffertaEconomica.TabIndex = 12
-        Me.btnOffertaEconomica.UseVisualStyleBackColor = True
-        '
-        'lblApplicationNote
-        '
-        Me.lblApplicationNote.AutoSize = True
-        Me.lblApplicationNote.Enabled = False
-        Me.lblApplicationNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblApplicationNote.Location = New System.Drawing.Point(40, 132)
-        Me.lblApplicationNote.Name = "lblApplicationNote"
-        Me.lblApplicationNote.Size = New System.Drawing.Size(67, 15)
-        Me.lblApplicationNote.TabIndex = 11
-        Me.lblApplicationNote.Text = "App. note"
-        '
-        'btnApplicationNote
-        '
-        Me.btnApplicationNote.BackgroundImage = CType(resources.GetObject("btnApplicationNote.BackgroundImage"), System.Drawing.Image)
-        Me.btnApplicationNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnApplicationNote.Enabled = False
-        Me.btnApplicationNote.Location = New System.Drawing.Point(3, 125)
-        Me.btnApplicationNote.Name = "btnApplicationNote"
-        Me.btnApplicationNote.Size = New System.Drawing.Size(30, 30)
-        Me.btnApplicationNote.TabIndex = 10
-        Me.btnApplicationNote.UseVisualStyleBackColor = True
-        '
-        'lblElectricalDrawing
-        '
-        Me.lblElectricalDrawing.AutoSize = True
-        Me.lblElectricalDrawing.Enabled = False
-        Me.lblElectricalDrawing.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblElectricalDrawing.Location = New System.Drawing.Point(40, 98)
-        Me.lblElectricalDrawing.Name = "lblElectricalDrawing"
-        Me.lblElectricalDrawing.Size = New System.Drawing.Size(59, 15)
-        Me.lblElectricalDrawing.TabIndex = 9
-        Me.lblElectricalDrawing.Text = "Schema"
-        '
-        'btnElectricalDrawing
-        '
-        Me.btnElectricalDrawing.BackgroundImage = CType(resources.GetObject("btnElectricalDrawing.BackgroundImage"), System.Drawing.Image)
-        Me.btnElectricalDrawing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnElectricalDrawing.Enabled = False
-        Me.btnElectricalDrawing.Location = New System.Drawing.Point(3, 91)
-        Me.btnElectricalDrawing.Name = "btnElectricalDrawing"
-        Me.btnElectricalDrawing.Size = New System.Drawing.Size(30, 30)
-        Me.btnElectricalDrawing.TabIndex = 8
-        Me.btnElectricalDrawing.UseVisualStyleBackColor = True
-        '
-        'lblUserManual
-        '
-        Me.lblUserManual.AutoSize = True
-        Me.lblUserManual.Enabled = False
-        Me.lblUserManual.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUserManual.Location = New System.Drawing.Point(40, 65)
-        Me.lblUserManual.Name = "lblUserManual"
-        Me.lblUserManual.Size = New System.Drawing.Size(63, 15)
-        Me.lblUserManual.TabIndex = 7
-        Me.lblUserManual.Text = "Manuale"
-        '
-        'btnUserManual
-        '
-        Me.btnUserManual.BackgroundImage = CType(resources.GetObject("btnUserManual.BackgroundImage"), System.Drawing.Image)
-        Me.btnUserManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnUserManual.Enabled = False
-        Me.btnUserManual.Location = New System.Drawing.Point(3, 58)
-        Me.btnUserManual.Name = "btnUserManual"
-        Me.btnUserManual.Size = New System.Drawing.Size(30, 30)
-        Me.btnUserManual.TabIndex = 6
-        Me.btnUserManual.UseVisualStyleBackColor = True
-        '
-        'lblDatasheet
-        '
-        Me.lblDatasheet.AutoSize = True
-        Me.lblDatasheet.Enabled = False
-        Me.lblDatasheet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDatasheet.Location = New System.Drawing.Point(40, 32)
-        Me.lblDatasheet.Name = "lblDatasheet"
-        Me.lblDatasheet.Size = New System.Drawing.Size(72, 15)
-        Me.lblDatasheet.TabIndex = 5
-        Me.lblDatasheet.Text = "Datasheet"
-        '
-        'btnDatasheet
-        '
-        Me.btnDatasheet.BackgroundImage = CType(resources.GetObject("btnDatasheet.BackgroundImage"), System.Drawing.Image)
-        Me.btnDatasheet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnDatasheet.Enabled = False
-        Me.btnDatasheet.Location = New System.Drawing.Point(3, 25)
-        Me.btnDatasheet.Name = "btnDatasheet"
-        Me.btnDatasheet.Size = New System.Drawing.Size(30, 30)
-        Me.btnDatasheet.TabIndex = 4
-        Me.btnDatasheet.UseVisualStyleBackColor = True
-        '
-        'lblDocTitle
-        '
-        Me.lblDocTitle.AutoSize = True
-        Me.lblDocTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDocTitle.Location = New System.Drawing.Point(1, 3)
-        Me.lblDocTitle.Name = "lblDocTitle"
-        Me.lblDocTitle.Size = New System.Drawing.Size(115, 15)
-        Me.lblDocTitle.TabIndex = 3
-        Me.lblDocTitle.Text = "Documentazione"
         '
         'Panel1
         '
@@ -1280,12 +1184,315 @@ Partial Class frmMain
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'tabDocuments
+        '
+        Me.tabDocuments.Controls.Add(Me.datasheetTabPage)
+        Me.tabDocuments.Controls.Add(Me.UserManualTabPage)
+        Me.tabDocuments.Controls.Add(Me.electricalDrawingTabPage)
+        Me.tabDocuments.Controls.Add(Me.ApplicationNoteTabPage)
+        Me.tabDocuments.Controls.Add(Me.EconomicTabPage)
+        Me.tabDocuments.Location = New System.Drawing.Point(12, 867)
+        Me.tabDocuments.Name = "tabDocuments"
+        Me.tabDocuments.SelectedIndex = 0
+        Me.tabDocuments.Size = New System.Drawing.Size(1097, 146)
+        Me.tabDocuments.TabIndex = 29
+        '
+        'datasheetTabPage
+        '
+        Me.datasheetTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.datasheetTabPage.Controls.Add(Me.dgvDatasheets)
+        Me.datasheetTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.datasheetTabPage.Name = "datasheetTabPage"
+        Me.datasheetTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.datasheetTabPage.Size = New System.Drawing.Size(1089, 120)
+        Me.datasheetTabPage.TabIndex = 0
+        Me.datasheetTabPage.Text = "Datasheet"
+        '
+        'dgvDatasheets
+        '
+        Me.dgvDatasheets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvDatasheets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvDatasheets.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Tipo, Me.Titolo, Me.Versione, Me.FilePath, Me.Url, Me.Open})
+        Me.dgvDatasheets.Location = New System.Drawing.Point(4, 3)
+        Me.dgvDatasheets.Name = "dgvDatasheets"
+        Me.dgvDatasheets.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvDatasheets.TabIndex = 0
+        '
+        'UserManualTabPage
+        '
+        Me.UserManualTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.UserManualTabPage.Controls.Add(Me.dgvUserManuals)
+        Me.UserManualTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.UserManualTabPage.Name = "UserManualTabPage"
+        Me.UserManualTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.UserManualTabPage.Size = New System.Drawing.Size(1089, 189)
+        Me.UserManualTabPage.TabIndex = 1
+        Me.UserManualTabPage.Text = "User Manual"
+        '
+        'dgvUserManuals
+        '
+        Me.dgvUserManuals.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvUserManuals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvUserManuals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.Percorso, Me.DataGridViewTextBoxColumn5, Me.Open2})
+        Me.dgvUserManuals.Location = New System.Drawing.Point(3, 3)
+        Me.dgvUserManuals.Name = "dgvUserManuals"
+        Me.dgvUserManuals.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvUserManuals.TabIndex = 1
+        '
+        'electricalDrawingTabPage
+        '
+        Me.electricalDrawingTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.electricalDrawingTabPage.Controls.Add(Me.dgvElectricalDrawings)
+        Me.electricalDrawingTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.electricalDrawingTabPage.Name = "electricalDrawingTabPage"
+        Me.electricalDrawingTabPage.Size = New System.Drawing.Size(1089, 189)
+        Me.electricalDrawingTabPage.TabIndex = 2
+        Me.electricalDrawingTabPage.Text = "Electrical Drawing"
+        '
+        'dgvElectricalDrawings
+        '
+        Me.dgvElectricalDrawings.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvElectricalDrawings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvElectricalDrawings.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.PercorsoFile, Me.DataGridViewTextBoxColumn10, Me.Open3})
+        Me.dgvElectricalDrawings.Location = New System.Drawing.Point(3, 3)
+        Me.dgvElectricalDrawings.Name = "dgvElectricalDrawings"
+        Me.dgvElectricalDrawings.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvElectricalDrawings.TabIndex = 1
+        '
+        'ApplicationNoteTabPage
+        '
+        Me.ApplicationNoteTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.ApplicationNoteTabPage.Controls.Add(Me.dgvApplicationNotes)
+        Me.ApplicationNoteTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.ApplicationNoteTabPage.Name = "ApplicationNoteTabPage"
+        Me.ApplicationNoteTabPage.Size = New System.Drawing.Size(1089, 189)
+        Me.ApplicationNoteTabPage.TabIndex = 3
+        Me.ApplicationNoteTabPage.Text = "Application Note"
+        '
+        'dgvApplicationNotes
+        '
+        Me.dgvApplicationNotes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvApplicationNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvApplicationNotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.PercorsoFile2, Me.DataGridViewTextBoxColumn15, Me.Open4})
+        Me.dgvApplicationNotes.Location = New System.Drawing.Point(3, 3)
+        Me.dgvApplicationNotes.Name = "dgvApplicationNotes"
+        Me.dgvApplicationNotes.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvApplicationNotes.TabIndex = 1
+        '
+        'EconomicTabPage
+        '
+        Me.EconomicTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.EconomicTabPage.Controls.Add(Me.dgvEconomicBids)
+        Me.EconomicTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.EconomicTabPage.Name = "EconomicTabPage"
+        Me.EconomicTabPage.Size = New System.Drawing.Size(1089, 189)
+        Me.EconomicTabPage.TabIndex = 4
+        Me.EconomicTabPage.Text = "Economic Bid"
+        '
+        'dgvEconomicBids
+        '
+        Me.dgvEconomicBids.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvEconomicBids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvEconomicBids.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.PercorsoFile3, Me.DataGridViewTextBoxColumn20, Me.Open5})
+        Me.dgvEconomicBids.Location = New System.Drawing.Point(3, 3)
+        Me.dgvEconomicBids.Name = "dgvEconomicBids"
+        Me.dgvEconomicBids.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvEconomicBids.TabIndex = 1
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        '
+        'Tipo
+        '
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        '
+        'Titolo
+        '
+        Me.Titolo.HeaderText = "Titolo"
+        Me.Titolo.Name = "Titolo"
+        '
+        'Versione
+        '
+        Me.Versione.HeaderText = "Versione"
+        Me.Versione.Name = "Versione"
+        '
+        'FilePath
+        '
+        Me.FilePath.HeaderText = "Percorso"
+        Me.FilePath.Name = "FilePath"
+        '
+        'Url
+        '
+        Me.Url.HeaderText = "Url"
+        Me.Url.Name = "Url"
+        '
+        'Open
+        '
+        Me.Open.HeaderText = "Open"
+        Me.Open.Name = "Open"
+        Me.Open.Text = "Open"
+        Me.Open.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Titolo"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Versione"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        '
+        'Percorso
+        '
+        Me.Percorso.HeaderText = "Percorso"
+        Me.Percorso.Name = "Percorso"
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Url"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        '
+        'Open2
+        '
+        Me.Open2.HeaderText = "Open"
+        Me.Open2.Name = "Open2"
+        Me.Open2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Open2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Open2.Text = "Open"
+        Me.Open2.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Titolo"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Versione"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        '
+        'PercorsoFile
+        '
+        Me.PercorsoFile.HeaderText = "Percorso"
+        Me.PercorsoFile.Name = "PercorsoFile"
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Url"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        '
+        'Open3
+        '
+        Me.Open3.HeaderText = "Open"
+        Me.Open3.Name = "Open3"
+        Me.Open3.Text = "Open"
+        Me.Open3.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Titolo"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Versione"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        '
+        'PercorsoFile2
+        '
+        Me.PercorsoFile2.HeaderText = "Percorso"
+        Me.PercorsoFile2.Name = "PercorsoFile2"
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Url"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        '
+        'Open4
+        '
+        Me.Open4.HeaderText = "Open"
+        Me.Open4.Name = "Open4"
+        Me.Open4.Text = "Open"
+        Me.Open4.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.HeaderText = "Titolo"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Versione"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        '
+        'PercorsoFile3
+        '
+        Me.PercorsoFile3.HeaderText = "Percorso"
+        Me.PercorsoFile3.Name = "PercorsoFile3"
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.HeaderText = "url"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        '
+        'Open5
+        '
+        Me.Open5.HeaderText = "Open"
+        Me.Open5.Name = "Open5"
+        Me.Open5.Text = "Open"
+        Me.Open5.UseColumnTextForButtonValue = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(1580, 903)
+        Me.ClientSize = New System.Drawing.Size(1580, 1019)
+        Me.Controls.Add(Me.tabDocuments)
         Me.Controls.Add(Me.pnlExtendedData)
         Me.Controls.Add(Me.pnlFutureUse)
         Me.Controls.Add(Me.pnlLogin)
@@ -1307,8 +1514,6 @@ Partial Class frmMain
         Me.ConsElePage.ResumeLayout(False)
         CType(Me.dgvCSDBViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlExtendedData.ResumeLayout(False)
-        Me.pnlDocumentazione.ResumeLayout(False)
-        Me.pnlDocumentazione.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.pnlNote.ResumeLayout(False)
@@ -1335,6 +1540,17 @@ Partial Class frmMain
         Me.pnlFutureUse.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.tabDocuments.ResumeLayout(False)
+        Me.datasheetTabPage.ResumeLayout(False)
+        CType(Me.dgvDatasheets, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.UserManualTabPage.ResumeLayout(False)
+        CType(Me.dgvUserManuals, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.electricalDrawingTabPage.ResumeLayout(False)
+        CType(Me.dgvElectricalDrawings, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ApplicationNoteTabPage.ResumeLayout(False)
+        CType(Me.dgvApplicationNotes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.EconomicTabPage.ResumeLayout(False)
+        CType(Me.dgvEconomicBids, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1438,16 +1654,50 @@ Partial Class frmMain
     Friend WithEvents lblEditSelected As Label
     Friend WithEvents btnEditSelected As Button
     Friend WithEvents NewDocumentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents pnlDocumentazione As Panel
-    Friend WithEvents lblDatasheet As Label
-    Friend WithEvents btnDatasheet As Button
-    Friend WithEvents lblDocTitle As Label
-    Friend WithEvents lblUserManual As Label
-    Friend WithEvents btnUserManual As Button
-    Friend WithEvents lblApplicationNote As Label
-    Friend WithEvents btnApplicationNote As Button
-    Friend WithEvents lblElectricalDrawing As Label
-    Friend WithEvents btnElectricalDrawing As Button
-    Friend WithEvents lblOffertaEconomica As Label
-    Friend WithEvents btnOffertaEconomica As Button
+    Friend WithEvents tabDocuments As TabControl
+    Friend WithEvents datasheetTabPage As TabPage
+    Friend WithEvents UserManualTabPage As TabPage
+    Friend WithEvents electricalDrawingTabPage As TabPage
+    Friend WithEvents ApplicationNoteTabPage As TabPage
+    Friend WithEvents EconomicTabPage As TabPage
+    Friend WithEvents dgvDatasheets As DataGridView
+    Friend WithEvents dgvUserManuals As DataGridView
+    Friend WithEvents dgvElectricalDrawings As DataGridView
+    Friend WithEvents dgvApplicationNotes As DataGridView
+    Friend WithEvents dgvEconomicBids As DataGridView
+    Friend WithEvents ID As DataGridViewTextBoxColumn
+    Friend WithEvents Tipo As DataGridViewTextBoxColumn
+    Friend WithEvents Titolo As DataGridViewTextBoxColumn
+    Friend WithEvents Versione As DataGridViewTextBoxColumn
+    Friend WithEvents FilePath As DataGridViewTextBoxColumn
+    Friend WithEvents Url As DataGridViewTextBoxColumn
+    Friend WithEvents Open As DataGridViewButtonColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents Percorso As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents Open2 As DataGridViewButtonColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents PercorsoFile As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents Open3 As DataGridViewButtonColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents PercorsoFile2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents Open4 As DataGridViewButtonColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
+    Friend WithEvents PercorsoFile3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
+    Friend WithEvents Open5 As DataGridViewButtonColumn
 End Class

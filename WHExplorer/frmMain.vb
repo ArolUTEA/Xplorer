@@ -108,6 +108,8 @@ Public Class frmMain
         dgvCEDBViewer.ReadOnly = True
         dgvCSDBViewer.ReadOnly = True
         btnEditSelected.Enabled = False
+        fInitDatagridViews()
+        fHideDataGridViews(False)
         bFormLoad = True
     End Sub
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -148,92 +150,6 @@ Public Class frmMain
     End Sub
     Private Sub dgvCSDBViewer_KeyUp(sender As Object, e As KeyEventArgs) Handles dgvCSDBViewer.KeyUp
         fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
-    End Sub
-    Public Sub sCheckIfThereAreFiles()
-        Try
-            Dim rowIndex, i, j, k As Integer
-            Dim ArolCode As String
-            Dim tempLinkToDoc, tempDocumentation, tempDocType As DataTable
-            'Recupero l'informazione del rowIndex del datagridView e l'informazione del ArolCode
-            Select Case CompEleControl.SelectedIndex
-                Case 0
-                    'CODIFICATI
-                    rowIndex = dgvCEDBViewer.CurrentCell.RowIndex
-                    ArolCode = dgvCEDBViewer.Rows(rowIndex).Cells(1).Value
-                Case 1
-                    'CONSUMABILI
-                    rowIndex = dgvCSDBViewer.CurrentCell.RowIndex
-                    ArolCode = dgvCSDBViewer.Rows(rowIndex).Cells(1).Value
-                Case Else
-                    Exit Sub
-            End Select
-            'Controllo se ci sono dei documenti
-            tempLinkToDoc = dbWarehouse.fLookIfThereAreDocuments(ArolCode, dbWarehouse.SQLConn, "linkToDoc", "ArolCode")
-            'If tempLinkToDoc.Rows.Count > 0 Then
-            If tempLinkToDoc IsNot Nothing Then
-                'pnlDocumentazione.Visible = True
-                For i = 0 To tempLinkToDoc.Rows.Count - 1
-                    'Recupero le informazioni sui documenti presenti
-                    tempDocumentation = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "documentazione", "ID", "ID", tempLinkToDoc.Rows(i)(2).ToString)
-                    If tempDocumentation.Rows.Count > 0 Then
-                        'Aggiorno la grafica
-                        'For Each value In tempDocumentation.Rows
-                        For j = 0 To tempDocumentation.Rows.Count - 1
-                            tempDocType = dbWarehouse.fSelectElementFromColumn(dbWarehouse.SQLConn, "tipologiaDocumentazione", "ID", "ID", tempDocumentation.Rows(j)(1).ToString)
-                            If tempDocType.Rows.Count > 0 Then
-                                'For Each result In tempDocType.Rows
-                                For k = 0 To tempDocType.Rows.Count - 1
-                                    Select Case tempDocType.Rows(k)(1).ToString
-                                        Case "1"
-                                            btnDatasheet.Enabled = True
-                                            lblDatasheet.Enabled = True
-                                        Case "2"
-                                            btnUserManual.Enabled = True
-                                            lblUserManual.Enabled = True
-                                        Case "3"
-                                            btnElectricalDrawing.Enabled = True
-                                            lblElectricalDrawing.Enabled = True
-                                        Case "4"
-                                            btnApplicationNote.Enabled = True
-                                            lblApplicationNote.Enabled = True
-                                        Case "5"
-                                            btnOffertaEconomica.Enabled = True
-                                            lblOffertaEconomica.Enabled = True
-                                    End Select
-                                Next
-                            Else
-                                btnDatasheet.Enabled = False
-                                lblDatasheet.Enabled = False
-                                btnUserManual.Enabled = False
-                                lblUserManual.Enabled = False
-                                btnElectricalDrawing.Enabled = False
-                                lblElectricalDrawing.Enabled = False
-                                btnApplicationNote.Enabled = False
-                                lblApplicationNote.Enabled = False
-                                btnOffertaEconomica.Enabled = False
-                                lblOffertaEconomica.Enabled = False
-                            End If
-                        Next
-                    End If
-
-                Next
-            Else
-                'pnlDocumentazione.Visible = False
-                btnDatasheet.Enabled = False
-                lblDatasheet.Enabled = False
-                btnUserManual.Enabled = False
-                lblUserManual.Enabled = False
-                btnElectricalDrawing.Enabled = False
-                lblElectricalDrawing.Enabled = False
-                btnApplicationNote.Enabled = False
-                lblApplicationNote.Enabled = False
-                btnOffertaEconomica.Enabled = False
-                lblOffertaEconomica.Enabled = False
-            End If
-        Catch ex As Exception
-            MsgBox("ERRORE NELLA RICERCA DELLA DOCUMENTAZIONE", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
     End Sub
     Private Sub btnInsertNew_Click(sender As Object, e As EventArgs) Handles btnInsertNew.Click
         frmInsertNew.Show()
@@ -730,21 +646,82 @@ Public Class frmMain
             MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
-    Private Sub btnDatasheet_Click(sender As Object, e As EventArgs) Handles btnDatasheet.Click
+    Private Sub btnDatasheet_Click(sender As Object, e As EventArgs)
         fOpenDocument(fReadDocuments(1))
     End Sub
-    Private Sub btnUserManual_Click(sender As Object, e As EventArgs) Handles btnUserManual.Click
+    Private Sub btnUserManual_Click(sender As Object, e As EventArgs)
         fOpenDocument(fReadDocuments(2))
     End Sub
-    Private Sub btnElectricalDrawing_Click(sender As Object, e As EventArgs) Handles btnElectricalDrawing.Click
+    Private Sub btnElectricalDrawing_Click(sender As Object, e As EventArgs)
         fOpenDocument(fReadDocuments(3))
     End Sub
-    Private Sub btnApplicationNote_Click(sender As Object, e As EventArgs) Handles btnApplicationNote.Click
+    Private Sub btnApplicationNote_Click(sender As Object, e As EventArgs)
         fOpenDocument(fReadDocuments(4))
     End Sub
-    Private Sub btnOffertaEconomica_Click(sender As Object, e As EventArgs) Handles btnOffertaEconomica.Click
+    Private Sub btnOffertaEconomica_Click(sender As Object, e As EventArgs)
         fOpenDocument(fReadDocuments(5))
     End Sub
+    Private Sub dgvDatasheets_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDatasheets.CellContentClick
+        Dim strColumnName As String = dgvDatasheets.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open" Then
+            If dgvDatasheets.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvDatasheets.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvDatasheets.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvDatasheets.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvUserManuals_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUserManuals.CellContentClick
+        Dim strColumnName As String = dgvUserManuals.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open2" Then
+            If dgvUserManuals.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvUserManuals.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvUserManuals.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvUserManuals.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvElectricalDrawings_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvElectricalDrawings.CellContentClick
+        Dim strColumnName As String = dgvElectricalDrawings.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open3" Then
+            If dgvElectricalDrawings.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvElectricalDrawings.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvElectricalDrawings.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvElectricalDrawings.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvApplicationNotes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvApplicationNotes.CellContentClick
+        Dim strColumnName As String = dgvApplicationNotes.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open4" Then
+            If dgvApplicationNotes.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvApplicationNotes.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvApplicationNotes.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvApplicationNotes.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvEconomicBids_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEconomicBids.CellContentClick
+        Dim strColumnName As String = dgvEconomicBids.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open5" Then
+            If dgvEconomicBids.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvEconomicBids.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvEconomicBids.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvEconomicBids.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+
+    Private Sub datasheetTabPage_Click(sender As Object, e As EventArgs) Handles datasheetTabPage.Click
+        fInitDatagridViews()
+    End Sub
+
+
 
 
 

@@ -291,6 +291,7 @@
     <Content Include="Images\child.png" />
     <Content Include="Images\confirm.png" />
     <None Include="Images\confirm1.png" />
+    <None Include="Images\documentsBkg.jpg" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\editUser.png" />
     <Content Include="Images\find.png" />

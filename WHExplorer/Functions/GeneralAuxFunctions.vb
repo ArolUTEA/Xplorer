@@ -125,7 +125,8 @@ Module GeneralAuxFunctions
                         Return False
                 End Select
                 fGetDataFromDB(fRetrieveSelectedElementInfo(dgvCurrent), strCurrentTable)
-                frmMain.sCheckIfThereAreFiles()
+                'frmMain.sCheckIfThereAreFiles()
+                fPopulateDocumentDgvs()
             End If
             Return True
         Catch ex As Exception

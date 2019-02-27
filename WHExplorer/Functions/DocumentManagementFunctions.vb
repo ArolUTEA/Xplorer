@@ -141,4 +141,95 @@ Module DocumentManagementFunctions
             Return Nothing
         End Try
     End Function
+    'Funzione per la pulizia dei datagridview
+    Public Function fCleanDatagridView() As Boolean
+        frmMain.dgvDatasheets.Rows.Clear()
+        frmMain.dgvUserManuals.Rows.Clear()
+        frmMain.dgvElectricalDrawings.Rows.Clear()
+        frmMain.dgvApplicationNotes.Rows.Clear()
+        frmMain.dgvEconomicBids.Rows.Clear()
+        Return True
+    End Function
+    'Funzione per rendere visibile/invisibile i datagridview
+    Public Function fHideDataGridViews(xVisible As Boolean) As Boolean
+        frmMain.dgvDatasheets.Visible = xVisible
+        frmMain.dgvUserManuals.Visible = xVisible
+        frmMain.dgvElectricalDrawings.Visible = xVisible
+        frmMain.dgvApplicationNotes.Visible = xVisible
+        frmMain.dgvEconomicBids.Visible = xVisible
+        Return xVisible
+    End Function
+
+    'Funzione per il popolamento dei datagridview contenenti l'elenco della documentazione
+    Public Function fPopulateDocumentDgvs() As Boolean
+        fHideDataGridViews(False)
+        fCleanDatagridView()
+        Dim ArolCode As String
+        Dim tempLinkToDoc, tempDocumentation As DataTable
+        'Recupero l'informazione del rowIndex del datagridView e l'informazione del ArolCode
+        Select Case frmMain.CompEleControl.SelectedIndex
+            Case 0
+                'CODIFICATI
+                ArolCode = frmMain.dgvCEDBViewer.Rows(frmMain.dgvCEDBViewer.CurrentCell.RowIndex).Cells(1).Value
+            Case 1
+                'CONSUMABILI
+                ArolCode = frmMain.dgvCSDBViewer.Rows(frmMain.dgvCSDBViewer.CurrentCell.RowIndex).Cells(1).Value
+            Case Else
+                Return False
+        End Select
+        'Controllo se ci sono dei documenti
+        tempLinkToDoc = frmMain.dbWarehouse.fLookIfThereAreDocuments(ArolCode, frmMain.dbWarehouse.SQLConn, "linkToDoc", "ArolCode")
+        If tempLinkToDoc IsNot Nothing Then
+            For i = 0 To tempLinkToDoc.Rows.Count - 1
+                'Recupero le informazioni sui documenti presenti e popolo i vari datagridview
+                tempDocumentation = frmMain.dbWarehouse.fSelectElementFromColumn(frmMain.dbWarehouse.SQLConn, "documentazione", "ID", "ID", tempLinkToDoc.Rows(i)(2).ToString)
+                If tempDocumentation.Rows.Count > 0 Then
+                    For j = 0 To tempDocumentation.Rows.Count - 1
+                        Select Case tempDocumentation.Rows(j)(1)
+                            Case 1
+                                frmMain.dgvDatasheets.Visible = True
+                                frmMain.dgvDatasheets.Rows.Add(tempDocumentation.Rows(j).ItemArray)
+                                frmMain.dgvDatasheets.AutoResizeColumns()
+                            Case 2
+                                frmMain.dgvUserManuals.Visible = True
+                                frmMain.dgvUserManuals.Rows.Add(tempDocumentation.Rows(j).ItemArray)
+                                frmMain.dgvUserManuals.AutoResizeColumns()
+                            Case 3
+                                frmMain.dgvElectricalDrawings.Visible = True
+                                frmMain.dgvElectricalDrawings.Rows.Add(tempDocumentation.Rows(j).ItemArray)
+                                frmMain.dgvElectricalDrawings.AutoResizeColumns()
+                            Case 4
+                                frmMain.dgvApplicationNotes.Visible = True
+                                frmMain.dgvApplicationNotes.Rows.Add(tempDocumentation.Rows(j).ItemArray)
+                                frmMain.dgvApplicationNotes.AutoResizeColumns()
+                            Case 5
+                                frmMain.dgvEconomicBids.Visible = True
+                                frmMain.dgvEconomicBids.Rows.Add(tempDocumentation.Rows(j).ItemArray)
+                                frmMain.dgvEconomicBids.AutoResizeColumns()
+                            Case Else
+                                MsgBox("Uhm... Ciambella....", MsgBoxStyle.Critical)
+                        End Select
+                    Next
+                Else
+                    Return False
+                End If
+            Next
+        Else
+            Return False
+        End If
+        Return True
+    End Function
+    Public Function fOpenDocumentFromDgv(strLink As String) As Boolean
+        If strLink <> "" Then
+            Process.Start(strLink)
+        End If
+    End Function
+    Public Function fInitDatagridViews() As Boolean
+        frmMain.dgvDatasheets.AutoResizeColumns()
+        frmMain.dgvUserManuals.AutoResizeColumns()
+        frmMain.dgvElectricalDrawings.AutoResizeColumns()
+        frmMain.dgvApplicationNotes.AutoResizeColumns()
+        frmMain.dgvEconomicBids.AutoResizeColumns()
+        Return True
+    End Function
 End Module

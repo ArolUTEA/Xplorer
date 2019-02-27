@@ -239,4 +239,31 @@ Module GeneralAuxFunctions
         Process.Start(Convert.ToString(strLink))
         Return True
     End Function
+    'Funzione per la migrazione della documentazione da tabella codificatiDS a tabelle "documentazione" e linkToDoc
+    Public Function fDocumentMigration() As Boolean
+        Dim tempCodificatiDS As DataTable
+        Dim strLinkToDocID As String
+        'Leggo la tabella codificatiDS
+        tempCodificatiDS = frmMain.dbWarehouse.fSelectAllAndOrderBy(frmMain.dbWarehouse.SQLConn, "codificatiDS", "ID")
+        For i = 0 To tempCodificatiDS.Rows.Count - 1
+            'Per ogni elemento della tabella
+            'Sposto il file nel nuovo direttorio
+            fCopyFromDirToDir(tempCodificatiDS.Rows(i)(3).ToString, frmMain.strDocArchivePath(0) & tempCodificatiDS.Rows(i)(1).ToString & tempCodificatiDS.Rows(i)(2).ToString, False)
+            'Popolo la tabella documentazione
+            fPopulateDocumentTable(1, "Datasheet", "1", frmMain.strDocArchivePath(0) & tempCodificatiDS.Rows(i)(1).ToString & tempCodificatiDS.Rows(i)(2).ToString, "")
+            'Recupero il ID dell'ultimo elemento inserito
+            Dim tempDataTable As DataTable
+            tempDataTable = frmMain.dbWarehouse.fExecuteGenericQuery(frmMain.dbWarehouse.SQLConn, "SELECT last_insert_rowid()")
+            If tempDataTable.Rows.Count > 0 Then
+                strLinkToDocID = tempDataTable.Rows(0)(0).ToString
+            Else
+                strLinkToDocID = ""
+                MsgBox("INSERIMENTO FALLITO", MsgBoxStyle.Critical)
+                Return False
+            End If
+            fPopulateLinkToDoc(tempCodificatiDS.Rows(i)(1).ToString, strLinkToDocID)
+        Next
+        Return True
+    End Function
+
 End Module

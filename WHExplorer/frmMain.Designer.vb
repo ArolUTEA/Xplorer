@@ -64,8 +64,6 @@ Partial Class frmMain
         Me.txtArolCode = New System.Windows.Forms.TextBox()
         Me.lblArolCode = New System.Windows.Forms.Label()
         Me.pnlInstruments = New System.Windows.Forms.Panel()
-        Me.btnOpenFile = New System.Windows.Forms.Button()
-        Me.lblOpenDocs = New System.Windows.Forms.Label()
         Me.btnDetails = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.lblDetails = New System.Windows.Forms.Label()
@@ -169,6 +167,7 @@ Partial Class frmMain
         Me.PercorsoFile3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open5 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DocMigrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
@@ -608,8 +607,6 @@ Partial Class frmMain
         'pnlInstruments
         '
         Me.pnlInstruments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnlInstruments.Controls.Add(Me.btnOpenFile)
-        Me.pnlInstruments.Controls.Add(Me.lblOpenDocs)
         Me.pnlInstruments.Controls.Add(Me.btnDetails)
         Me.pnlInstruments.Controls.Add(Me.Label4)
         Me.pnlInstruments.Controls.Add(Me.lblDetails)
@@ -626,28 +623,6 @@ Partial Class frmMain
         Me.pnlInstruments.Name = "pnlInstruments"
         Me.pnlInstruments.Size = New System.Drawing.Size(161, 177)
         Me.pnlInstruments.TabIndex = 15
-        '
-        'btnOpenFile
-        '
-        Me.btnOpenFile.BackgroundImage = CType(resources.GetObject("btnOpenFile.BackgroundImage"), System.Drawing.Image)
-        Me.btnOpenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenFile.Location = New System.Drawing.Point(109, 96)
-        Me.btnOpenFile.Name = "btnOpenFile"
-        Me.btnOpenFile.Size = New System.Drawing.Size(40, 40)
-        Me.btnOpenFile.TabIndex = 11
-        Me.HelpTip.SetToolTip(Me.btnOpenFile, "Apri file allegato")
-        Me.btnOpenFile.UseVisualStyleBackColor = True
-        '
-        'lblOpenDocs
-        '
-        Me.lblOpenDocs.AutoSize = True
-        Me.lblOpenDocs.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpenDocs.Location = New System.Drawing.Point(101, 139)
-        Me.lblOpenDocs.Name = "lblOpenDocs"
-        Me.lblOpenDocs.Size = New System.Drawing.Size(57, 12)
-        Me.lblOpenDocs.TabIndex = 26
-        Me.lblOpenDocs.Text = "OpenDocs"
-        Me.lblOpenDocs.Visible = False
         '
         'btnDetails
         '
@@ -1139,18 +1114,18 @@ Partial Class frmMain
         'ManageUserToolStripMenuItem
         '
         Me.ManageUserToolStripMenuItem.Name = "ManageUserToolStripMenuItem"
-        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ManageUserToolStripMenuItem.Text = "Manage User"
         '
         'ChangePasswordToolStripMenuItem
         '
         Me.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem"
-        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangePasswordToolStripMenuItem.Text = "Change Password"
         '
         'DatabaseToolStripMenuItem
         '
-        Me.DatabaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewManufacturerToolStripMenuItem, Me.NewDocumentToolStripMenuItem})
+        Me.DatabaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewManufacturerToolStripMenuItem, Me.NewDocumentToolStripMenuItem, Me.DocMigrationToolStripMenuItem})
         Me.DatabaseToolStripMenuItem.Name = "DatabaseToolStripMenuItem"
         Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
         Me.DatabaseToolStripMenuItem.Text = "Database"
@@ -1486,6 +1461,12 @@ Partial Class frmMain
         Me.Open5.Text = "Open"
         Me.Open5.UseColumnTextForButtonValue = True
         '
+        'DocMigrationToolStripMenuItem
+        '
+        Me.DocMigrationToolStripMenuItem.Name = "DocMigrationToolStripMenuItem"
+        Me.DocMigrationToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.DocMigrationToolStripMenuItem.Text = "Doc Migration..."
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1562,7 +1543,6 @@ Partial Class frmMain
     Friend WithEvents CompElePage As TabPage
     Friend WithEvents ConsElePage As TabPage
     Friend WithEvents dgvCSDBViewer As DataGridView
-    Friend WithEvents btnOpenFile As Button
     Friend WithEvents btnInsertNew As Button
     Friend WithEvents pnlInstruments As Panel
     Friend WithEvents btnChildGenerator As Button
@@ -1582,7 +1562,6 @@ Partial Class frmMain
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents lblStrumenti As Label
-    Friend WithEvents lblOpenDocs As Label
     Friend WithEvents pnlLogin As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
@@ -1700,4 +1679,5 @@ Partial Class frmMain
     Friend WithEvents PercorsoFile3 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
     Friend WithEvents Open5 As DataGridViewButtonColumn
+    Friend WithEvents DocMigrationToolStripMenuItem As ToolStripMenuItem
 End Class

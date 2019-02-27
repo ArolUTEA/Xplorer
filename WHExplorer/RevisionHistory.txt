@@ -38,6 +38,8 @@ Modifiche effettuate:
 25) aggiunta la funzione fPopulateDocumentDgvs()
 26) aggiunta la funzione fCleanDatagridView()
 27) aggiunta la funzione fHideDataGridViews()
+28) aggiunta la funzione fDocumentMigration() per effettuare la migrazione dei link dei documenti dalla tabella "codificatiDS" alle tabelle "documentazione" e "linkToDoc". 
+    Molto probabilmente verrà rimossa nella prossima release.
 
 #######################################
 Elementi modificati:

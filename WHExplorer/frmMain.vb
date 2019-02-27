@@ -64,7 +64,6 @@ Public Class frmMain
             MsgBox("ERRORE NELL'APERTURA DEL DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
-        btnOpenFile.Visible = False
         'Check if new files are present in datasheet source folder
         Try
             Dim dsSourceFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsSourceFolder"), """", "")
@@ -122,7 +121,7 @@ Public Class frmMain
     Private Sub dgvCSDBViewer_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellClick
         fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
-    Private Sub btnOpenFile_Click(sender As Object, e As EventArgs) Handles btnOpenFile.Click
+    Private Sub btnOpenFile_Click(sender As Object, e As EventArgs)
         Dim rowIndex As Integer
         Dim ArolCode As String
         Select Case CompEleControl.SelectedIndex
@@ -719,6 +718,15 @@ Public Class frmMain
 
     Private Sub datasheetTabPage_Click(sender As Object, e As EventArgs) Handles datasheetTabPage.Click
         fInitDatagridViews()
+    End Sub
+
+    Private Sub DocMigrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocMigrationToolStripMenuItem.Click
+        'Controllo se hai i diritti di scrittura
+        If bUserWritePerm Then
+            fDocumentMigration()
+        Else
+            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+        End If
     End Sub
 
 

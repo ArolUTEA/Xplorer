@@ -159,7 +159,6 @@ Module DocumentManagementFunctions
         frmMain.dgvEconomicBids.Visible = xVisible
         Return xVisible
     End Function
-
     'Funzione per il popolamento dei datagridview contenenti l'elenco della documentazione
     Public Function fPopulateDocumentDgvs() As Boolean
         fHideDataGridViews(False)
@@ -226,10 +225,15 @@ Module DocumentManagementFunctions
     End Function
     Public Function fInitDatagridViews() As Boolean
         frmMain.dgvDatasheets.AutoResizeColumns()
+        frmMain.dgvDatasheets.ReadOnly = True
         frmMain.dgvUserManuals.AutoResizeColumns()
+        frmMain.dgvUserManuals.ReadOnly = True
         frmMain.dgvElectricalDrawings.AutoResizeColumns()
+        frmMain.dgvElectricalDrawings.ReadOnly = True
         frmMain.dgvApplicationNotes.AutoResizeColumns()
+        frmMain.dgvApplicationNotes.ReadOnly = True
         frmMain.dgvEconomicBids.AutoResizeColumns()
+        frmMain.dgvEconomicBids.ReadOnly = True
         Return True
     End Function
 End Module

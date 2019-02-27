@@ -80,11 +80,7 @@ Public Class DBManagement
             da.Fill(dt)
             sqlcmd.ExecuteReader()
             If dt IsNot Nothing Then
-                'Dim processo = New Process
                 Process.Start(Convert.ToString(dt.Rows(0)("Link")))
-                'If processo.HasExited Then
-                'File.Delete("E:\GestioneMagazzino\DownloadedPDF\" & Convert.ToString(dt.Rows(0).Item(0)) & ".pdf")
-                'End If
             End If
             sqlcmd.Dispose()
             da.Dispose()
@@ -104,7 +100,6 @@ Public Class DBManagement
             da.Fill(dt)
             sqlcmd.ExecuteReader()
             If dt.Rows.Count > 0 Then
-                'MsgBox(Convert.ToString(dt.Rows(0)("ID")))
                 For Each i In dt.Rows
                     fReadFileFromDatabase(dt.Rows(0)("ID"), dbSource, tableName)
                 Next
@@ -275,7 +270,6 @@ Public Class DBManagement
                 Dim da As New SQLiteDataAdapter
                 da.SelectCommand = cmdDataGrid
                 Dim dt As New DataTable
-                'da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
                 cmdDataGrid.Dispose()
                 da.Dispose()

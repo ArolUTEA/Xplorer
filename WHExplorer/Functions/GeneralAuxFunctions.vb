@@ -34,7 +34,6 @@ Module GeneralAuxFunctions
             dgvSelected.AutoResizeColumns()
             dgvSelected.AutoResizeRows()
             'Make datagrid viewer readonly
-            'dgvSelected.ReadOnly = True
             'All datagrid viewer rows in green
             dgvSelected.RowsDefaultCellStyle.BackColor = Color.FromArgb(204, 255, 204)
             'Leggo la tabella dei codici estesi

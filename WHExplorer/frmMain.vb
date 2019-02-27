@@ -174,7 +174,6 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCEDBViewer.Visible = False
-                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                     Case 1
                         tableName = "consumabili"
@@ -185,7 +184,6 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCSDBViewer.Visible = False
-                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                 End Select
             End If
@@ -251,7 +249,6 @@ Public Class frmMain
             MsgBox("ERRORE NELLA CREAZIONE DEL FILE FIGLI.txt", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
-        'sw.Dispose()
         dtTemp.Dispose()
     End Sub
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -480,7 +477,6 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCEDBViewer.Visible = False
-                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
             Case 1
                 tableName = "consumabili"
@@ -491,7 +487,6 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCSDBViewer.Visible = False
-                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
         End Select
     End Sub
@@ -585,7 +580,6 @@ Public Class frmMain
                 Case Else
                     Exit Sub
             End Select
-
             'Recupero i dati dal database
             Dim tempBasicData, tempExtendedData As DataTable
             tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
@@ -715,11 +709,9 @@ Public Class frmMain
             End If
         End If
     End Sub
-
     Private Sub datasheetTabPage_Click(sender As Object, e As EventArgs) Handles datasheetTabPage.Click
         fInitDatagridViews()
     End Sub
-
     Private Sub DocMigrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocMigrationToolStripMenuItem.Click
         'Controllo se hai i diritti di scrittura
         If bUserWritePerm Then

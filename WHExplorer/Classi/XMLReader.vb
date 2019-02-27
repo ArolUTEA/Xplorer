@@ -3,7 +3,6 @@
     Dim xmlNodeList As Xml.XmlNodeList
     Dim xmlNode As Xml.XmlNode
     Dim xmlPath As String = AppDomain.CurrentDomain.BaseDirectory & "Configurations\config.xml"
-    'Public strDBPath As String
     Public Function fReadDBPath() As String
         fReadDBPath = ""
         Try
@@ -46,9 +45,7 @@
             xmlFile.Load(xmlPath)
             xmlNodeList = xmlFile.SelectNodes("configuration")
             For Each xmlNode In xmlNodeList
-                'fReadDatasheetFolder(0) = xmlNode.SelectSingleNode("dsSourceFolder").InnerText
                 tempString(0) = xmlNode.SelectSingleNode("dsSourceFolder").InnerText
-                'fReadDatasheetFolder(1) = xmlNode.SelectSingleNode("dsDestFolder").InnerText
                 tempString(1) = xmlNode.SelectSingleNode("dsDestFolder").InnerText
             Next
             fReadDatasheetFolder = tempString
@@ -64,9 +61,6 @@
             xmlFile.Load(xmlPath)
             xmlNodeList = xmlFile.SelectNodes("configuration")
             For Each xmlNode In xmlNodeList
-                'fReadConfigurations(0) = xmlNode.SelectSingleNode("dbPath").InnerText
-                'fReadConfigurations(1) = xmlNode.SelectSingleNode("dsSourceFolder").InnerText
-                'fReadConfigurations(2) = xmlNode.SelectSingleNode("dsDestFolder").InnerText
                 tempString(0) = xmlNode.SelectSingleNode("dbPath").InnerText
                 tempString(1) = xmlNode.SelectSingleNode("dsSourceFolder").InnerText
                 tempString(2) = xmlNode.SelectSingleNode("dsDestFolder").InnerText
@@ -84,7 +78,6 @@
             xmlFile.Load(xmlPath)
             xmlNodeList = xmlFile.SelectNodes("configuration")
             For Each xmlNode In xmlNodeList
-                'fReadSingleNode = xmlNode.Item(node).InnerText
                 tempString = xmlNode.Item(node).InnerText
             Next
             fReadSingleNode = tempString

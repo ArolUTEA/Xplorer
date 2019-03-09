@@ -1,6 +1,6 @@
 ﻿#######################################
-Xplorer X.X.X.XY
-Data Pubblicazione: XX/YY/ZZZZ
+Xplorer 1.2.7.11
+Data Pubblicazione: 09/03/2019
 #######################################
 Compilato per Framework 4.0
 #######################################

@@ -464,11 +464,11 @@ Module EditExistFunctions
                 Return False
                 Exit Function
         End Select
-        frmArticlesModification.txtArolCode.Text = tempData.Rows(0)("ArolCode").ToString 'dgvSelectedDgv.Rows(iSelectedIndex).Cells(1).Value
-        frmArticlesModification.txtCommercialCode.Text = tempData.Rows(0)("CommercialCode").ToString 'dgvSelectedDgv.Rows(iSelectedIndex).Cells(2).Value
-        frmArticlesModification.txtDescription.Text = tempData.Rows(0)("Description").ToString 'dgvSelectedDgv.Rows(iSelectedIndex).Cells(3).Value
-        frmArticlesModification.txtConstructor.Text = tempData.Rows(0)("Manufacturer").ToString 'dgvSelectedDgv.Rows(iSelectedIndex).Cells(4).Value
-        frmArticlesModification.txtSuppDescription.Text = tempData.Rows(0)("SupplementaryDescription") 'dgvSelectedDgv.Rows(iSelectedIndex).Cells(5).Value
+        frmArticlesModification.txtArolCode.Text = tempData.Rows(0)("ArolCode").ToString
+        frmArticlesModification.txtCommercialCode.Text = tempData.Rows(0)("CommercialCode").ToString
+        frmArticlesModification.txtDescription.Text = tempData.Rows(0)("Description").ToString
+        frmArticlesModification.txtConstructor.Text = tempData.Rows(0)("Manufacturer").ToString
+        frmArticlesModification.txtSuppDescription.Text = tempData.Rows(0)("SupplementaryDescription")
         tempDataEsteso = frmMain.dbWarehouse.fFindInColumn(frmArticlesModification.txtArolCode.Text, "ArolCode", tableNameEsteso, frmMain.dbWarehouse.SQLConn)
         Select Case tempDataEsteso.Rows(0)("Stato")
             Case 0

@@ -21,7 +21,6 @@ Module FileSystemFunct
         Return tempString
     End Function
     Public Function fCopyFromDirToDir(srcFolder As String, dstFolder As String, delete As Boolean) As Boolean
-        'Directory.Move(srcFolder, dstFolder)
         File.Copy(srcFolder, dstFolder, True)
         If delete Then
             File.Delete(srcFolder)

@@ -9,5 +9,10 @@
     <dsDestFolder>DataSheetStore\</dsDestFolder>
     <childPath>figli.txt</childPath>
     <childBackupPath>BackupFigli\</childBackupPath>
+	<dsDatasheet>DocArchive\Datasheet\</dsDatasheet>
+	<dsUserManual>DocArchive\UserManual\</dsUserManual>
+	<dsElectricalDrawing>DocArchive\ElectricalDrawing\</dsElectricalDrawing>
+	<dsApplicationNote>DocArchive\ApplicationNote\</dsApplicationNote>
+	<dsEconomicBid>DocArchive\EconomicBid\</dsEconomicBid>
 </configuration>
 

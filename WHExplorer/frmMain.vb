@@ -21,6 +21,7 @@ Public Class frmMain
     Public iCodiModRowIndex As Integer
     Public aiConsModRow(99) As Integer
     Public iConsModRowIndex As Integer
+    Public strDocArchivePath(5) As String
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Check if log file already exist
         fCheckIfLogFileExist(strLogFilePath)
@@ -63,7 +64,6 @@ Public Class frmMain
             MsgBox("ERRORE NELL'APERTURA DEL DATABASE", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
-        btnOpenFile.Visible = False
         'Check if new files are present in datasheet source folder
         Try
             Dim dsSourceFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsSourceFolder"), """", "")
@@ -86,6 +86,18 @@ Public Class frmMain
             MsgBox("ERRORE NELLA COPIA DEI NUOVI DATASHEETS", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
+        'Leggo i path di archiviazione dei documenti
+        Try
+            strDocArchivePath(0) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsDatasheet"), """", "")
+            strDocArchivePath(1) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsUserManual"), """", "")
+            strDocArchivePath(2) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsElectricalDrawing"), """", "")
+            strDocArchivePath(3) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsApplicationNote"), """", "")
+            strDocArchivePath(4) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsEconomicBid"), """", "")
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA LETTURA DEI PATH DI ARCHIVIAZIONE DEI DOCUMENTI", MsgBoxStyle.Critical)
+            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+        End Try
+
         fSelectAllAndOrder(dgvCEDBViewer, "codificati")
         'Enable Simple Search
         rbSimpleSearch.Checked = True
@@ -95,6 +107,8 @@ Public Class frmMain
         dgvCEDBViewer.ReadOnly = True
         dgvCSDBViewer.ReadOnly = True
         btnEditSelected.Enabled = False
+        fInitDatagridViews()
+        fHideDataGridViews(False)
         bFormLoad = True
     End Sub
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -107,7 +121,7 @@ Public Class frmMain
     Private Sub dgvCSDBViewer_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCSDBViewer.CellClick
         fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
-    Private Sub btnOpenFile_Click(sender As Object, e As EventArgs) Handles btnOpenFile.Click
+    Private Sub btnOpenFile_Click(sender As Object, e As EventArgs)
         Dim rowIndex As Integer
         Dim ArolCode As String
         Select Case CompEleControl.SelectedIndex
@@ -136,32 +150,6 @@ Public Class frmMain
     Private Sub dgvCSDBViewer_KeyUp(sender As Object, e As KeyEventArgs) Handles dgvCSDBViewer.KeyUp
         fManagementOfDgvClickOrKeyMove(pnlExtendedData.Visible)
     End Sub
-
-    Public Sub sCheckIfThereAreFiles()
-        Try
-            Dim rowIndex As Integer
-            Dim ArolCode As String
-            Select Case CompEleControl.SelectedIndex
-                Case 0
-                    'CODIFICATI
-                    rowIndex = dgvCEDBViewer.CurrentCell.RowIndex
-                    ArolCode = dgvCEDBViewer.Rows(rowIndex).Cells(1).Value
-                Case 1
-                    'CONSUMABILI
-                    rowIndex = dgvCSDBViewer.CurrentCell.RowIndex
-                    ArolCode = dgvCSDBViewer.Rows(rowIndex).Cells(1).Value
-                Case Else
-                    Exit Sub
-            End Select
-            'Dim rowIndex As Integer = dgvCEDBViewer.CurrentCell.RowIndex
-            'Dim ArolCode As String = dgvCEDBViewer.Rows(rowIndex).Cells(1).Value
-            btnOpenFile.Visible = dbWarehouse.fLookIfHaveDataSheet(ArolCode, dbWarehouse.SQLConn, "codificatiDS", "Name")
-            lblOpenDocs.Visible = btnOpenFile.Visible
-        Catch ex As Exception
-            MsgBox("ERRORE NELLA RICERCA DI DATASHEET", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
-    End Sub
     Private Sub btnInsertNew_Click(sender As Object, e As EventArgs) Handles btnInsertNew.Click
         frmInsertNew.Show()
     End Sub
@@ -186,7 +174,6 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCEDBViewer.Visible = False
-                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                     Case 1
                         tableName = "consumabili"
@@ -197,7 +184,6 @@ Public Class frmMain
                             fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                         Else
                             dgvCSDBViewer.Visible = False
-                            'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                         End If
                 End Select
             End If
@@ -263,7 +249,6 @@ Public Class frmMain
             MsgBox("ERRORE NELLA CREAZIONE DEL FILE FIGLI.txt", MsgBoxStyle.Critical)
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
-        'sw.Dispose()
         dtTemp.Dispose()
     End Sub
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -427,8 +412,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.1.6.10"
-        frmAbout.lblIssuedDate.Text = "24/10/2018"
+        frmAbout.lblRevision.Text = "Xplorer 1.2.7.11"
+        frmAbout.lblIssuedDate.Text = "09/03/2019"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
@@ -492,7 +477,6 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCEDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCEDBViewer.Visible = False
-                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
             Case 1
                 tableName = "consumabili"
@@ -503,7 +487,6 @@ Public Class frmMain
                     fPopulateAndResizeDGV(dgvCSDBViewer, tempData, CompEleControl.Width)
                 Else
                     dgvCSDBViewer.Visible = False
-                    'MsgBox("Nessuna occorrenza trovata", MsgBoxStyle.Information)
                 End If
         End Select
     End Sub
@@ -597,7 +580,6 @@ Public Class frmMain
                 Case Else
                     Exit Sub
             End Select
-
             'Recupero i dati dal database
             Dim tempBasicData, tempExtendedData As DataTable
             tempBasicData = fRetrieveSelectedData(iModifiedID, strTableName)
@@ -648,4 +630,173 @@ Public Class frmMain
         fPopulateArticlesModification(tempData)
         frmArticlesModification.Show()
     End Sub
+
+    Private Sub NewDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDocumentToolStripMenuItem.Click
+        'Controllo se hai i diritti di scrittura
+        If bUserWritePerm Then
+            frmNewDocument.Show()
+        Else
+            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+        End If
+    End Sub
+    Private Sub btnDatasheet_Click(sender As Object, e As EventArgs)
+        fOpenDocument(fReadDocuments(1))
+    End Sub
+    Private Sub btnUserManual_Click(sender As Object, e As EventArgs)
+        fOpenDocument(fReadDocuments(2))
+    End Sub
+    Private Sub btnElectricalDrawing_Click(sender As Object, e As EventArgs)
+        fOpenDocument(fReadDocuments(3))
+    End Sub
+    Private Sub btnApplicationNote_Click(sender As Object, e As EventArgs)
+        fOpenDocument(fReadDocuments(4))
+    End Sub
+    Private Sub btnOffertaEconomica_Click(sender As Object, e As EventArgs)
+        fOpenDocument(fReadDocuments(5))
+    End Sub
+    Private Sub dgvDatasheets_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDatasheets.CellContentClick
+        Dim strColumnName As String = dgvDatasheets.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open" Then
+            If dgvDatasheets.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvDatasheets.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvDatasheets.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvDatasheets.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvUserManuals_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUserManuals.CellContentClick
+        Dim strColumnName As String = dgvUserManuals.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open2" Then
+            If dgvUserManuals.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvUserManuals.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvUserManuals.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvUserManuals.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvElectricalDrawings_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvElectricalDrawings.CellContentClick
+        Dim strColumnName As String = dgvElectricalDrawings.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open3" Then
+            If dgvElectricalDrawings.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvElectricalDrawings.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvElectricalDrawings.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvElectricalDrawings.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvApplicationNotes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvApplicationNotes.CellContentClick
+        Dim strColumnName As String = dgvApplicationNotes.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open4" Then
+            If dgvApplicationNotes.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvApplicationNotes.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvApplicationNotes.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvApplicationNotes.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub dgvEconomicBids_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEconomicBids.CellContentClick
+        Dim strColumnName As String = dgvEconomicBids.Columns(e.ColumnIndex).Name.ToString
+        If strColumnName = "Open5" Then
+            If dgvEconomicBids.Rows(e.RowIndex).Cells(4).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvEconomicBids.Rows(e.RowIndex).Cells(4).Value.ToString)
+            End If
+            If dgvEconomicBids.Rows(e.RowIndex).Cells(5).Value IsNot Nothing Then
+                fOpenDocumentFromDgv(dgvEconomicBids.Rows(e.RowIndex).Cells(5).Value.ToString)
+            End If
+        End If
+    End Sub
+    Private Sub datasheetTabPage_Click(sender As Object, e As EventArgs) Handles datasheetTabPage.Click
+        fInitDatagridViews()
+    End Sub
+    Private Sub DocMigrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocMigrationToolStripMenuItem.Click
+        'Controllo se hai i diritti di scrittura
+        If bUserWritePerm Then
+            fDocumentMigration()
+        Else
+            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+        End If
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
+    '    Private Sub NewDocumentTypeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDocumentTypeToolStripMenuItem.Click
+    '        If bUserWritePerm Then
+    '            Dim strNewDocType As String
+    '            strNewDocType = InputBox("INSERIRE LA NUOVA CATEGORIA", "NUOVO COSTRUTTORE")
+    '            If strNewDocType <> "" Then
+    '                'Backup the Warehouse database
+    '                Dim strConfigDBBackupPath As String = xmlReader.fReadSingleNode("dbBackupPath")
+    '                Dim strDBOriginalPath As String = RegularExpressions.Regex.Replace(xmlReader.fReadSingleNode("dbPath"), """", "")
+    '                Dim strTempDateTime As String
+    '                With DateTime.Now
+    '                    strTempDateTime = (.Year & .Month & .Day & .Hour & .Minute & .Second)
+    '                End With
+    '                Try
+    '                    Dim strDBBackupPath As String = RegularExpressions.Regex.Replace(String.Concat(strConfigDBBackupPath, ".", strTempDateTime, ".db"), """", "")
+    '                    fCopyFromDirToDir(strDBOriginalPath, strDBBackupPath, False)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NEL BACKUP DEL DATABASE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+
+
+    '            End If
+
+    '            strNewManufacturer = InputBox("INSERIRE IL NOME DEL COSTRUTTORE", "NUOVO COSTRUTTORE")
+    '            If strNewManufacturer <> "" Then
+    '                'Check if Len is correct
+    '                If Len(strNewManufacturer) > 12 Then
+    '                    MsgBox("NOME COSTRUTTORE TROPPO LUNGO (MAX. 12 CARATTERI)", MsgBoxStyle.Critical)
+    '                    Exit Sub
+    '                End If
+    '                'Backup the Rules database
+    '                With DateTime.Now
+    '                    strTempDateTime = (.Year & .Month & .Day & .Hour & .Minute & .Second)
+    '                End With
+    '                Try
+    '                    Dim strDBBackupPath As String = RegularExpressions.Regex.Replace(String.Concat(strConfigDBBackupPath, ".", strTempDateTime, ".db"), """", "")
+    '                    fCopyFromDirToDir(strDBPath, strDBBackupPath, False)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NEL BACKUP DEL DATABASE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '                'Connect to database and check connection status
+    '                Try
+    '                    dbCodingRules.fConnection("Data Source =" & strDBPath & ";Version = 3")
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NELLA CONNESSIONE AL DATABASE DELLE REGOLE DI CODIFICA", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '                'Add the new element to the database
+    '                Try
+    '                    Dim strGenericQuery As String = "INSERT INTO tbSupplier (SUPPLIER) VALUES ('" & strNewManufacturer & "')"
+    '                    dbCodingRules.fExecuteGenericInsert(dbCodingRules.SQLConn, strGenericQuery)
+    '                    MsgBox("INSERIMENTO COMPLETATO CON SUCCESSO!!", MsgBoxStyle.Exclamation)
+    '                Catch ex As Exception
+    '                    MsgBox("ERRORE NELL'INSERIMENTO DEL NUOVO COSTRUTTORE", MsgBoxStyle.Critical)
+    '                    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+    '                End Try
+    '            Else
+    '                Exit Sub
+    '            End If
+
+
+
+
+    '        Else
+    '            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+    '        End If
+    '    End Sub
 End Class

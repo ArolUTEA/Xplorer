@@ -80,11 +80,7 @@ Public Class DBManagement
             da.Fill(dt)
             sqlcmd.ExecuteReader()
             If dt IsNot Nothing Then
-                'Dim processo = New Process
                 Process.Start(Convert.ToString(dt.Rows(0)("Link")))
-                'If processo.HasExited Then
-                'File.Delete("E:\GestioneMagazzino\DownloadedPDF\" & Convert.ToString(dt.Rows(0).Item(0)) & ".pdf")
-                'End If
             End If
             sqlcmd.Dispose()
             da.Dispose()
@@ -104,7 +100,6 @@ Public Class DBManagement
             da.Fill(dt)
             sqlcmd.ExecuteReader()
             If dt.Rows.Count > 0 Then
-                'MsgBox(Convert.ToString(dt.Rows(0)("ID")))
                 For Each i In dt.Rows
                     fReadFileFromDatabase(dt.Rows(0)("ID"), dbSource, tableName)
                 Next
@@ -155,6 +150,29 @@ Public Class DBManagement
             End If
         Else
             Return False
+        End If
+    End Function
+    Public Function fLookIfThereAreDocuments(strElement As String, dbSource As SQLiteConnection, strTableName As String, strColumn As String) As DataTable
+        If dbSource.State = ConnectionState.Open Then
+            Dim cmd = "SELECT * FROM " & strTableName & " WHERE ArolCode = '" & strElement & "'"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbSource)
+            Dim da As New SQLiteDataAdapter
+            da.SelectCommand = sqlCmd
+            Dim dt As New DataTable
+            da.Fill(dt)
+            sqlCmd.ExecuteReader()
+            If dt.Rows.Count > 0 Then
+                sqlCmd.Dispose()
+                da.Dispose()
+                Return dt
+            Else
+                sqlCmd.Dispose()
+                da.Dispose()
+                dt.Dispose()
+                Return Nothing
+            End If
+        Else
+            Return Nothing
         End If
     End Function
     Public Function fCheckIfAlreadyExist(strElement As String, dbSource As SQLiteConnection, strTableName As String, strColumn As String) As Boolean
@@ -252,7 +270,6 @@ Public Class DBManagement
                 Dim da As New SQLiteDataAdapter
                 da.SelectCommand = cmdDataGrid
                 Dim dt As New DataTable
-                'da.Fill(dt)
                 cmdDataGrid.ExecuteReader()
                 cmdDataGrid.Dispose()
                 da.Dispose()
@@ -406,6 +423,62 @@ Public Class DBManagement
             End If
         Catch ex As Exception
             MsgBox("ERRORE NELLA CANCELLAZIONE DELLE RIGHE DEL DATABASE", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fInsertNewDocument(dbDestination As SQLiteConnection, strTableName As String, iTipo As Integer, strTitolo As String, strVersione As String, strFilePath As String, strFileUrl As String) As Boolean
+        Try
+            If dbDestination.State = ConnectionState.Open Then
+                Dim cmd = "INSERT INTO " & strTableName & "(Tipo,Titolo,Versione,File,Link) VALUES (@Tipo,@Titolo,@Versione,@File,@Link)"
+                Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDestination)
+                sqlCmd.Parameters.AddWithValue("@Tipo", iTipo)
+                sqlCmd.Parameters.AddWithValue("@Titolo", strTitolo)
+                sqlCmd.Parameters.AddWithValue("@Versione", strVersione)
+                sqlCmd.Parameters.AddWithValue("@File", strFilePath)
+                sqlCmd.Parameters.AddWithValue("@Link", strFileUrl)
+                sqlCmd.ExecuteNonQuery()
+                sqlCmd.Dispose()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NEL AGGIORNAMENTO DELLA TABELLA DOCUMENTAZIONE", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fInsertNewLinkToDoc(dbDestination As SQLiteConnection, strTableName As String, strArolCode As String, strLinkToDocID As String) As Boolean
+        Try
+            If dbDestination.State = ConnectionState.Open Then
+                Dim cmd = "INSERT INTO " & strTableName & "(ArolCode, LinkDoc) VALUES (@ArolCode, @LinkDocId)"
+                Dim sqlCmd As SQLiteCommand = New SQLiteCommand(cmd, dbDestination)
+                sqlCmd.Parameters.AddWithValue("@ArolCode", strArolCode)
+                sqlCmd.Parameters.AddWithValue("@LinkDocId", strLinkToDocID)
+                sqlCmd.ExecuteNonQuery()
+                sqlCmd.Dispose()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox("ERRORE NEL AGGIORNAMENTO DELLA TABELLA LINKTODOC", MsgBoxStyle.Critical)
+            fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
+            Return False
+        End Try
+    End Function
+    Public Function fUpdateLinkToDoc(dbDestination As SQLiteConnection, strTableName As String, strArolCode As String, strNewLinkDoc As String, strOldLinkDoc As String) As Boolean
+        Try
+            Dim strTempQuery As String = "UPDATE linkToDoc SET ArolCode=@ArolCode, LinkDoc=@LinkDoc WHERE ArolCode = '" & strArolCode & "' AND LinkDoc = '" & strOldLinkDoc & "'"
+            Dim sqlCmd As SQLiteCommand = New SQLiteCommand(strTempQuery, frmMain.dbWarehouse.SQLConn)
+            sqlCmd.Parameters.AddWithValue("@ArolCode", strArolCode)
+            sqlCmd.Parameters.AddWithValue("@LinkDoc", strNewLinkDoc)
+            sqlCmd.ExecuteNonQuery()
+            sqlCmd.Dispose()
+            Return True
+        Catch ex As Exception
+            MsgBox("ERRORE NELLA MODIFICA DELLA TABELLA LINKTODOC", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
             Return False
         End Try

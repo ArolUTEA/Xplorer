@@ -714,10 +714,16 @@ Public Class frmMain
     End Sub
     Private Sub DocMigrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocMigrationToolStripMenuItem.Click
         'Controllo se hai i diritti di scrittura
-        If bUserWritePerm Then
-            fDocumentMigration()
+        If bManageUser Then
+            If MsgBox("Confermi l'operazione?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                frmDocMigrationRun.Show()
+                fDocumentMigration()
+                frmDocMigrationRun.Close()
+            Else
+                MsgBox("Bravo, saggia decisione!!", MsgBoxStyle.Exclamation)
+            End If
         Else
-            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+                MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
 

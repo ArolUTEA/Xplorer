@@ -261,6 +261,11 @@ Module GeneralAuxFunctions
                 Return False
             End If
             fPopulateLinkToDoc(tempCodificatiDS.Rows(i)(1).ToString, strLinkToDocID)
+            If frmDocMigrationRun.prbDocMigration.Value < frmDocMigrationRun.prbDocMigration.Maximum Then
+                frmDocMigrationRun.prbDocMigration.Value = frmDocMigrationRun.prbDocMigration.Value + 1
+            Else
+                frmDocMigrationRun.prbDocMigration.Value = 0
+            End If
         Next
         Return True
     End Function

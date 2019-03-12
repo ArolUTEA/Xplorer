@@ -1,4 +1,24 @@
 ﻿#######################################
+Xplorer 1.2.8.12
+Data Pubblicazione: 11/03/2019
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+#######################################
+Modifiche effettuate:
+1) aggiunta la conferma di richiesta di "Doc Migration..."
+2) la procedura di "Doc Migration..." può essere effettuata solo dagli utenti di tipo "Avanzato"
+#######################################
+Elementi modificati:
+m) frmMain.vb
++) frmDocMigrationRun.vb
+
+#######################################
 Xplorer 1.2.7.11
 Data Pubblicazione: 09/03/2019
 #######################################
@@ -51,11 +71,6 @@ M) GeneralAuxFunctions.vb
 M) DBManagement.vb
 +) DocumentManagementFunctions.vb
 M) config.xml
-
-
-
-
-
 
 #######################################
 Xplorer 1.1.6.10

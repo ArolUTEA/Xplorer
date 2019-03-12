@@ -412,8 +412,8 @@ Public Class frmMain
         fFindElement()
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        frmAbout.lblRevision.Text = "Xplorer 1.2.7.11"
-        frmAbout.lblIssuedDate.Text = "09/03/2019"
+        frmAbout.lblRevision.Text = "Xplorer 1.2.8.12"
+        frmAbout.lblIssuedDate.Text = "11/03/2019"
         frmAbout.TopMost = True
         frmAbout.Show()
     End Sub
@@ -714,10 +714,16 @@ Public Class frmMain
     End Sub
     Private Sub DocMigrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocMigrationToolStripMenuItem.Click
         'Controllo se hai i diritti di scrittura
-        If bUserWritePerm Then
-            fDocumentMigration()
+        If bManageUser Then
+            If MsgBox("Confermi l'operazione?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                frmDocMigrationRun.Show()
+                fDocumentMigration()
+                frmDocMigrationRun.Close()
+            Else
+                MsgBox("Bravo, saggia decisione!!", MsgBoxStyle.Exclamation)
+            End If
         Else
-            MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
+                MsgBox("IL TUO UTENTE NON HA I PERMESSI PER FARLO", MsgBoxStyle.OkOnly)
         End If
     End Sub
 

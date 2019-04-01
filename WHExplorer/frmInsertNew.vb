@@ -101,7 +101,7 @@ Public Class frmInsertNew
             bComboInit = False
             btnInsertNew.Enabled = False
             clearAndResetTextBoxes()
-            cbxAddDatasheet.CheckState = CheckState.Unchecked
+            'cbxAddDatasheet.CheckState = CheckState.Unchecked
             checkArolCode()
             checkCommercialCode()
             checkConstructor()
@@ -413,7 +413,7 @@ Public Class frmInsertNew
             Dim strDescription As String
             Dim strManufacturer As String
             Dim strSupplementaryDescription As String
-            Dim strDestFilePath As String
+            'Dim strDestFilePath As String
             Dim dsDestFolder As String = xmlReader.fReadSingleNode("dsDestFolder")
             strArolCode = UCase(txtCode.Text & txtLowCode.Text)
             strCommercialCode = UCase(txtCommercialCode.Text)
@@ -423,11 +423,11 @@ Public Class frmInsertNew
             Dim strTableName As String
             strTableName = checkMatCommConsumo()
             frmMain.dbWarehouse.fInsertNewComponent(frmMain.dbWarehouse.SQLConn, strTableName, strArolCode, strCommercialCode, strDescription, strManufacturer, strSupplementaryDescription)
-            If cbxAddDatasheet.Checked Then
-                strDestFilePath = dsDestFolder & strArolCode & txtFileExtension.Text
-                fCopyFromDirToDir(txtFileDSPath.Text, strDestFilePath, False)
-                frmMain.dbWarehouse.fInsertDatasheetInDatabase(strArolCode, txtFileExtension.Text, strDestFilePath, frmMain.dbWarehouse.SQLConn, "codificatiDS")
-            End If
+            'If cbxAddDatasheet.Checked Then
+            '    strDestFilePath = dsDestFolder & strArolCode & txtFileExtension.Text
+            '    fCopyFromDirToDir(txtFileDSPath.Text, strDestFilePath, False)
+            '    frmMain.dbWarehouse.fInsertDatasheetInDatabase(strArolCode, txtFileExtension.Text, strDestFilePath, frmMain.dbWarehouse.SQLConn, "codificatiDS")
+            'End If
             btnInsertNew.Enabled = False
             btnCreaFileTxt.Enabled = True
             Dim strRichiestoDa, strNote, strTipoParte, strPuntoLotto, strPuntoRiordino, strScortaSicurezza, strStato, strTableNameExtended As String
@@ -454,15 +454,15 @@ Public Class frmInsertNew
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
         End Try
     End Sub
-    Private Sub cbxAddDatasheet_CheckedChanged(sender As Object, e As EventArgs) Handles cbxAddDatasheet.CheckedChanged
+    Private Sub cbxAddDatasheet_CheckedChanged(sender As Object, e As EventArgs)
         Try
-            If cbxAddDatasheet.Checked Then
-                brwFileDialog.ShowDialog()
-                txtFileDSPath.Text = Path.GetFullPath(brwFileDialog.FileName)
-                txtFileExtension.Text = Path.GetExtension(txtFileDSPath.Text)
-            Else
-                txtFileDSPath.Text = Nothing
-            End If
+            'If cbxAddDatasheet.Checked Then
+            '    brwFileDialog.ShowDialog()
+            '    txtFileDSPath.Text = Path.GetFullPath(brwFileDialog.FileName)
+            '    txtFileExtension.Text = Path.GetExtension(txtFileDSPath.Text)
+            'Else
+            '    txtFileDSPath.Text = Nothing
+            'End If
         Catch ex As Exception
             MsgBox("ERRORE NEL RECUPERO DEL PERCORSO DEL DATASHEET", MsgBoxStyle.Critical)
             fAddLogRow(frmMain.strLogFilePath, "Utente: " & ex.ToString)
@@ -567,13 +567,13 @@ Public Class frmInsertNew
         txtCommercialCode.ForeColor = Color.Black
         txtDescription.ForeColor = Color.Black
         txtSuppDescription.ForeColor = Color.Black
-        txtFileDSPath.ForeColor = Color.Black
+        'txtFileDSPath.ForeColor = Color.Black
         txtCode.Clear()
         txtLowCode.Clear()
         txtCommercialCode.Clear()
         txtDescription.Clear()
         txtSuppDescription.Clear()
-        txtFileDSPath.Clear()
+        'txtFileDSPath.Clear()
     End Sub
     Public Sub clearAll()
         txtCode.ForeColor = Color.Black
@@ -581,21 +581,21 @@ Public Class frmInsertNew
         txtCommercialCode.ForeColor = Color.Black
         txtDescription.ForeColor = Color.Black
         txtSuppDescription.ForeColor = Color.Black
-        txtFileDSPath.ForeColor = Color.Black
-        txtFileExtension.ForeColor = Color.Black
+        'txtFileDSPath.ForeColor = Color.Black
+        'txtFileExtension.ForeColor = Color.Black
         txtDescrExample.ForeColor = Color.Black
         txtCode.Clear()
         txtLowCode.Clear()
         txtCommercialCode.Clear()
         txtDescription.Clear()
         txtSuppDescription.Clear()
-        txtFileDSPath.Clear()
-        txtFileExtension.Clear()
+        'txtFileDSPath.Clear()
+        'txtFileExtension.Clear()
         txtDescrExample.Clear()
         cbxConstructor.ResetText()
         cbxConstructor.BackColor = Color.Red
         cbxCompFamily.ResetText()
-        cbxAddDatasheet.Checked = CheckState.Unchecked
+        'cbxAddDatasheet.Checked = CheckState.Unchecked
     End Sub
     Public Sub clearPanelFour()
         If bInitDescrField Then

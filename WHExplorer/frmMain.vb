@@ -65,27 +65,27 @@ Public Class frmMain
             fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
         End Try
         'Check if new files are present in datasheet source folder
-        Try
-            Dim dsSourceFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsSourceFolder"), """", "")
-            Dim dsDestFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsDestFolder"), """", "")
-            If fCheckIfThereFiles(dsSourceFolder) Then
-                If MsgBox("Sono disponibili nuovi DataSheet, vuoi Salvarli?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    Dim tempString As String(,)
-                    'chiamo la funzione che mi restituisce un array contenente i nomi dei files
-                    tempString = fRetrieveFileName(dsSourceFolder)
-                    For i = 0 To tempString.GetLength(0) - 1
-                        'Copio i datasheet nella cartella di archivio ed inserisco i link nel database
-                        fCopyFromDirToDir(dsSourceFolder & tempString(i, 0) & tempString(i, 1), dsDestFolder & tempString(i, 0) & tempString(i, 1), True)
-                        If Not dbWarehouse.fCheckIfAlreadyExist(dsDestFolder & tempString(i, 0) & tempString(i, 1), dbWarehouse.SQLConn, "codificatiDS", "Link") Then
-                            dbWarehouse.fInsertDatasheetInDatabase(tempString(i, 0), tempString(i, 1), dsDestFolder & tempString(i, 0) & tempString(i, 1), dbWarehouse.SQLConn, "codificatiDS")
-                        End If
-                    Next
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox("ERRORE NELLA COPIA DEI NUOVI DATASHEETS", MsgBoxStyle.Critical)
-            fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
-        End Try
+        'Try
+        '    Dim dsSourceFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsSourceFolder"), """", "")
+        '    Dim dsDestFolder As String = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsDestFolder"), """", "")
+        '    If fCheckIfThereFiles(dsSourceFolder) Then
+        '        If MsgBox("Sono disponibili nuovi DataSheet, vuoi Salvarli?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        '            Dim tempString As String(,)
+        '            'chiamo la funzione che mi restituisce un array contenente i nomi dei files
+        '            tempString = fRetrieveFileName(dsSourceFolder)
+        '            For i = 0 To tempString.GetLength(0) - 1
+        '                'Copio i datasheet nella cartella di archivio ed inserisco i link nel database
+        '                fCopyFromDirToDir(dsSourceFolder & tempString(i, 0) & tempString(i, 1), dsDestFolder & tempString(i, 0) & tempString(i, 1), True)
+        '                If Not dbWarehouse.fCheckIfAlreadyExist(dsDestFolder & tempString(i, 0) & tempString(i, 1), dbWarehouse.SQLConn, "codificatiDS", "Link") Then
+        '                    dbWarehouse.fInsertDatasheetInDatabase(tempString(i, 0), tempString(i, 1), dsDestFolder & tempString(i, 0) & tempString(i, 1), dbWarehouse.SQLConn, "codificatiDS")
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox("ERRORE NELLA COPIA DEI NUOVI DATASHEETS", MsgBoxStyle.Critical)
+        '    fAddLogRow(strLogFilePath, "Utente: " & ex.ToString)
+        'End Try
         'Leggo i path di archiviazione dei documenti
         Try
             strDocArchivePath(0) = RegularExpressions.Regex.Replace(strApplicationPath & xmlReader.fReadSingleNode("dsDatasheet"), """", "")

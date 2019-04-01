@@ -41,6 +41,8 @@ Module GeneralAuxFunctions
                 tempDataTable = frmMain.dbWarehouse.fSelectAllAndOrderBy(frmMain.dbWarehouse.SQLConn, "datiEstesiCodificati", "ID")
             ElseIf dgvSelected.Name = "dgvCSDBViewer" Then
                 tempDataTable = frmMain.dbWarehouse.fSelectAllAndOrderBy(frmMain.dbWarehouse.SQLConn, "datiEstesiConsumabili", "ID")
+            Else
+                tempDataTable = Nothing
             End If
 
             'Definisco una primary key per il tempData

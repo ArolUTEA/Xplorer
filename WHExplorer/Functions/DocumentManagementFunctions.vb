@@ -222,6 +222,7 @@ Module DocumentManagementFunctions
         If strLink <> "" Then
             Process.Start(strLink)
         End If
+        Return True
     End Function
     Public Function fInitDatagridViews() As Boolean
         frmMain.dgvDatasheets.AutoResizeColumns()

@@ -53,14 +53,6 @@ Partial Class frmInsertNew
         Me.txtDescrExample = New System.Windows.Forms.TextBox()
         Me.lblDescriptionConstructor = New System.Windows.Forms.Label()
         Me.brwFileDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.txtFileExtension = New System.Windows.Forms.TextBox()
-        Me.lblFileExtension = New System.Windows.Forms.Label()
-        Me.lblDSFilePath = New System.Windows.Forms.Label()
-        Me.txtFileDSPath = New System.Windows.Forms.TextBox()
-        Me.lblDatasheet = New System.Windows.Forms.Label()
-        Me.cbxAddDatasheet = New System.Windows.Forms.CheckBox()
         Me.brwFolderDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.rdbMatCons = New System.Windows.Forms.RadioButton()
@@ -71,6 +63,8 @@ Partial Class frmInsertNew
         Me.rdbGenerico = New System.Windows.Forms.RadioButton()
         Me.rdbFamComponente = New System.Windows.Forms.RadioButton()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.btnInsertNew = New System.Windows.Forms.Button()
         Me.btnCreaFileTxt = New System.Windows.Forms.Button()
         Me.frmInsertNewHelpTip = New System.Windows.Forms.ToolTip(Me.components)
@@ -89,10 +83,8 @@ Partial Class frmInsertNew
         Me.txtTipoParte = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
         Me.txtPuntoLotto = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.PictureBox11 = New System.Windows.Forms.PictureBox()
         Me.txtPuntoRiordino = New System.Windows.Forms.TextBox()
@@ -108,8 +100,7 @@ Partial Class frmInsertNew
         Me.txtNote = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.PictureBox18 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -121,12 +112,12 @@ Partial Class frmInsertNew
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel6.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel7.SuspendLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel11.SuspendLayout()
         Me.Panel9.SuspendLayout()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel12.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel13.SuspendLayout()
@@ -134,8 +125,6 @@ Partial Class frmInsertNew
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel17.SuspendLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,8 +134,7 @@ Partial Class frmInsertNew
         Me.Panel19.SuspendLayout()
         CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblFamily
@@ -345,7 +333,7 @@ Partial Class frmInsertNew
         Me.txtSuppDescription.BackColor = System.Drawing.Color.White
         Me.txtSuppDescription.Location = New System.Drawing.Point(52, 23)
         Me.txtSuppDescription.Name = "txtSuppDescription"
-        Me.txtSuppDescription.Size = New System.Drawing.Size(438, 20)
+        Me.txtSuppDescription.Size = New System.Drawing.Size(1222, 20)
         Me.txtSuppDescription.TabIndex = 15
         '
         'lblSuppDescription
@@ -367,7 +355,7 @@ Partial Class frmInsertNew
         Me.Panel5.Controls.Add(Me.txtSuppDescription)
         Me.Panel5.Location = New System.Drawing.Point(13, 378)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(508, 55)
+        Me.Panel5.Size = New System.Drawing.Size(1315, 55)
         Me.Panel5.TabIndex = 16
         '
         'PictureBox6
@@ -436,90 +424,6 @@ Partial Class frmInsertNew
         'brwFileDialog
         '
         Me.brwFileDialog.FileName = "OpenFileDialog1"
-        '
-        'Panel7
-        '
-        Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel7.Controls.Add(Me.PictureBox7)
-        Me.Panel7.Controls.Add(Me.txtFileExtension)
-        Me.Panel7.Controls.Add(Me.lblFileExtension)
-        Me.Panel7.Controls.Add(Me.lblDSFilePath)
-        Me.Panel7.Controls.Add(Me.txtFileDSPath)
-        Me.Panel7.Controls.Add(Me.lblDatasheet)
-        Me.Panel7.Controls.Add(Me.cbxAddDatasheet)
-        Me.Panel7.Location = New System.Drawing.Point(527, 378)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(801, 55)
-        Me.Panel7.TabIndex = 21
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.BackgroundImage = CType(resources.GetObject("PictureBox7.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox7.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox7.TabIndex = 27
-        Me.PictureBox7.TabStop = False
-        '
-        'txtFileExtension
-        '
-        Me.txtFileExtension.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txtFileExtension.Location = New System.Drawing.Point(290, 25)
-        Me.txtFileExtension.Name = "txtFileExtension"
-        Me.txtFileExtension.ReadOnly = True
-        Me.txtFileExtension.Size = New System.Drawing.Size(47, 20)
-        Me.txtFileExtension.TabIndex = 25
-        '
-        'lblFileExtension
-        '
-        Me.lblFileExtension.AutoSize = True
-        Me.lblFileExtension.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFileExtension.Location = New System.Drawing.Point(210, 27)
-        Me.lblFileExtension.Name = "lblFileExtension"
-        Me.lblFileExtension.Size = New System.Drawing.Size(74, 13)
-        Me.lblFileExtension.TabIndex = 24
-        Me.lblFileExtension.Text = "File extension:"
-        '
-        'lblDSFilePath
-        '
-        Me.lblDSFilePath.AutoSize = True
-        Me.lblDSFilePath.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDSFilePath.Location = New System.Drawing.Point(234, 5)
-        Me.lblDSFilePath.Name = "lblDSFilePath"
-        Me.lblDSFilePath.Size = New System.Drawing.Size(50, 13)
-        Me.lblDSFilePath.TabIndex = 23
-        Me.lblDSFilePath.Text = "File path:"
-        '
-        'txtFileDSPath
-        '
-        Me.txtFileDSPath.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txtFileDSPath.Location = New System.Drawing.Point(290, 3)
-        Me.txtFileDSPath.Name = "txtFileDSPath"
-        Me.txtFileDSPath.ReadOnly = True
-        Me.txtFileDSPath.Size = New System.Drawing.Size(492, 20)
-        Me.txtFileDSPath.TabIndex = 10
-        '
-        'lblDatasheet
-        '
-        Me.lblDatasheet.AutoSize = True
-        Me.lblDatasheet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDatasheet.Location = New System.Drawing.Point(53, 4)
-        Me.lblDatasheet.Name = "lblDatasheet"
-        Me.lblDatasheet.Size = New System.Drawing.Size(81, 16)
-        Me.lblDatasheet.TabIndex = 22
-        Me.lblDatasheet.Text = "DataSheet"
-        '
-        'cbxAddDatasheet
-        '
-        Me.cbxAddDatasheet.AutoSize = True
-        Me.cbxAddDatasheet.Location = New System.Drawing.Point(58, 26)
-        Me.cbxAddDatasheet.Name = "cbxAddDatasheet"
-        Me.cbxAddDatasheet.Size = New System.Drawing.Size(118, 17)
-        Me.cbxAddDatasheet.TabIndex = 0
-        Me.cbxAddDatasheet.Text = "Inserisci DataSheet"
-        Me.cbxAddDatasheet.UseVisualStyleBackColor = True
         '
         'Panel8
         '
@@ -625,6 +529,28 @@ Partial Class frmInsertNew
         Me.Panel9.Size = New System.Drawing.Size(171, 55)
         Me.Panel9.TabIndex = 23
         '
+        'PictureBox15
+        '
+        Me.PictureBox15.BackgroundImage = Global.Xplorer.My.Resources.Resources._3
+        Me.PictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox15.Location = New System.Drawing.Point(4, 25)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox15.TabIndex = 27
+        Me.PictureBox15.TabStop = False
+        '
+        'PictureBox8
+        '
+        Me.PictureBox8.BackgroundImage = CType(resources.GetObject("PictureBox8.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox8.Location = New System.Drawing.Point(4, 0)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox8.TabIndex = 33
+        Me.PictureBox8.TabStop = False
+        '
         'btnInsertNew
         '
         Me.btnInsertNew.BackgroundImage = CType(resources.GetObject("btnInsertNew.BackgroundImage"), System.Drawing.Image)
@@ -678,7 +604,7 @@ Partial Class frmInsertNew
         '
         'PictureBox9
         '
-        Me.PictureBox9.BackgroundImage = CType(resources.GetObject("PictureBox9.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox9.BackgroundImage = Global.Xplorer.My.Resources.Resources._7
         Me.PictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox9.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox9.Name = "PictureBox9"
@@ -717,7 +643,7 @@ Partial Class frmInsertNew
         '
         'PictureBox10
         '
-        Me.PictureBox10.BackgroundImage = CType(resources.GetObject("PictureBox10.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox10.BackgroundImage = Global.Xplorer.My.Resources.Resources._8
         Me.PictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox10.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox10.Name = "PictureBox10"
@@ -787,25 +713,13 @@ Partial Class frmInsertNew
         'Panel16
         '
         Me.Panel16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel16.Controls.Add(Me.PictureBox13)
+        Me.Panel16.Controls.Add(Me.PictureBox7)
         Me.Panel16.Controls.Add(Me.txtPuntoLotto)
         Me.Panel16.Controls.Add(Me.Label5)
-        Me.Panel16.Controls.Add(Me.PictureBox12)
         Me.Panel16.Location = New System.Drawing.Point(350, 439)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(154, 55)
         Me.Panel16.TabIndex = 31
-        '
-        'PictureBox13
-        '
-        Me.PictureBox13.BackgroundImage = CType(resources.GetObject("PictureBox13.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox13.Location = New System.Drawing.Point(3, 24)
-        Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox13.TabIndex = 33
-        Me.PictureBox13.TabStop = False
         '
         'txtPuntoLotto
         '
@@ -824,17 +738,6 @@ Partial Class frmInsertNew
         Me.Label5.Size = New System.Drawing.Size(85, 16)
         Me.Label5.TabIndex = 28
         Me.Label5.Text = "Punto Lotto"
-        '
-        'PictureBox12
-        '
-        Me.PictureBox12.BackgroundImage = CType(resources.GetObject("PictureBox12.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox12.Location = New System.Drawing.Point(3, -1)
-        Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox12.TabIndex = 32
-        Me.PictureBox12.TabStop = False
         '
         'Panel17
         '
@@ -902,7 +805,7 @@ Partial Class frmInsertNew
         '
         'PictureBox17
         '
-        Me.PictureBox17.BackgroundImage = CType(resources.GetObject("PictureBox17.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox17.BackgroundImage = Global.Xplorer.My.Resources.Resources._1
         Me.PictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox17.Location = New System.Drawing.Point(3, 24)
         Me.PictureBox17.Name = "PictureBox17"
@@ -954,7 +857,7 @@ Partial Class frmInsertNew
         '
         'PictureBox19
         '
-        Me.PictureBox19.BackgroundImage = CType(resources.GetObject("PictureBox19.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox19.BackgroundImage = Global.Xplorer.My.Resources.Resources._2
         Me.PictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox19.Location = New System.Drawing.Point(3, 24)
         Me.PictureBox19.Name = "PictureBox19"
@@ -992,27 +895,16 @@ Partial Class frmInsertNew
         Me.PictureBox18.TabIndex = 32
         Me.PictureBox18.TabStop = False
         '
-        'PictureBox8
+        'PictureBox7
         '
-        Me.PictureBox8.BackgroundImage = CType(resources.GetObject("PictureBox8.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox8.Location = New System.Drawing.Point(4, 0)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 33
-        Me.PictureBox8.TabStop = False
-        '
-        'PictureBox15
-        '
-        Me.PictureBox15.BackgroundImage = CType(resources.GetObject("PictureBox15.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox15.Location = New System.Drawing.Point(4, 25)
-        Me.PictureBox15.Name = "PictureBox15"
-        Me.PictureBox15.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox15.TabIndex = 27
-        Me.PictureBox15.TabStop = False
+        Me.PictureBox7.BackgroundImage = CType(resources.GetObject("PictureBox7.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox7.Location = New System.Drawing.Point(3, 4)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox7.TabIndex = 29
+        Me.PictureBox7.TabStop = False
         '
         'frmInsertNew
         '
@@ -1029,7 +921,6 @@ Partial Class frmInsertNew
         Me.Controls.Add(Me.Panel12)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel8)
-        Me.Controls.Add(Me.Panel7)
         Me.Controls.Add(Me.Panel6)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel4)
@@ -1057,15 +948,14 @@ Partial Class frmInsertNew
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel7.ResumeLayout(False)
-        Me.Panel7.PerformLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
         Me.Panel9.ResumeLayout(False)
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel12.ResumeLayout(False)
         Me.Panel12.PerformLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1078,8 +968,6 @@ Partial Class frmInsertNew
         Me.Panel15.PerformLayout()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel17.ResumeLayout(False)
         Me.Panel17.PerformLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1092,8 +980,7 @@ Partial Class frmInsertNew
         Me.Panel19.PerformLayout()
         CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1122,13 +1009,6 @@ Partial Class frmInsertNew
     Friend WithEvents txtDescrExample As TextBox
     Friend WithEvents brwFileDialog As OpenFileDialog
     Friend WithEvents lblEsempioDescrizione As Label
-    Friend WithEvents Panel7 As Panel
-    Friend WithEvents lblDSFilePath As Label
-    Friend WithEvents txtFileDSPath As TextBox
-    Friend WithEvents lblDatasheet As Label
-    Friend WithEvents cbxAddDatasheet As CheckBox
-    Friend WithEvents txtFileExtension As TextBox
-    Friend WithEvents lblFileExtension As Label
     Friend WithEvents brwFolderDialog As FolderBrowserDialog
     Friend WithEvents cbxConstructor As ComboBox
     Friend WithEvents Panel8 As Panel
@@ -1138,7 +1018,6 @@ Partial Class frmInsertNew
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents Panel9 As Panel
     Friend WithEvents btnLockUnlockDescr As Button
     Friend WithEvents frmInsertNewHelpTip As ToolTip
@@ -1163,10 +1042,8 @@ Partial Class frmInsertNew
     Friend WithEvents txtTipoParte As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel16 As Panel
-    Friend WithEvents PictureBox13 As PictureBox
     Friend WithEvents txtPuntoLotto As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents PictureBox12 As PictureBox
     Friend WithEvents Panel17 As Panel
     Friend WithEvents PictureBox11 As PictureBox
     Friend WithEvents txtPuntoRiordino As TextBox
@@ -1184,4 +1061,5 @@ Partial Class frmInsertNew
     Friend WithEvents PictureBox18 As PictureBox
     Friend WithEvents PictureBox15 As PictureBox
     Friend WithEvents PictureBox8 As PictureBox
+    Friend WithEvents PictureBox7 As PictureBox
 End Class

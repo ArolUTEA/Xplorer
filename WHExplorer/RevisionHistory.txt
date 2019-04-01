@@ -1,4 +1,34 @@
 ﻿#######################################
+Xplorer X.X.X.XX
+Data Pubblicazione: XX/YY/20ZZ
+#######################################
+Compilato per Framework 4.0
+#######################################
+Librerie utilizzate:
+SQLite.Designer				1.0.105.2
+System.Data.SQLite			1.0.105.2
+System.Data.SQLite.EF6		1.0.105.2
+System.Data.SQLite.Linq		1.0.105.2
+log4net						2.0.8
+#######################################
+Modifiche effettuate:
+1) installata libreria log4net v.2.0.8
+2) aggiunto il file logger.vb
+3) nel frmMain, evento "Form Load", commentato la ricerca di nuovi datasheet
+4) nel frmInsertNew, rimosso il campo per l'aggiunta di un datasheet
+5) nel frmInsertNew, rimossa la procedura che controllava se è stato inserito un datasheet o meno
+6) correzione di alcuni warning
+
+
+#######################################
+Elementi modificati:
++) libreria log4net v.2.0.8
++) aggiunta classe logger
+m) frmMain.vb
+m) frmInsertNew.vb
+m) GeneralAuxFunctions.vb
+
+#######################################
 Xplorer 1.2.8.12
 Data Pubblicazione: 11/03/2019
 #######################################

@@ -117,6 +117,7 @@ Partial Class frmMain
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewManufacturerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DocMigrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -124,14 +125,6 @@ Partial Class frmMain
         Me.tabDocuments = New System.Windows.Forms.TabControl()
         Me.datasheetTabPage = New System.Windows.Forms.TabPage()
         Me.dgvDatasheets = New System.Windows.Forms.DataGridView()
-        Me.UserManualTabPage = New System.Windows.Forms.TabPage()
-        Me.dgvUserManuals = New System.Windows.Forms.DataGridView()
-        Me.electricalDrawingTabPage = New System.Windows.Forms.TabPage()
-        Me.dgvElectricalDrawings = New System.Windows.Forms.DataGridView()
-        Me.ApplicationNoteTabPage = New System.Windows.Forms.TabPage()
-        Me.dgvApplicationNotes = New System.Windows.Forms.DataGridView()
-        Me.EconomicTabPage = New System.Windows.Forms.TabPage()
-        Me.dgvEconomicBids = New System.Windows.Forms.DataGridView()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Titolo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -139,6 +132,8 @@ Partial Class frmMain
         Me.FilePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Url = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.UserManualTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvUserManuals = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -146,6 +141,8 @@ Partial Class frmMain
         Me.Percorso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.electricalDrawingTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvElectricalDrawings = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -153,6 +150,8 @@ Partial Class frmMain
         Me.PercorsoFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open3 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ApplicationNoteTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvApplicationNotes = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -160,6 +159,8 @@ Partial Class frmMain
         Me.PercorsoFile2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open4 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.EconomicTabPage = New System.Windows.Forms.TabPage()
+        Me.dgvEconomicBids = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -167,7 +168,6 @@ Partial Class frmMain
         Me.PercorsoFile3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Open5 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DocMigrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvCEDBViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CompEleControl.SuspendLayout()
         Me.CompElePage.SuspendLayout()
@@ -1114,13 +1114,13 @@ Partial Class frmMain
         'ManageUserToolStripMenuItem
         '
         Me.ManageUserToolStripMenuItem.Name = "ManageUserToolStripMenuItem"
-        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ManageUserToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ManageUserToolStripMenuItem.Text = "Manage User"
         '
         'ChangePasswordToolStripMenuItem
         '
         Me.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem"
-        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangePasswordToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ChangePasswordToolStripMenuItem.Text = "Change Password"
         '
         'DatabaseToolStripMenuItem
@@ -1141,6 +1141,12 @@ Partial Class frmMain
         Me.NewDocumentToolStripMenuItem.Name = "NewDocumentToolStripMenuItem"
         Me.NewDocumentToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.NewDocumentToolStripMenuItem.Text = "New Document..."
+        '
+        'DocMigrationToolStripMenuItem
+        '
+        Me.DocMigrationToolStripMenuItem.Name = "DocMigrationToolStripMenuItem"
+        Me.DocMigrationToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.DocMigrationToolStripMenuItem.Text = "Doc Migration..."
         '
         'HelpToolStripMenuItem
         '
@@ -1193,87 +1199,6 @@ Partial Class frmMain
         Me.dgvDatasheets.Size = New System.Drawing.Size(1082, 114)
         Me.dgvDatasheets.TabIndex = 0
         '
-        'UserManualTabPage
-        '
-        Me.UserManualTabPage.BackColor = System.Drawing.Color.LightGray
-        Me.UserManualTabPage.Controls.Add(Me.dgvUserManuals)
-        Me.UserManualTabPage.Location = New System.Drawing.Point(4, 22)
-        Me.UserManualTabPage.Name = "UserManualTabPage"
-        Me.UserManualTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.UserManualTabPage.Size = New System.Drawing.Size(1089, 189)
-        Me.UserManualTabPage.TabIndex = 1
-        Me.UserManualTabPage.Text = "User Manual"
-        '
-        'dgvUserManuals
-        '
-        Me.dgvUserManuals.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvUserManuals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUserManuals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.Percorso, Me.DataGridViewTextBoxColumn5, Me.Open2})
-        Me.dgvUserManuals.Location = New System.Drawing.Point(3, 3)
-        Me.dgvUserManuals.Name = "dgvUserManuals"
-        Me.dgvUserManuals.Size = New System.Drawing.Size(1082, 114)
-        Me.dgvUserManuals.TabIndex = 1
-        '
-        'electricalDrawingTabPage
-        '
-        Me.electricalDrawingTabPage.BackColor = System.Drawing.Color.LightGray
-        Me.electricalDrawingTabPage.Controls.Add(Me.dgvElectricalDrawings)
-        Me.electricalDrawingTabPage.Location = New System.Drawing.Point(4, 22)
-        Me.electricalDrawingTabPage.Name = "electricalDrawingTabPage"
-        Me.electricalDrawingTabPage.Size = New System.Drawing.Size(1089, 189)
-        Me.electricalDrawingTabPage.TabIndex = 2
-        Me.electricalDrawingTabPage.Text = "Electrical Drawing"
-        '
-        'dgvElectricalDrawings
-        '
-        Me.dgvElectricalDrawings.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvElectricalDrawings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvElectricalDrawings.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.PercorsoFile, Me.DataGridViewTextBoxColumn10, Me.Open3})
-        Me.dgvElectricalDrawings.Location = New System.Drawing.Point(3, 3)
-        Me.dgvElectricalDrawings.Name = "dgvElectricalDrawings"
-        Me.dgvElectricalDrawings.Size = New System.Drawing.Size(1082, 114)
-        Me.dgvElectricalDrawings.TabIndex = 1
-        '
-        'ApplicationNoteTabPage
-        '
-        Me.ApplicationNoteTabPage.BackColor = System.Drawing.Color.LightGray
-        Me.ApplicationNoteTabPage.Controls.Add(Me.dgvApplicationNotes)
-        Me.ApplicationNoteTabPage.Location = New System.Drawing.Point(4, 22)
-        Me.ApplicationNoteTabPage.Name = "ApplicationNoteTabPage"
-        Me.ApplicationNoteTabPage.Size = New System.Drawing.Size(1089, 189)
-        Me.ApplicationNoteTabPage.TabIndex = 3
-        Me.ApplicationNoteTabPage.Text = "Application Note"
-        '
-        'dgvApplicationNotes
-        '
-        Me.dgvApplicationNotes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvApplicationNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvApplicationNotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.PercorsoFile2, Me.DataGridViewTextBoxColumn15, Me.Open4})
-        Me.dgvApplicationNotes.Location = New System.Drawing.Point(3, 3)
-        Me.dgvApplicationNotes.Name = "dgvApplicationNotes"
-        Me.dgvApplicationNotes.Size = New System.Drawing.Size(1082, 114)
-        Me.dgvApplicationNotes.TabIndex = 1
-        '
-        'EconomicTabPage
-        '
-        Me.EconomicTabPage.BackColor = System.Drawing.Color.LightGray
-        Me.EconomicTabPage.Controls.Add(Me.dgvEconomicBids)
-        Me.EconomicTabPage.Location = New System.Drawing.Point(4, 22)
-        Me.EconomicTabPage.Name = "EconomicTabPage"
-        Me.EconomicTabPage.Size = New System.Drawing.Size(1089, 189)
-        Me.EconomicTabPage.TabIndex = 4
-        Me.EconomicTabPage.Text = "Economic Bid"
-        '
-        'dgvEconomicBids
-        '
-        Me.dgvEconomicBids.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvEconomicBids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEconomicBids.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.PercorsoFile3, Me.DataGridViewTextBoxColumn20, Me.Open5})
-        Me.dgvEconomicBids.Location = New System.Drawing.Point(3, 3)
-        Me.dgvEconomicBids.Name = "dgvEconomicBids"
-        Me.dgvEconomicBids.Size = New System.Drawing.Size(1082, 114)
-        Me.dgvEconomicBids.TabIndex = 1
-        '
         'ID
         '
         Me.ID.HeaderText = "ID"
@@ -1310,6 +1235,27 @@ Partial Class frmMain
         Me.Open.Name = "Open"
         Me.Open.Text = "Open"
         Me.Open.UseColumnTextForButtonValue = True
+        '
+        'UserManualTabPage
+        '
+        Me.UserManualTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.UserManualTabPage.Controls.Add(Me.dgvUserManuals)
+        Me.UserManualTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.UserManualTabPage.Name = "UserManualTabPage"
+        Me.UserManualTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.UserManualTabPage.Size = New System.Drawing.Size(1089, 120)
+        Me.UserManualTabPage.TabIndex = 1
+        Me.UserManualTabPage.Text = "User Manual"
+        '
+        'dgvUserManuals
+        '
+        Me.dgvUserManuals.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvUserManuals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvUserManuals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.Percorso, Me.DataGridViewTextBoxColumn5, Me.Open2})
+        Me.dgvUserManuals.Location = New System.Drawing.Point(3, 3)
+        Me.dgvUserManuals.Name = "dgvUserManuals"
+        Me.dgvUserManuals.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvUserManuals.TabIndex = 1
         '
         'DataGridViewTextBoxColumn1
         '
@@ -1350,6 +1296,26 @@ Partial Class frmMain
         Me.Open2.Text = "Open"
         Me.Open2.UseColumnTextForButtonValue = True
         '
+        'electricalDrawingTabPage
+        '
+        Me.electricalDrawingTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.electricalDrawingTabPage.Controls.Add(Me.dgvElectricalDrawings)
+        Me.electricalDrawingTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.electricalDrawingTabPage.Name = "electricalDrawingTabPage"
+        Me.electricalDrawingTabPage.Size = New System.Drawing.Size(1089, 120)
+        Me.electricalDrawingTabPage.TabIndex = 2
+        Me.electricalDrawingTabPage.Text = "Electrical Drawing"
+        '
+        'dgvElectricalDrawings
+        '
+        Me.dgvElectricalDrawings.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvElectricalDrawings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvElectricalDrawings.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.PercorsoFile, Me.DataGridViewTextBoxColumn10, Me.Open3})
+        Me.dgvElectricalDrawings.Location = New System.Drawing.Point(3, 3)
+        Me.dgvElectricalDrawings.Name = "dgvElectricalDrawings"
+        Me.dgvElectricalDrawings.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvElectricalDrawings.TabIndex = 1
+        '
         'DataGridViewTextBoxColumn6
         '
         Me.DataGridViewTextBoxColumn6.HeaderText = "ID"
@@ -1386,6 +1352,26 @@ Partial Class frmMain
         Me.Open3.Name = "Open3"
         Me.Open3.Text = "Open"
         Me.Open3.UseColumnTextForButtonValue = True
+        '
+        'ApplicationNoteTabPage
+        '
+        Me.ApplicationNoteTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.ApplicationNoteTabPage.Controls.Add(Me.dgvApplicationNotes)
+        Me.ApplicationNoteTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.ApplicationNoteTabPage.Name = "ApplicationNoteTabPage"
+        Me.ApplicationNoteTabPage.Size = New System.Drawing.Size(1089, 120)
+        Me.ApplicationNoteTabPage.TabIndex = 3
+        Me.ApplicationNoteTabPage.Text = "Application Note"
+        '
+        'dgvApplicationNotes
+        '
+        Me.dgvApplicationNotes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvApplicationNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvApplicationNotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.PercorsoFile2, Me.DataGridViewTextBoxColumn15, Me.Open4})
+        Me.dgvApplicationNotes.Location = New System.Drawing.Point(3, 3)
+        Me.dgvApplicationNotes.Name = "dgvApplicationNotes"
+        Me.dgvApplicationNotes.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvApplicationNotes.TabIndex = 1
         '
         'DataGridViewTextBoxColumn11
         '
@@ -1424,6 +1410,26 @@ Partial Class frmMain
         Me.Open4.Text = "Open"
         Me.Open4.UseColumnTextForButtonValue = True
         '
+        'EconomicTabPage
+        '
+        Me.EconomicTabPage.BackColor = System.Drawing.Color.LightGray
+        Me.EconomicTabPage.Controls.Add(Me.dgvEconomicBids)
+        Me.EconomicTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.EconomicTabPage.Name = "EconomicTabPage"
+        Me.EconomicTabPage.Size = New System.Drawing.Size(1089, 120)
+        Me.EconomicTabPage.TabIndex = 4
+        Me.EconomicTabPage.Text = "Economic Bid"
+        '
+        'dgvEconomicBids
+        '
+        Me.dgvEconomicBids.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.dgvEconomicBids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvEconomicBids.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.PercorsoFile3, Me.DataGridViewTextBoxColumn20, Me.Open5})
+        Me.dgvEconomicBids.Location = New System.Drawing.Point(3, 3)
+        Me.dgvEconomicBids.Name = "dgvEconomicBids"
+        Me.dgvEconomicBids.Size = New System.Drawing.Size(1082, 114)
+        Me.dgvEconomicBids.TabIndex = 1
+        '
         'DataGridViewTextBoxColumn16
         '
         Me.DataGridViewTextBoxColumn16.HeaderText = "ID"
@@ -1460,12 +1466,6 @@ Partial Class frmMain
         Me.Open5.Name = "Open5"
         Me.Open5.Text = "Open"
         Me.Open5.UseColumnTextForButtonValue = True
-        '
-        'DocMigrationToolStripMenuItem
-        '
-        Me.DocMigrationToolStripMenuItem.Name = "DocMigrationToolStripMenuItem"
-        Me.DocMigrationToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.DocMigrationToolStripMenuItem.Text = "Doc Migration..."
         '
         'frmMain
         '
